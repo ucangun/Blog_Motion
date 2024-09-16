@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import RegisterForm, { SignupSchema } from "../components/RegisterForm";
 import { Container } from "@mui/material";
 
-export interface MyFormValues {
+export interface RegisterFormValues {
   username: string;
   password: string;
   email: string;
@@ -15,7 +15,7 @@ export interface MyFormValues {
 }
 
 const Register: React.FC = () => {
-  const initialValues: MyFormValues = {
+  const initialValues: RegisterFormValues = {
     username: "",
     password: "",
     email: "",

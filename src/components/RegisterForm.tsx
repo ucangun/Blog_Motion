@@ -1,5 +1,5 @@
 import { FormikProps, Form } from "formik";
-import { MyFormValues } from "../pages/Register";
+import { RegisterFormValues } from "../pages/Register";
 import * as Yup from "yup";
 import { Box, Button, TextField } from "@mui/material";
 
@@ -28,7 +28,7 @@ export const SignupSchema = Yup.object().shape({
     ),
 });
 
-const RegisterForm: React.FC<FormikProps<MyFormValues>> = ({
+const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
   values,
   handleChange,
   errors,
