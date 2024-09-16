@@ -1,7 +1,8 @@
-import { FormikProps, Form } from "formik";
-import { RegisterFormValues } from "../pages/Register";
 import * as Yup from "yup";
+import { FormikProps, Form } from "formik";
 import { Box, Button, TextField } from "@mui/material";
+import { RegisterFormValues } from "../pages/Register";
+import googleLogo from "../assets/images/Google.png";
 
 export const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -54,7 +55,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           onBlur={handleBlur}
           helperText={touched.username && errors.username}
           error={touched.username && Boolean(errors.username)}
-          sx={{ width: "32ch" }}
+          sx={{ width: "30ch" }}
         />
         <TextField
           label="First Name"
@@ -66,7 +67,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           onBlur={handleBlur}
           helperText={touched.firstName && errors.firstName}
           error={touched.firstName && Boolean(errors.firstName)}
-          sx={{ width: "32ch" }}
+          sx={{ width: "30ch" }}
         />
         <TextField
           label="Last Name"
@@ -78,7 +79,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           onBlur={handleBlur}
           helperText={touched.lastName && errors.lastName}
           error={touched.lastName && Boolean(errors.lastName)}
-          sx={{ width: "32ch" }}
+          sx={{ width: "30ch" }}
         />
         <TextField
           label="Email"
@@ -90,7 +91,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           onBlur={handleBlur}
           helperText={touched.email && errors.email}
           error={touched.email && Boolean(errors.email)}
-          sx={{ width: "32ch" }}
+          sx={{ width: "30ch" }}
         />
         <TextField
           label="Password"
@@ -103,14 +104,15 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           onBlur={handleBlur}
           helperText={touched.password && errors.password}
           error={touched.password && Boolean(errors.password)}
-          sx={{ width: "32ch" }}
+          sx={{ width: "30ch" }}
         />
-        <Box sx={{ display: "flex", gap: 3 }}>
+        <Box sx={{ display: "flex", gap: 2 }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Sign Up"}
+            {isSubmitting ? "Loading..." : "Register"}
           </Button>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Sign up with Google"}
+            {isSubmitting ? "Loading..." : "Sign up with"}
+            <img src={googleLogo} alt="" />
           </Button>
         </Box>
       </Box>
