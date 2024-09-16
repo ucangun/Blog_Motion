@@ -2,6 +2,7 @@ import * as React from "react";
 import { Formik } from "formik";
 import RegisterForm, { SignupSchema } from "../components/RegisterForm";
 import { Container } from "@mui/material";
+import useAuthCall from "../hooks/useAuthCall";
 
 export interface RegisterFormValues {
   username: string;
@@ -15,6 +16,8 @@ export interface RegisterFormValues {
 }
 
 const Register: React.FC = () => {
+  const { register } = useAuthCall();
+
   const initialValues: RegisterFormValues = {
     username: "",
     password: "",
@@ -37,6 +40,7 @@ const Register: React.FC = () => {
         validationSchema={SignupSchema}
         initialValues={initialValues}
         onSubmit={(values, actions) => {
+          register(values);
           console.log({ values, actions });
           actions.resetForm();
           actions.setSubmitting(false);

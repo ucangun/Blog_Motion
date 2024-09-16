@@ -24,8 +24,8 @@ export const SignupSchema = Yup.object().shape({
     .matches(/[a-z]/, "must contain lowercase letters!")
     .matches(/[A-Z]/, "must contain uppercase letters!")
     .matches(
-      /[@$?!%&*.]+/,
-      "must contain at least one special character(@$?!%&*.)"
+      /[@$?!%&*]+/,
+      "must contain at least one special character(@$?!%&*)"
     ),
 });
 
