@@ -7,6 +7,8 @@ import { darkTheme } from "./theme.ts";
 import { lightTheme } from "./theme.ts";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { mode } = useSelector((state: RootState) => state.theme);
@@ -27,6 +29,7 @@ function App() {
         <PersistGate loading={null} persistor={persistor}>
           <AppRouter />
         </PersistGate>
+        <ToastContainer />
       </ThemeProvider>
     </>
   );

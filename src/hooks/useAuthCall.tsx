@@ -11,6 +11,7 @@ import {
 import { LoginFormValues } from "../pages/Login";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
+import { toastError, toastSuccess } from "../helpers/ToastNotify";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
@@ -24,12 +25,13 @@ const useAuthCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.post(`${BASE_URL}users`, userInfo);
-      console.log(data);
       dispatch(registerSuccess(data));
       navigate("/login");
+      toastSuccess("You have successfully registered!");
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);
+      toastError("Oops! Something went wrong during registration.");
     }
   };
 
@@ -40,9 +42,11 @@ const useAuthCall = () => {
       const { data } = await axios.post(`${BASE_URL}auth/login`, userInfo);
       console.log(data);
       dispatch(loginSuccess(data));
+      toastSuccess("You have successfully logged in!");
       navigate("/");
     } catch (error) {
       dispatch(fetchFail());
+      toastError("Oops! Something went wrong during login.");
       console.error(error);
     }
   };
@@ -57,9 +61,11 @@ const useAuthCall = () => {
         },
       });
       dispatch(logoutSuccess());
+      toastSuccess("You have successfully logged out!");
       navigate("/login");
     } catch (error) {
       dispatch(fetchFail());
+      toastError("Oops! Something went wrong during logout.");
       console.error(error);
     }
   };
