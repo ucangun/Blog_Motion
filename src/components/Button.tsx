@@ -13,7 +13,7 @@ const MyButton = ({ children, to, type, onClick }: ButtonType) => {
 
   const styles = {
     primary: base,
-    secondary: "",
+    secondary: "underline tracking-normal",
   };
 
   if (to) {

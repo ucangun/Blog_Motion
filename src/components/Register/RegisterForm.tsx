@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 import { FormikProps, Form } from "formik";
 import { Box, Button, TextField } from "@mui/material";
-import { RegisterFormValues } from "../pages/Register";
-import googleLogo from "../assets/images/Google.png";
+import { RegisterFormValues } from "../../pages/Register";
+import googleLogo from "../../assets/images/Google.png";
 
 export const SignupSchema = Yup.object().shape({
   username: Yup.string()

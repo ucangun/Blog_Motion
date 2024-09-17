@@ -2,7 +2,7 @@ import * as React from "react";
 import useAuthCall from "../hooks/useAuthCall";
 import { Container } from "@mui/material";
 import { Formik } from "formik";
-import LoginForm, { LoginSchema } from "../components/LoginForm";
+import LoginForm, { LoginSchema } from "../components/Login/LoginForm";
 
 export interface LoginFormValues {
   username: string;

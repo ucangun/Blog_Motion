@@ -1,8 +1,9 @@
 import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
 import { Box, Button, TextField } from "@mui/material";
-import { LoginFormValues } from "../pages/Login";
-import googleLogo from "../assets/images/Google.png";
+import { LoginFormValues } from "../../pages/Login";
+import MyButton from "../../components/Button";
+import googleLogo from "../../assets/images/Google.png";
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -60,7 +61,7 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
           error={touched.password && Boolean(errors.password)}
           sx={{ width: "27ch" }}
         />
-        <Box sx={{ display: "flex", gap: "1rem" }}>
+        <Box sx={{ display: "flex", gap: "1.1rem" }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting ? "Loading..." : "Login"}
           </Button>
@@ -69,6 +70,9 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
             <img src={googleLogo} alt="" />
           </Button>
         </Box>
+        <MyButton to="/signup" type="secondary">
+          Don't have an account? Register
+        </MyButton>
       </Box>
     </Form>
   );

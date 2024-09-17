@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Formik } from "formik";
-import RegisterForm, { SignupSchema } from "../components/RegisterForm";
+import RegisterForm, {
+  SignupSchema,
+} from "../components/Register/RegisterForm";
 import { Container } from "@mui/material";
 import useAuthCall from "../hooks/useAuthCall";
 
