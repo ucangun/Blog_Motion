@@ -16,13 +16,13 @@ export interface BlogPost {
   __v: number;
 }
 
-interface BlogInitial {
+interface BlogSliceInitial {
   loading: boolean;
   error: boolean;
   blog: BlogPost[];
 }
 
-const initialState: BlogInitial = {
+const initialState: BlogSliceInitial = {
   loading: false,
   error: false,
   blog: [],

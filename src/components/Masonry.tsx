@@ -25,7 +25,7 @@ export default function HomeMasonry({ firstThreeBlogs }: HomeMasonryProps) {
             key={blog._id}
             sx={{
               height: heights[index] || 200,
-              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${blog.image})`,
+              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(${blog.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
