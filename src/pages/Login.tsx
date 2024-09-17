@@ -2,7 +2,7 @@ import * as React from "react";
 import useAuthCall from "../hooks/useAuthCall";
 import { Container } from "@mui/material";
 import { Formik } from "formik";
-import LoginForm from "../components/LoginForm";
+import LoginForm, { LoginSchema } from "../components/LoginForm";
 
 export interface LoginFormValues {
   username: string;
@@ -26,6 +26,7 @@ const Login: React.FC = () => {
     >
       <Formik
         initialValues={initialValues}
+        validationSchema={LoginSchema}
         onSubmit={(values, actions) => {
           login(values);
           actions.resetForm();

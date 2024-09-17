@@ -60,12 +60,12 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
           error={touched.password && Boolean(errors.password)}
           sx={{ width: "27ch" }}
         />
-        <Box sx={{ display: "flex", gap: "3rem" }}>
+        <Box sx={{ display: "flex", gap: "1rem" }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting ? "Loading..." : "Login"}
           </Button>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Login with"}
+            {isSubmitting ? "Loading..." : "Continue with"}
             <img src={googleLogo} alt="" />
           </Button>
         </Box>
