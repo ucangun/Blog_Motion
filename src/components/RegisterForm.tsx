@@ -44,7 +44,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 2,
+          gap: 3,
         }}
       >
         <TextField
@@ -106,7 +106,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
           error={touched.password && Boolean(errors.password)}
           sx={{ width: "30ch" }}
         />
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: "flex", gap: "2rem" }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting ? "Loading..." : "Register"}
           </Button>

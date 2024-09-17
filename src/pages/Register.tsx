@@ -41,7 +41,6 @@ const Register: React.FC = () => {
         initialValues={initialValues}
         onSubmit={(values, actions) => {
           register(values);
-          console.log({ values, actions });
           actions.resetForm();
           actions.setSubmitting(false);
         }}
