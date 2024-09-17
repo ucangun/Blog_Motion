@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "./Logo";
+import MyButton from "./Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import useAuthCall from "../hooks/useAuthCall";
@@ -197,7 +198,9 @@ function Navbar() {
               </>
             ) : (
               <Box>
-                <Button>sdfgdfgdsf</Button>
+                <MyButton to="/login" type="primary">
+                  Get Started
+                </MyButton>
               </Box>
             )}
           </Box>
