@@ -9,7 +9,7 @@ interface ButtonType {
 
 const MyButton = ({ children, to, type, onClick }: ButtonType) => {
   const base =
-    "rounded-[1.2rem] bg-[#bbb2cd] px-4 py-3 text-md font-[500]  text-[#111]shadow-sm dark:bg-[#bbb2cd] dark:text-[#111] ";
+    "rounded-[1.2rem] bg-[#bbb2cd] px-[1.2rem] py-[.7rem] text-md font-[500]  text-[#111]shadow-sm dark:bg-[#bbb2cd] dark:text-[#111] ";
 
   const styles = {
     primary: base,
