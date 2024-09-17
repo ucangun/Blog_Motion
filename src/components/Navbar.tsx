@@ -13,6 +13,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import Logo from "./Logo";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Logout"];
@@ -48,22 +49,13 @@ function Navbar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Logo */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+          <Box
             sx={{
-              mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
             }}
           >
-            LOGO
-          </Typography>
+            <Logo />
+          </Box>
           {/* Logo */}
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -74,7 +66,9 @@ function Navbar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{
+                color: "primary.text",
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -102,24 +96,14 @@ function Navbar() {
             </Menu>
           </Box>
           {/* Logo */}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+          <Box
             sx={{
-              mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
-            LOGO
-          </Typography>
+            <Logo />
+          </Box>
           {/* Logo */}
           {/* Pages */}
           <Box

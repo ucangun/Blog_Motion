@@ -2,14 +2,14 @@ import { createTheme } from "@mui/material/styles";
 
 const lightPalette = {
   primary: {
-    light: "#14b8a6", // teal 500
-    main: "#BBB2CD", // teal 600
-    dark: "#0f766e", // teal 700
-    contrastText: "#fff",
+    green: "#44E57F",
+    main: "#BBB2CD",
+    dark: "#111",
+    text: "#fff",
   },
   secondary: {
     light: "#f7fee7",
-    main: "#fffbeb",
+    main: "#fff",
     dark: "#4d7c0f",
     contrastText: "#262626",
   },
