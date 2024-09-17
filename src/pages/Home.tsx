@@ -1,6 +1,8 @@
 import { Container } from "@mui/material";
 import Navbar from "../components/Navbar";
 
+import HomeMasonry from "../components/Masonry";
+
 const Home = () => {
   return (
     <Container
@@ -10,6 +12,7 @@ const Home = () => {
       }}
     >
       <Navbar />
+      <HomeMasonry />
     </Container>
   );
 };
