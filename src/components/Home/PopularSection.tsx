@@ -1,25 +1,26 @@
 import { Box, Typography } from "@mui/material";
 import MyButton from "../Button";
+import PopularCards from "./PopularCards";
 
 const PopularSection = () => {
   return (
     <Box
-      maxWidth="xl"
+      maxWidth="lg"
       sx={{
         backgroundColor: "primary.main",
         borderRadius: ".3rem",
         width: "auto",
         cursor: "pointer",
         padding: {
-          xs: ".4rem .6rem",
-          md: ".6rem 1.2rem",
+          xs: ".8rem .6rem",
+          md: "1rem 1.2rem",
         },
       }}
     >
       <Typography
         sx={{
           fontSize: {
-            xs: "1.6rem",
+            xs: "1.8rem",
             sm: "2.2rem",
             md: "2.8rem",
           },
@@ -39,7 +40,7 @@ const PopularSection = () => {
           gap: 2,
           flexWrap: "wrap",
           alignItems: "center",
-          marginTop: ".5rem",
+          marginTop: ".6rem",
         }}
       >
         <Typography
@@ -56,6 +57,8 @@ const PopularSection = () => {
           Read All Blog
         </MyButton>
       </Box>
+
+      <PopularCards />
     </Box>
   );
 };

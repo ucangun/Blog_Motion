@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import Navbar from "../components/Navbar";
-import HomeMasonry from "../components/Masonry";
+import HomeMasonry from "../components/Home/Masonry";
 import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <Container
-      maxWidth="xl"
+      maxWidth="lg"
       sx={{
         display: "flex",
         flexDirection: "column",

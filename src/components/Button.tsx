@@ -15,7 +15,7 @@ const MyButton = ({ children, to, type, onClick }: ButtonType) => {
     primary: base,
     secondary: "underline tracking-normal",
     tertiary:
-      "bg-[#111] text-white text-sm inline-block py-[.5rem] px-2 rounded-[.5rem] ",
+      "bg-[#111] text-white text-sm inline-block py-[.5rem] tracking-wide px-4 rounded-[.5rem] ",
   };
 
   if (to) {

@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
-import { BlogPost } from "../features/blogSlice";
+import { BlogPost } from "../../features/blogSlice";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(0.5),
@@ -18,7 +18,7 @@ interface HomeMasonryProps {
 
 export default function HomeMasonry({ firstThreeBlogs }: HomeMasonryProps) {
   return (
-    <Box maxWidth="xl" sx={{ width: "auto", minHeight: 393 }}>
+    <Box maxWidth="lg" sx={{ width: "auto", minHeight: 393 }}>
       <Masonry columns={2} spacing={1}>
         {firstThreeBlogs.map((blog, index) => (
           <Item
