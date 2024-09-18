@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 
 const Blogs = () => {
   const { getBlogs } = useBlogCall();
-  const { blog } = useSelector((state: RootState) => state.blog);
+  const { blogs } = useSelector((state: RootState) => state.blog);
 
   useEffect(() => {
     getBlogs();
@@ -25,7 +25,7 @@ const Blogs = () => {
     >
       <Navbar />
       <Grid2 container spacing={6} justifyContent="center" alignItems="center">
-        {blog.map((item) => (
+        {blogs.map((item) => (
           <Grid2
             display="flex"
             justifyContent="center"

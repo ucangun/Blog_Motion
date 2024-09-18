@@ -19,13 +19,15 @@ export interface BlogPost {
 interface BlogSliceInitial {
   loading: boolean;
   error: boolean;
-  blog: BlogPost[];
+  blogs: BlogPost[];
+  singleBlog: BlogPost | null;
 }
 
 const initialState: BlogSliceInitial = {
   loading: false,
   error: false,
-  blog: [],
+  blogs: [],
+  singleBlog: null,
 };
 
 const blogSlice = createSlice({
@@ -39,12 +41,12 @@ const blogSlice = createSlice({
     getBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.blog = payload;
+      state.blogs = payload;
     },
     getSingleBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.blog = payload.data;
+      state.singleBlog = payload.data;
     },
 
     fetchFail: (state) => {
