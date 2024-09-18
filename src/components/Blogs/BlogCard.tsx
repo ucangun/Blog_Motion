@@ -91,7 +91,7 @@ export default function BlogCard({ item }: BlogCardProps) {
               <CiRead />
             </IconButton>
           </Box>
-          <MyButton to="/blog" type="secondary">
+          <MyButton to={`/blog/${item._id}`} type="secondary">
             Read More &rarr;
           </MyButton>
         </Box>

@@ -18,7 +18,7 @@ const AppRouter = () => {
 
         {/* Private Area */}
         <Route element={<PrivateRouter />}>
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Blog />} />
         </Route>
       </Routes>
     </BrowserRouter>
