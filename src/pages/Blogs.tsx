@@ -4,6 +4,7 @@ import useBlogCall from "../hooks/useBlogCall";
 import { RootState } from "../app/store";
 import { useEffect } from "react";
 import { Container, Grid2 } from "@mui/material";
+import Navbar from "../components/Navbar";
 
 const Blogs = () => {
   const { getBlogs } = useBlogCall();
@@ -15,12 +16,14 @@ const Blogs = () => {
 
   return (
     <Container
-      maxWidth="xl"
       sx={{
-        backgroundColor: "primary.main",
-        py: 10,
+        padding: ".4rem 0.1rem",
+        display: "flex",
+        flexDirection: "column",
+        gap: "4rem",
       }}
     >
+      <Navbar />
       <Grid2 container spacing={6} justifyContent="center" alignItems="center">
         {blog.map((item) => (
           <Grid2
