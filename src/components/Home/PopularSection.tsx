@@ -12,8 +12,8 @@ const PopularSection = () => {
         width: "auto",
         cursor: "pointer",
         padding: {
-          xs: ".8rem .6rem",
-          md: "1rem 1.2rem",
+          xs: "1rem .9rem",
+          md: "1.8rem 1.2rem",
         },
       }}
     >
@@ -53,7 +53,7 @@ const PopularSection = () => {
           Our most popular articles, packed with insights and tips, are reader
           favorites!
         </Typography>
-        <MyButton to="/" type="tertiary">
+        <MyButton to="/blogs" type="tertiary">
           Read All Blog
         </MyButton>
       </Box>

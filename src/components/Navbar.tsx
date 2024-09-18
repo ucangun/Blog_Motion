@@ -18,8 +18,12 @@ import MyButton from "./Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import useAuthCall from "../hooks/useAuthCall";
+import { useNavigate } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
+interface PagesType {
+  title: string;
+  onClick: () => void;
+}
 
 interface SettingsType {
   title: string;
@@ -29,6 +33,22 @@ interface SettingsType {
 function Navbar() {
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const { logout } = useAuthCall();
+  const navigate = useNavigate();
+
+  const pages: PagesType[] = [
+    {
+      title: "Products",
+      onClick: () => {},
+    },
+    {
+      title: "Pricing",
+      onClick: () => {},
+    },
+    {
+      title: "Blogs",
+      onClick: () => navigate("/blogs"),
+    },
+  ];
 
   const settings: SettingsType[] = [
     {
@@ -115,8 +135,10 @@ function Navbar() {
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography sx={{ textAlign: "center" }}>
+                    {page.title}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -143,15 +165,18 @@ function Navbar() {
           >
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.title}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  page.onClick();
+                }}
                 sx={{
                   my: 2,
                   color: "white",
                   display: "block",
                 }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
