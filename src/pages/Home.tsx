@@ -9,8 +9,8 @@ import PopularSection from "../components/Home/PopularSection";
 
 const Home = () => {
   const { getBlogs } = useBlogCall();
-  const { blog } = useSelector((state: RootState) => state.blog);
-  const firstThreeBlogs = blog.slice(0, 3);
+  const { blogs } = useSelector((state: RootState) => state.blog);
+  const firstThreeBlogs = blogs.slice(0, 3);
 
   useEffect(() => {
     getBlogs();

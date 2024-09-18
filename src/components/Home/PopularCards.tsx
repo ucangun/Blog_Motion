@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
 const PopularCards = () => {
-  const { blog } = useSelector((state: RootState) => state.blog);
-  const PopularBlogs = blog.slice(3, 6);
+  const { blogs } = useSelector((state: RootState) => state.blog);
+  const PopularBlogs = blogs.slice(3, 6);
 
   return (
     <Grid2
