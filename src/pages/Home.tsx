@@ -23,7 +23,7 @@ const Home = () => {
         display: "flex",
         flexDirection: "column",
         gap: ".5rem",
-        padding: ".5rem ",
+        padding: ".4rem 0.1rem",
       }}
     >
       <Navbar />

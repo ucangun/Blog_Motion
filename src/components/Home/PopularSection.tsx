@@ -10,7 +10,10 @@ const PopularSection = () => {
         borderRadius: ".3rem",
         width: "auto",
         cursor: "pointer",
-        padding: ".6rem 1.2rem",
+        padding: {
+          xs: ".4rem .6rem",
+          md: ".6rem 1.2rem",
+        },
       }}
     >
       <Typography
@@ -33,6 +36,8 @@ const PopularSection = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          gap: 2,
+          flexWrap: "wrap",
           alignItems: "center",
           marginTop: ".5rem",
         }}
