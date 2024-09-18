@@ -62,7 +62,7 @@ const useAuthCall = () => {
       });
       dispatch(logoutSuccess());
       toastSuccess("You have successfully logged out!");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       dispatch(fetchFail());
       toastError("Oops! Something went wrong during logout.");

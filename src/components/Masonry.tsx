@@ -18,7 +18,7 @@ interface HomeMasonryProps {
 
 export default function HomeMasonry({ firstThreeBlogs }: HomeMasonryProps) {
   return (
-    <Box maxWidth="xl" sx={{ width: "auto", minHeight: 393, mt: "1rem" }}>
+    <Box maxWidth="xl" sx={{ width: "auto", minHeight: 393 }}>
       <Masonry columns={2} spacing={1}>
         {firstThreeBlogs.map((blog, index) => (
           <Item

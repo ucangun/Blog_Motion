@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 interface ButtonType {
   children: string;
   to?: string;
-  type: "primary" | "secondary";
+  type: "primary" | "secondary" | "tertiary";
   onClick?: () => void;
 }
 
@@ -14,6 +14,8 @@ const MyButton = ({ children, to, type, onClick }: ButtonType) => {
   const styles = {
     primary: base,
     secondary: "underline tracking-normal",
+    tertiary:
+      "bg-[#111] text-white text-sm inline-block py-[.5rem] px-2 rounded-[.5rem] ",
   };
 
   if (to) {
