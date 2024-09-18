@@ -9,6 +9,7 @@ import { CiHeart } from "react-icons/ci";
 import { CiRead } from "react-icons/ci";
 import { FaRegComments } from "react-icons/fa6";
 import MyButton from "../Button";
+import { formatDateTime } from "../../helpers/format";
 
 interface BlogCardProps {
   item: BlogPost;
@@ -40,14 +41,21 @@ export default function BlogCard({ item }: BlogCardProps) {
             Category
             {/* should in a category box , communication with backend via id  */}
           </Typography>
-          <Typography component="div" variant="h5" sx={{}}>
+          <Typography
+            component="div"
+            variant="h6"
+            sx={{
+              display: "inline-block",
+              width: "15rem",
+            }}
+          >
             {item.title}
             {/* should just style control  */}
           </Typography>
           <Typography component="div" variant="body2">
-            {item.createdAt}
-            {/* should format */}
+            {formatDateTime(new Date(item.createdAt), "DD/MM/YYYY HH:mm")}
           </Typography>
+
           <Typography
             variant="subtitle1"
             component="div"
