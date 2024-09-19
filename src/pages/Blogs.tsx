@@ -14,7 +14,7 @@ const Blogs = () => {
 
   useEffect(() => {
     getBlogs();
-  }, [getBlogs]);
+  }, []);
 
   const indexOfLastBlog = currentPage * itemsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - itemsPerPage;

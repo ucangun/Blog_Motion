@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
 import { Formik } from "formik";
 import NewBlogForm from "../components/NewBlog/NewBlogForm";
+import useBlogCall from "../hooks/useBlogCall";
 
 export interface NewBlogFormValues {
   categoryId: string;
@@ -11,12 +12,14 @@ export interface NewBlogFormValues {
 }
 
 const NewBlog: React.FC = () => {
+  const { addNewBlog } = useBlogCall();
+
   const initialValues: NewBlogFormValues = {
     categoryId: "",
     title: "",
     content: "",
     image: "",
-    isPublish: false,
+    isPublish: true,
   };
 
   return (
@@ -29,6 +32,7 @@ const NewBlog: React.FC = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
+          addNewBlog(values);
           actions.resetForm();
           actions.setSubmitting(false);
         }}

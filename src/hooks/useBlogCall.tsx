@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFail, fetchStart } from "../features/authSlice";
 import { getBlogSuccess, getSingleBlogSuccess } from "../features/blogSlice";
 import { RootState } from "../app/store";
+import { NewBlogFormValues } from "../pages/NewBlog";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
@@ -36,7 +37,23 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogs, getSingleBlog };
+  const addNewBlog = async (blogInfo: NewBlogFormValues): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axios.post(`${BASE_URL}blogs`, blogInfo, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+    } catch (error) {
+      dispatch(fetchFail());
+      console.error(error);
+    } finally {
+      getBlogs();
+    }
+  };
+
+  return { getBlogs, getSingleBlog, addNewBlog };
 };
 
 export default useBlogCall;
