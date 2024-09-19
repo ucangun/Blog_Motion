@@ -1,15 +1,14 @@
 import { Box, Skeleton } from "@mui/material";
 
 const BlogSkeleton = () => {
+  const skeletonCount = 10;
+
   return (
     <Box
       sx={{
         padding: "1rem 0.4rem",
       }}
     >
-      {/* Navbar Skeleton */}
-      <Skeleton variant="rectangular" height={60} />
-
       {/* Image Skeleton */}
       <Box
         sx={{
@@ -47,33 +46,24 @@ const BlogSkeleton = () => {
           <Skeleton variant="text" sx={{ fontSize: "1rem", width: "30%" }} />
         </Box>
 
+        {/* Reusable Skeletons */}
         <Box
           sx={{
             padding: "3rem 0",
           }}
         >
-          <Skeleton
-            variant="text"
-            sx={{
-              fontSize: "1.1rem",
-              width: "100%",
-              height: 20,
-              marginBottom: "1rem",
-            }}
-          />
-          <Skeleton
-            variant="text"
-            sx={{
-              fontSize: "1.1rem",
-              width: "100%",
-              height: 20,
-              marginBottom: "1rem",
-            }}
-          />
-          <Skeleton
-            variant="text"
-            sx={{ fontSize: "1.1rem", width: "80%", height: 20 }}
-          />
+          {Array.from({ length: skeletonCount }).map((_, index) => (
+            <Skeleton
+              key={index}
+              variant="text"
+              sx={{
+                fontSize: "1.1rem",
+                width: index % 2 === 0 ? "100%" : "80%",
+                height: 20,
+                marginBottom: "1rem",
+              }}
+            />
+          ))}
         </Box>
       </Box>
     </Box>
