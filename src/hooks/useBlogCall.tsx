@@ -14,7 +14,6 @@ const useBlogCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios(`${BASE_URL}blogs`);
-      console.log(data);
       dispatch(getBlogSuccess(data.data));
     } catch (error) {
       dispatch(fetchFail());
@@ -30,7 +29,6 @@ const useBlogCall = () => {
           Authorization: `Token ${token}`,
         },
       });
-      console.log(data);
       dispatch(getSingleBlogSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
