@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useBlogCall from "../hooks/useBlogCall";
 import { Box, Container, Typography } from "@mui/material";
@@ -6,21 +6,31 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import MyButton from "../components/Button";
-
 import BlogInfo from "../components/Blog/BlogInfo";
+import BlogSkeleton from "../components/BlogSkeleton";
 
 const Blog = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { getSingleBlog } = useBlogCall();
-  const { singleBlog } = useSelector((state: RootState) => state.blog);
-  console.log(singleBlog);
+  const { singleBlog, loading } = useSelector((state: RootState) => state.blog);
+
+  const [showSkeleton, setShowSkeleton] = useState(true);
 
   useEffect(() => {
     if (id) {
       getSingleBlog(id);
     }
+
+    const minimumSkeletonTime = 5000;
+    const timer = setTimeout(() => {
+      setShowSkeleton(false);
+    }, minimumSkeletonTime);
+
+    return () => clearTimeout(timer);
   }, [id]);
+
+  if (loading || showSkeleton) return <BlogSkeleton />;
 
   return (
     <Container
