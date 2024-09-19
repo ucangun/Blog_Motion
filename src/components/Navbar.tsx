@@ -41,8 +41,8 @@ function Navbar() {
       onClick: () => {},
     },
     {
-      title: "Pricing",
-      onClick: () => {},
+      title: "New blog",
+      onClick: () => navigate("/newblog"),
     },
     {
       title: "Blogs",

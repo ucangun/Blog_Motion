@@ -32,11 +32,7 @@ const Blog = () => {
   if (loading || showSkeleton) return <BlogSkeleton />;
 
   return (
-    <Container
-      sx={{
-        padding: ".4rem 0.1rem",
-      }}
-    >
+    <Container>
       {/* image box */}
       <Box
         sx={{

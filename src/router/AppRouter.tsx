@@ -6,6 +6,7 @@ import Blogs from "../pages/Blogs";
 import Blog from "../pages/Blog";
 import PrivateRouter from "./PrivateRouter";
 import AppLayout from "../components/AppLayout";
+import NewBlog from "../pages/NewBlog";
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route element={<PrivateRouter />}>
           <Route element={<AppLayout />}>
             <Route path="/blog/:id" element={<Blog />} />
+            <Route path="/newblog" element={<NewBlog />} />
           </Route>
         </Route>
       </Routes>
