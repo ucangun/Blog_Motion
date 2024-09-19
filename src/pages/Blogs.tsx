@@ -7,13 +7,13 @@ import { Container, Grid2 } from "@mui/material";
 import MuiPagination from "../components/Pagination";
 
 const Blogs = () => {
-  const { getBlogs } = useBlogCall();
+  const { getBlogData } = useBlogCall();
   const { blogs, currentPage, itemsPerPage } = useSelector(
     (state: RootState) => state.blog
   );
 
   useEffect(() => {
-    getBlogs();
+    getBlogData("blogs");
   }, []);
 
   const indexOfLastBlog = currentPage * itemsPerPage;

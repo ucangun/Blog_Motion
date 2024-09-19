@@ -32,7 +32,7 @@ const NewBlog: React.FC = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
-          addNewBlog(values);
+          addNewBlog("blogs", values);
           actions.resetForm();
           actions.setSubmitting(false);
         }}

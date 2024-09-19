@@ -11,10 +11,10 @@ const useBlogCall = () => {
   const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const getBlogs = async (): Promise<void> => {
+  const getBlogData = async (endpoint: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}blogs`);
+      const { data } = await axios(`${BASE_URL}${endpoint}`);
       dispatch(getBlogSuccess(data.data));
     } catch (error) {
       dispatch(fetchFail());
@@ -37,7 +37,10 @@ const useBlogCall = () => {
     }
   };
 
-  const addNewBlog = async (blogInfo: NewBlogFormValues): Promise<void> => {
+  const addNewBlog = async (
+    endpoint: string,
+    blogInfo: NewBlogFormValues
+  ): Promise<void> => {
     dispatch(fetchStart());
     try {
       await axios.post(`${BASE_URL}blogs`, blogInfo, {
@@ -49,11 +52,11 @@ const useBlogCall = () => {
       dispatch(fetchFail());
       console.error(error);
     } finally {
-      getBlogs();
+      getBlogData(endpoint);
     }
   };
 
-  return { getBlogs, getSingleBlog, addNewBlog };
+  return { getBlogData, getSingleBlog, addNewBlog };
 };
 
 export default useBlogCall;

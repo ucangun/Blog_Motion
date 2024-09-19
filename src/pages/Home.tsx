@@ -7,12 +7,12 @@ import { RootState } from "../app/store";
 import PopularSection from "../components/Home/PopularSection";
 
 const Home = () => {
-  const { getBlogs } = useBlogCall();
+  const { getBlogData } = useBlogCall();
   const { blogs } = useSelector((state: RootState) => state.blog);
   const firstThreeBlogs = blogs.slice(0, 3);
 
   useEffect(() => {
-    getBlogs();
+    getBlogData("blogs");
   }, []);
 
   return (
