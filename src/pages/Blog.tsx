@@ -21,7 +21,7 @@ const Blog = () => {
       getSingleBlog(id);
     }
 
-    const minimumSkeletonTime = 600;
+    const minimumSkeletonTime = 200;
     const timer = setTimeout(() => {
       setShowSkeleton(false);
     }, minimumSkeletonTime);
