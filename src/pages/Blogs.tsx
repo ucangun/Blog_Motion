@@ -4,23 +4,34 @@ import useBlogCall from "../hooks/useBlogCall";
 import { RootState } from "../app/store";
 import { useEffect } from "react";
 import { Container, Grid2 } from "@mui/material";
+import MuiPagination from "../components/Pagination";
 
 const Blogs = () => {
   const { getBlogs } = useBlogCall();
-  const { blogs } = useSelector((state: RootState) => state.blog);
+  const { blogs, currentPage, itemsPerPage } = useSelector(
+    (state: RootState) => state.blog
+  );
 
   useEffect(() => {
     getBlogs();
-  }, []);
+  }, [getBlogs]);
+
+  const indexOfLastBlog = currentPage * itemsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - itemsPerPage;
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
   return (
     <Container
       sx={{
-        padding: "4rem 0.1rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "4rem",
+        padding: "3rem 0.1rem",
       }}
     >
-      <Grid2 container spacing={6} justifyContent="center" alignItems="center">
-        {blogs.map((item) => (
+      <Grid2 container spacing={2} justifyContent="center" alignItems="center">
+        {currentBlogs.map((item) => (
           <Grid2
             display="flex"
             justifyContent="center"
@@ -31,6 +42,7 @@ const Blogs = () => {
           </Grid2>
         ))}
       </Grid2>
+      <MuiPagination />
     </Container>
   );
 };

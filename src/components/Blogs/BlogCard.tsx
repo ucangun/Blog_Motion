@@ -22,6 +22,7 @@ export default function BlogCard({ item }: BlogCardProps) {
         display: "flex",
         minWidth: "30rem",
         maxWidth: "35rem",
+        // height: "10rem",
         cursor: "pointer",
       }}
     >
@@ -46,7 +47,6 @@ export default function BlogCard({ item }: BlogCardProps) {
             variant="h6"
             sx={{
               display: "inline-block",
-              width: "15rem",
             }}
           >
             {item.title}

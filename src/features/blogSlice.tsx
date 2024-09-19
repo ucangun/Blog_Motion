@@ -21,6 +21,8 @@ interface BlogSliceInitial {
   error: boolean;
   blogs: BlogPost[];
   singleBlog: BlogPost | null;
+  currentPage: number;
+  itemsPerPage: number;
 }
 
 const initialState: BlogSliceInitial = {
@@ -28,6 +30,8 @@ const initialState: BlogSliceInitial = {
   error: false,
   blogs: [],
   singleBlog: null,
+  currentPage: 1,
+  itemsPerPage: 5,
 };
 
 const blogSlice = createSlice({
@@ -48,7 +52,9 @@ const blogSlice = createSlice({
       state.error = false;
       state.singleBlog = payload.data;
     },
-
+    setPage: (state, { payload }) => {
+      state.currentPage = payload;
+    },
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -56,6 +62,11 @@ const blogSlice = createSlice({
   },
 });
 
-export const { fetchStart, getBlogSuccess, getSingleBlogSuccess, fetchFail } =
-  blogSlice.actions;
+export const {
+  fetchStart,
+  getBlogSuccess,
+  getSingleBlogSuccess,
+  setPage,
+  fetchFail,
+} = blogSlice.actions;
 export default blogSlice.reducer;
