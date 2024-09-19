@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import { Formik } from "formik";
 import NewBlogForm from "../components/NewBlog/NewBlogForm";
 import useBlogCall from "../hooks/useBlogCall";
+import { useEffect } from "react";
 
 export interface NewBlogFormValues {
   categoryId: string;
@@ -12,7 +13,11 @@ export interface NewBlogFormValues {
 }
 
 const NewBlog: React.FC = () => {
-  const { addNewBlog } = useBlogCall();
+  const { getBlogData, addNewBlog } = useBlogCall();
+
+  useEffect(() => {
+    getBlogData("categories");
+  }, []);
 
   const initialValues: NewBlogFormValues = {
     categoryId: "",

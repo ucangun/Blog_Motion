@@ -15,7 +15,7 @@ const useBlogCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios(`${BASE_URL}${endpoint}`);
-      dispatch(getBlogSuccess(data.data));
+      dispatch(getBlogSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);

@@ -1,6 +1,16 @@
 import { Form, FormikProps } from "formik";
 import { NewBlogFormValues } from "../../pages/NewBlog";
-import { Box, Button, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
   values,
@@ -10,6 +20,9 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
   handleBlur,
   isSubmitting,
 }) => {
+  const { categories } = useSelector((state: RootState) => state.blog);
+  console.log(categories);
+
   return (
     <Form>
       <Box
@@ -30,17 +43,24 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
           error={touched.title && Boolean(errors.title)}
           sx={{ width: "30ch" }}
         />
-        <TextField
-          label="Category *"
-          name="categoryId"
-          variant="outlined"
-          value={values.categoryId}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.categoryId && errors.categoryId}
-          error={touched.categoryId && Boolean(errors.categoryId)}
-          sx={{ width: "30ch" }}
-        />
+        <FormControl>
+          <InputLabel id="categoryId">Category</InputLabel>
+          <Select
+            labelId="categoryId"
+            name="categoryId"
+            id="demo-simple-select"
+            value={""}
+            label="Category"
+            onChange={handleChange}
+            sx={{ width: "34ch" }}
+          >
+            {categories.map((category) => (
+              <MenuItem key={category._id} value={category.name}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <TextField
           label="Image *"
           name="image"

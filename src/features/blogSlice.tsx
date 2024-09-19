@@ -13,13 +13,19 @@ export interface BlogPost {
   countOfVisitors: number;
   createdAt: string;
   updatedAt: string;
-  __v: number;
+}
+
+export interface CategoryPost {
+  _id: string;
+  name: string;
+  createdAt: string;
 }
 
 interface BlogSliceInitial {
   loading: boolean;
   error: boolean;
   blogs: BlogPost[];
+  categories: CategoryPost[];
   singleBlog: BlogPost | null;
   currentPage: number;
   itemsPerPage: number;
@@ -29,6 +35,7 @@ const initialState: BlogSliceInitial = {
   loading: false,
   error: false,
   blogs: [],
+  categories: [],
   singleBlog: null,
   currentPage: 1,
   itemsPerPage: 5,
@@ -45,7 +52,12 @@ const blogSlice = createSlice({
     getBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.blogs = payload;
+      state.blogs = payload.data;
+    },
+    getCategorySuccess: (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state.categories = payload.data;
     },
     getSingleBlogSuccess: (state, { payload }) => {
       state.loading = false;
