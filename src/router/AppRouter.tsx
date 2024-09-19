@@ -5,20 +5,25 @@ import Login from "../pages/Login";
 import Blogs from "../pages/Blogs";
 import Blog from "../pages/Blog";
 import PrivateRouter from "./PrivateRouter";
+import AppLayout from "../components/AppLayout";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         {/* Public Area */}
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/blogs" element={<Blogs />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/blogs" element={<Blogs />} />
+        </Route>
 
         {/* Private Area */}
         <Route element={<PrivateRouter />}>
-          <Route path="/blog/:id" element={<Blog />} />
+          <Route element={<AppLayout />}>
+            <Route path="/blog/:id" element={<Blog />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

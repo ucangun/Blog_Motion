@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useBlogCall from "../hooks/useBlogCall";
 import { Box, Container, Typography } from "@mui/material";
-import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import MyButton from "../components/Button";
@@ -38,8 +37,6 @@ const Blog = () => {
         padding: ".4rem 0.1rem",
       }}
     >
-      <Navbar />
-
       {/* image box */}
       <Box
         sx={{

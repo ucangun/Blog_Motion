@@ -1,5 +1,4 @@
 import { Container } from "@mui/material";
-import Navbar from "../components/Navbar";
 import HomeMasonry from "../components/Home/Masonry";
 import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
@@ -26,7 +25,6 @@ const Home = () => {
         padding: ".4rem 0.1rem",
       }}
     >
-      <Navbar />
       <HomeMasonry firstThreeBlogs={firstThreeBlogs} />
       <PopularSection />
     </Container>
