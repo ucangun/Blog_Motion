@@ -37,16 +37,16 @@ function Navbar() {
 
   const pages: PagesType[] = [
     {
-      title: "Products",
-      onClick: () => {},
+      title: "Blogs",
+      onClick: () => navigate("/blogs"),
     },
     {
       title: "New blog",
       onClick: () => navigate("/newblog"),
     },
     {
-      title: "Blogs",
-      onClick: () => navigate("/blogs"),
+      title: "Products",
+      onClick: () => {},
     },
   ];
 

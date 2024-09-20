@@ -16,7 +16,7 @@ const MyBlogCard = ({ blog }: MyBlogCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
       <CardMedia sx={{ height: 160 }} image={blog.image} title={blog.title} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

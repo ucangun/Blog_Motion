@@ -8,11 +8,12 @@ import MyButton from "../components/Button";
 import BlogInfo from "../components/Blog/BlogInfo";
 import BlogSkeleton from "../components/Blog/BlogSkeleton";
 
-const Blog = () => {
+const Blog: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { getSingleBlog } = useBlogCall();
   const { singleBlog, loading } = useSelector((state: RootState) => state.blog);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
 
   const [showSkeleton, setShowSkeleton] = useState(true);
 
@@ -99,6 +100,7 @@ const Blog = () => {
           {singleBlog?.content}
         </Typography>
       </Box>
+      {singleBlog?.userId?._id === currentUser?._id ? "YES" : "NO"}
     </Container>
   );
 };

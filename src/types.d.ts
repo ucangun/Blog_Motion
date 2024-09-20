@@ -4,7 +4,12 @@
 
 interface BlogPost {
   _id: string;
-  userId: string;
+  userId: {
+    _id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+  };
   categoryId: string;
   title: string;
   content: string;
