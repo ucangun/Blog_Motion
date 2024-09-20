@@ -4,7 +4,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { BlogPost } from "../../features/blogSlice";
 import { CiHeart } from "react-icons/ci";
 import { CiRead } from "react-icons/ci";
 import { FaRegComments } from "react-icons/fa6";

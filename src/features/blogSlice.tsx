@@ -6,7 +6,7 @@ interface BlogSliceInitial {
   blogs: BlogPost[];
   categories: CategoryPost[];
   singleBlog: BlogPost | null;
-  userBlog: BlogPost | null;
+  userBlogs: BlogPost[];
   currentPage: number;
   itemsPerPage: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,7 +19,7 @@ const initialState: BlogSliceInitial = {
   blogs: [],
   categories: [],
   singleBlog: null,
-  userBlog: null,
+  userBlogs: [],
   currentPage: 1,
   itemsPerPage: 5,
 };
@@ -45,7 +45,7 @@ const blogSlice = createSlice({
     getBlogByUserIdSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.userBlog = payload.data;
+      state.userBlogs = payload.data;
     },
     setPage: (state, { payload }) => {
       state.currentPage = payload;
