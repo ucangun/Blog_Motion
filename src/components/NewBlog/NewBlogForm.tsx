@@ -62,7 +62,7 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
               sx={{ width: "32ch" }}
             >
               {categories.map((category) => (
-                <MenuItem key={category._id} value={category.name}>
+                <MenuItem key={category._id} value={category._id}>
                   {category.name}
                 </MenuItem>
               ))}
