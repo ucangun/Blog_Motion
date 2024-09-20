@@ -7,10 +7,13 @@ import {
   getSingleBlogSuccess,
 } from "../features/blogSlice";
 import { RootState } from "../app/store";
+import { toastSuccess } from "../helpers/ToastNotify";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
 const useBlogCall = () => {
+  const navigate = useNavigate();
   const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
@@ -70,7 +73,31 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogData, getSingleBlog, getBlogByUserId, addNewBlog };
+  const deleteBlog = async (id: string): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axios.delete(`${BASE_URL}blogs/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      toastSuccess("Blog has successfully deleted");
+      navigate(-1);
+    } catch (error) {
+      dispatch(fetchFail());
+      console.error(error);
+    } finally {
+      getBlogData("blogs");
+    }
+  };
+
+  return {
+    getBlogData,
+    getSingleBlog,
+    getBlogByUserId,
+    deleteBlog,
+    addNewBlog,
+  };
 };
 
 export default useBlogCall;
