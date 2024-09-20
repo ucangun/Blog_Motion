@@ -7,6 +7,7 @@ import { RootState } from "../app/store";
 import MyButton from "../components/Button";
 import BlogInfo from "../components/Blog/BlogInfo";
 import BlogSkeleton from "../components/Blog/BlogSkeleton";
+import OpenIconSpeedDial from "../components/Blog/OpenIconSpeedDial";
 
 const Blog: React.FC = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Blog: React.FC = () => {
       {/* image box */}
       <Box
         sx={{
-          padding: ".8rem .4rem ",
+          padding: "1rem .3rem ",
         }}
       >
         <img
@@ -50,7 +51,7 @@ const Blog: React.FC = () => {
       {/* back button  */}
       <Box
         sx={{
-          padding: "1rem 3rem",
+          padding: "1.2rem ",
         }}
       >
         <MyButton type="secondary" onClick={() => navigate(-1)}>
@@ -61,7 +62,7 @@ const Blog: React.FC = () => {
       {/* blog post  first Box: general page settings,  second Box: title and BlogInfo(another component) Box  */}
       <Box
         sx={{
-          padding: "2rem 3rem",
+          padding: "1.6rem 1.2rem",
         }}
       >
         <Box
@@ -70,13 +71,12 @@ const Blog: React.FC = () => {
             justifyContent: "space-between",
             gap: "2rem",
             flexWrap: "wrap",
-            paddingRight: "1rem",
           }}
         >
           <Typography
             variant="h4"
             sx={{
-              fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2rem" },
+              fontSize: { xs: "1.4rem", sm: "1.8rem", md: "2rem" },
             }}
           >
             {singleBlog?.title}
@@ -93,14 +93,18 @@ const Blog: React.FC = () => {
         <Typography
           variant="body1"
           sx={{
-            fontSize: { xs: ".9rem", sm: "1rem", md: "1.1rem" },
+            fontSize: { xs: "1rem", sm: "1.1rem" },
             padding: "3rem 0",
           }}
         >
           {singleBlog?.content}
         </Typography>
       </Box>
-      {singleBlog?.userId?._id === currentUser?._id ? "YES" : "NO"}
+      {singleBlog?.userId?._id === currentUser?._id ? (
+        <OpenIconSpeedDial />
+      ) : (
+        "NO"
+      )}
     </Container>
   );
 };
