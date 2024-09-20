@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import MyButton from "../components/Button";
 import BlogInfo from "../components/Blog/BlogInfo";
-import BlogSkeleton from "../components/BlogSkeleton";
+import BlogSkeleton from "../components/Blog/BlogSkeleton";
 
 const Blog = () => {
   const navigate = useNavigate();
