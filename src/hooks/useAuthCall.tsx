@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RegisterFormValues } from "../pages/Register";
 import axios from "axios";
 import {
   fetchFail,
@@ -8,7 +7,6 @@ import {
   logoutSuccess,
   registerSuccess,
 } from "../features/authSlice";
-import { LoginFormValues } from "../pages/Login";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";

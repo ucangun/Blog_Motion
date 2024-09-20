@@ -6,17 +6,6 @@ import RegisterForm, {
 import { Container } from "@mui/material";
 import useAuthCall from "../hooks/useAuthCall";
 
-export interface RegisterFormValues {
-  username: string;
-  password: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  image: string;
-  city: string;
-  bio: string;
-}
-
 const Register: React.FC = () => {
   const { register } = useAuthCall();
 
