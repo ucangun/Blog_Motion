@@ -31,7 +31,7 @@ const NewBlog: React.FC = () => {
     <Container
       maxWidth="lg"
       sx={{
-        padding: "6rem ",
+        padding: "3rem 1rem",
       }}
     >
       <Formik
