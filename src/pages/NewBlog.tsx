@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import NewBlogForm from "../components/NewBlog/NewBlogForm";
 import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
-import { getCategorySuccess } from "../features/blogSlice";
 
 export interface NewBlogFormValues {
   categoryId: string;
@@ -17,7 +16,7 @@ const NewBlog: React.FC = () => {
   const { getBlogData, addNewBlog } = useBlogCall();
 
   useEffect(() => {
-    getBlogData("categories", getCategorySuccess);
+    getBlogData("categories");
   }, []);
 
   const initialValues: NewBlogFormValues = {

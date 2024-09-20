@@ -11,14 +11,11 @@ const useBlogCall = () => {
   const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const getBlogData = async (
-    endpoint: string,
-    successAction: any
-  ): Promise<void> => {
+  const getBlogData = async (endpoint: string): Promise<void> => {
     dispatch(fetchStart());
     try {
       const { data } = await axios(`${BASE_URL}${endpoint}`);
-      dispatch(successAction(data));
+      dispatch(getBlogSuccess({ endpoint, data }));
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);
@@ -55,7 +52,7 @@ const useBlogCall = () => {
       dispatch(fetchFail());
       console.error(error);
     } finally {
-      getBlogData(endpoint, getBlogSuccess);
+      getBlogData(endpoint);
     }
   };
 

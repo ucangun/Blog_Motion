@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import PopularSection from "../components/Home/PopularSection";
-import { getBlogSuccess } from "../features/blogSlice";
 
 const Home = () => {
   const { getBlogData } = useBlogCall();
@@ -13,7 +12,7 @@ const Home = () => {
   const firstThreeBlogs = blogs.slice(0, 3);
 
   useEffect(() => {
-    getBlogData("blogs", getBlogSuccess);
+    getBlogData("blogs");
   }, []);
 
   return (

@@ -5,7 +5,6 @@ import { RootState } from "../app/store";
 import { useEffect } from "react";
 import { Container, Grid2 } from "@mui/material";
 import MuiPagination from "../components/Pagination";
-import { getBlogSuccess } from "../features/blogSlice";
 
 const Blogs = () => {
   const { getBlogData } = useBlogCall();
@@ -14,7 +13,7 @@ const Blogs = () => {
   );
 
   useEffect(() => {
-    getBlogData("blogs", getBlogSuccess);
+    getBlogData("blogs");
   }, []);
 
   const indexOfLastBlog = currentPage * itemsPerPage;
