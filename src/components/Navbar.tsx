@@ -52,12 +52,12 @@ function Navbar() {
 
   const settings: SettingsType[] = [
     {
-      title: "Profile",
+      title: "Account",
       onClick: () => {},
     },
     {
-      title: "Account",
-      onClick: () => {},
+      title: "My Blogs",
+      onClick: () => navigate("/myblogs"),
     },
     {
       title: "Logout",
