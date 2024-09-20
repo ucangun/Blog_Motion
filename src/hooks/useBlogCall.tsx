@@ -7,7 +7,6 @@ import {
   getSingleBlogSuccess,
 } from "../features/blogSlice";
 import { RootState } from "../app/store";
-import { NewBlogFormValues } from "../pages/NewBlog";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 

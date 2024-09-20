@@ -4,14 +4,6 @@ import NewBlogForm from "../components/NewBlog/NewBlogForm";
 import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
 
-export interface NewBlogFormValues {
-  categoryId: string;
-  title: string;
-  content: string;
-  image: string;
-  isPublish: boolean;
-}
-
 const NewBlog: React.FC = () => {
   const { getBlogData, addNewBlog } = useBlogCall();
 
