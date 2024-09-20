@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFail, fetchStart } from "../features/authSlice";
-import { getBlogSuccess, getSingleBlogSuccess } from "../features/blogSlice";
+import {
+  getBlogByUserIdSuccess,
+  getBlogSuccess,
+  getSingleBlogSuccess,
+} from "../features/blogSlice";
 import { RootState } from "../app/store";
 import { NewBlogFormValues } from "../pages/NewBlog";
 
@@ -37,6 +41,17 @@ const useBlogCall = () => {
     }
   };
 
+  const getBlogByUserId = async (userId: string): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios(`${BASE_URL}blogs/?author=${userId}`);
+      dispatch(getBlogByUserIdSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.error(error);
+    }
+  };
+
   const addNewBlog = async (
     endpoint: string,
     blogInfo: NewBlogFormValues
@@ -56,7 +71,7 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogData, getSingleBlog, addNewBlog };
+  return { getBlogData, getSingleBlog, getBlogByUserId, addNewBlog };
 };
 
 export default useBlogCall;

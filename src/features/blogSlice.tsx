@@ -27,6 +27,7 @@ interface BlogSliceInitial {
   blogs: BlogPost[];
   categories: CategoryPost[];
   singleBlog: BlogPost | null;
+  userBlog: BlogPost | null;
   currentPage: number;
   itemsPerPage: number;
   [key: string]: any;
@@ -38,6 +39,7 @@ const initialState: BlogSliceInitial = {
   blogs: [],
   categories: [],
   singleBlog: null,
+  userBlog: null,
   currentPage: 1,
   itemsPerPage: 5,
 };
@@ -55,11 +57,15 @@ const blogSlice = createSlice({
       state.error = false;
       state[payload.endpoint] = payload.data.data;
     },
-
     getSingleBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
       state.singleBlog = payload.data;
+    },
+    getBlogByUserIdSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state.userBlog = payload.data;
     },
     setPage: (state, { payload }) => {
       state.currentPage = payload;
@@ -75,6 +81,7 @@ export const {
   fetchStart,
   getBlogSuccess,
   getSingleBlogSuccess,
+  getBlogByUserIdSuccess,
   setPage,
   fetchFail,
 } = blogSlice.actions;
