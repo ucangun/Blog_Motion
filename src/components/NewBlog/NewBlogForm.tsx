@@ -21,7 +21,6 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
   isSubmitting,
 }) => {
   const { categories } = useSelector((state: RootState) => state.blog);
-  console.log(categories);
 
   return (
     <Form>
@@ -49,7 +48,7 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
             labelId="categoryId"
             name="categoryId"
             id="demo-simple-select"
-            value={""}
+            value={values.categoryId}
             label="Category"
             onChange={handleChange}
             sx={{ width: "34ch" }}
