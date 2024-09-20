@@ -77,6 +77,7 @@ const blogSlice = createSlice({
 export const {
   fetchStart,
   getBlogSuccess,
+  getCategorySuccess,
   getSingleBlogSuccess,
   setPage,
   fetchFail,
