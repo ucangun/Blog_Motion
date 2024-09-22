@@ -5,7 +5,7 @@ interface BlogSliceInitial {
   error: boolean;
   blogs: BlogPost[];
   categories: CategoryPost[];
-  singleBlog: BlogPost | null;
+  singleBlog: SinglePost | null;
   userBlogs: BlogPost[];
   currentPage: number;
   itemsPerPage: number;

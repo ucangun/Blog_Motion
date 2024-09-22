@@ -12,16 +12,6 @@ const NewBlog: React.FC = () => {
   const { id } = useParams();
   const { singleBlog } = useSelector((state: RootState) => state.blog);
 
-  const isEditMode = Boolean(id);
-
-  const initialValues: NewBlogFormValues = {
-    categoryId: singleBlog?.categoryId || "",
-    title: singleBlog?.title || "",
-    content: singleBlog?.content || "",
-    image: singleBlog?.image || "",
-    isPublish: singleBlog?.isPublish || true,
-  };
-
   useEffect(() => {
     getBlogData("categories");
     if (id) {
@@ -29,9 +19,23 @@ const NewBlog: React.FC = () => {
     }
   }, [id]);
 
+  const isEditMode = Boolean(id);
+
+  const initialValues: NewBlogFormValues = {
+    categoryId: {
+      _id: singleBlog?.categoryId?._id || "",
+    },
+    title: singleBlog?.title || "",
+    content: singleBlog?.content || "",
+    image: singleBlog?.image || "",
+    isPublish: singleBlog?.isPublish || true,
+  };
+
   return (
     <Container maxWidth="lg" sx={{ padding: "3rem 1rem" }}>
-      {singleBlog ? (
+      {isEditMode && !singleBlog ? (
+        <p>Loading...</p>
+      ) : (
         <Formik
           enableReinitialize
           initialValues={initialValues}
@@ -47,9 +51,7 @@ const NewBlog: React.FC = () => {
           component={(props) => (
             <NewBlogForm {...props} singleBlog={singleBlog} />
           )}
-        ></Formik>
-      ) : (
-        <p>Loading...</p>
+        />
       )}
     </Container>
   );

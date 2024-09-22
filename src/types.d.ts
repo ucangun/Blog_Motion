@@ -22,6 +22,29 @@ interface BlogPost {
   updatedAt: string;
 }
 
+interface SinglePost {
+  _id: string;
+  userId: {
+    _id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+  };
+  categoryId: {
+    _id: string;
+    name: string;
+  };
+  title: string;
+  content: string;
+  image: string;
+  isPublish: boolean;
+  comments: string[];
+  likes: string[];
+  countOfVisitors: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface CategoryPost {
   _id: string;
   name: string;
@@ -33,7 +56,9 @@ interface CategoryPost {
 /* ---------------------------------- */
 
 interface NewBlogFormValues {
-  categoryId: string;
+  categoryId: {
+    _id: string;
+  };
   title: string;
   content: string;
   image: string;

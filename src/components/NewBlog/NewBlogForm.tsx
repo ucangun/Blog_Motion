@@ -11,15 +11,8 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
-interface SingleBlogType {
-  title: string;
-  content: string;
-  categoryId: string;
-  image: string;
-}
-
 interface NewBlogFormProps {
-  singleBlog: SingleBlogType | null;
+  singleBlog: SinglePost | null;
 }
 
 const NewBlogForm: React.FC<
@@ -56,7 +49,7 @@ const NewBlogForm: React.FC<
           <TextField
             name="title"
             label="Blog Title * "
-            value={values.title} // Formik values'larını kullanıyoruz
+            value={values.title}
             onChange={handleChange}
             onBlur={handleBlur}
             helperText={touched.title && errors.title}
@@ -70,7 +63,7 @@ const NewBlogForm: React.FC<
               labelId="categoryId"
               name="categoryId"
               id="demo-simple-select"
-              value={values.categoryId}
+              value={values.categoryId._id || ""}
               label="Category"
               onChange={handleChange}
               sx={{ width: "32ch" }}
