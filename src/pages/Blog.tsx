@@ -101,7 +101,7 @@ const Blog: React.FC = () => {
         </Typography>
       </Box>
       {singleBlog?.userId?._id === currentUser?._id && (
-        <OpenIconSpeedDial deleteId={singleBlog?._id} />
+        <OpenIconSpeedDial blogId={singleBlog?._id} />
       )}
     </Container>
   );

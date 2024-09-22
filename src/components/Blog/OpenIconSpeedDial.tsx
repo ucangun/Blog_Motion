@@ -7,23 +7,27 @@ import ShareIcon from "@mui/icons-material/Share";
 import EditIcon from "@mui/icons-material/Edit";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import useBlogCall from "../../hooks/useBlogCall";
+import { useNavigate } from "react-router-dom";
 
 interface OpenIconSpeedDialProps {
-  deleteId: string | undefined;
+  blogId: string | undefined;
 }
 
-export default function OpenIconSpeedDial({
-  deleteId,
-}: OpenIconSpeedDialProps) {
+export default function OpenIconSpeedDial({ blogId }: OpenIconSpeedDialProps) {
   const { deleteBlog } = useBlogCall();
+  const navigate = useNavigate();
 
   const actions = [
     {
       icon: <DeleteIcon />,
       name: "Delete",
-      onClick: () => deleteId && deleteBlog(deleteId),
+      onClick: () => blogId && deleteBlog(blogId),
     },
-    { icon: <EditNoteIcon />, name: "Edit" },
+    {
+      icon: <EditNoteIcon />,
+      name: "Edit",
+      onClick: () => navigate(`/newblog/${blogId}`),
+    },
     { icon: <ShareIcon />, name: "Share" },
   ];
 

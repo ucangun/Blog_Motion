@@ -1,5 +1,4 @@
 import { Form, FormikProps } from "formik";
-
 import {
   Box,
   Button,
@@ -12,13 +11,27 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
-const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
+interface SingleBlogType {
+  title: string;
+  content: string;
+  categoryId: string;
+  image: string;
+}
+
+interface NewBlogFormProps {
+  singleBlog: SingleBlogType | null;
+}
+
+const NewBlogForm: React.FC<
+  NewBlogFormProps & FormikProps<NewBlogFormValues>
+> = ({
   values,
   handleChange,
   errors,
   touched,
   handleBlur,
   isSubmitting,
+  singleBlog,
 }) => {
   const { categories } = useSelector((state: RootState) => state.blog);
 
@@ -43,13 +56,14 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
           <TextField
             name="title"
             label="Blog Title * "
-            value={values.title}
+            value={values.title} // Formik values'larını kullanıyoruz
             onChange={handleChange}
             onBlur={handleBlur}
             helperText={touched.title && errors.title}
             error={touched.title && Boolean(errors.title)}
             sx={{ width: "28ch" }}
           />
+
           <FormControl>
             <InputLabel id="categoryId">Category</InputLabel>
             <Select
@@ -68,6 +82,7 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
               ))}
             </Select>
           </FormControl>
+
           <TextField
             label="Image *"
             name="image"
@@ -80,6 +95,7 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
             sx={{ width: "28ch" }}
           />
         </Box>
+
         <TextField
           label="Blog"
           name="content"
@@ -101,7 +117,11 @@ const NewBlogForm: React.FC<FormikProps<NewBlogFormValues>> = ({
 
         <Box sx={{ display: "flex", gap: "2rem" }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Create New Blog"}
+            {isSubmitting
+              ? "Loading..."
+              : singleBlog
+              ? "Update Blog"
+              : "Create New Blog"}
           </Button>
         </Box>
       </Box>
