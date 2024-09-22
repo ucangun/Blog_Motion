@@ -116,19 +116,17 @@ const useBlogCall = () => {
     }
   };
 
-  const getLikeInfo = async (id: string): Promise<LikeInfoType | null> => {
+  const getLikeInfo = async (id: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}blogs/${id}/getLike`, {
+      await axios(`${BASE_URL}blogs/${id}/getLike`, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      return data;
     } catch (error) {
       console.error(error);
       dispatch(fetchFail());
-      return null;
     }
   };
 

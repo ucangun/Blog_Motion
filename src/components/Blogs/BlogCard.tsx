@@ -93,9 +93,9 @@ export default function BlogCard({ item }: BlogCardProps) {
           >
             <IconButton onClick={handleLikeClicked}>
               {item.likes.includes(currentUser ? currentUser?._id : "") ? (
-                <FaRegHeart />
-              ) : (
                 <FaHeart color="red" />
+              ) : (
+                <FaRegHeart />
               )}
             </IconButton>
             <IconButton>
