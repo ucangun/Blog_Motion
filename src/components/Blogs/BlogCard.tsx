@@ -68,8 +68,13 @@ export default function BlogCard({ item }: BlogCardProps) {
           }}
         >
           <BlogIcons item={item} />
-
-          <MyButton to={`/blog/${item._id}`} type="secondary">
+          <MyButton
+            to={`/blog/${item._id}`}
+            type="secondary"
+            style={{
+              marginLeft: "auto",
+            }}
+          >
             Read More &rarr;
           </MyButton>
         </Box>

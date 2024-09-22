@@ -13,35 +13,47 @@ const BlogIcons = ({ item }: BlogCardProps) => {
   const handleLikeClicked = () => {
     addRemoveLike(item._id);
   };
+
+  const iconStyle = {
+    fontSize: "1.2rem",
+  };
+
+  const boxStyle = {
+    display: "flex",
+    alignItems: "center",
+  };
+
   return (
     <Box
       sx={{
         display: "flex",
-        justifyConten: "flex-start",
         alignItems: "center",
-        gap: "1rem",
+        gap: ".3rem",
         px: "1rem",
       }}
     >
-      <IconButton onClick={handleLikeClicked}>
-        {item.likes.includes(currentUser ? currentUser?._id : "") ? (
-          <FaHeart color="red" />
-        ) : (
-          <FaRegHeart />
-        )}
-      </IconButton>
+      <Box sx={boxStyle}>
+        <IconButton onClick={handleLikeClicked}>
+          {item.likes.includes(currentUser ? currentUser?._id : "") ? (
+            <FaHeart style={iconStyle} color="red" />
+          ) : (
+            <FaRegHeart style={iconStyle} />
+          )}
+        </IconButton>
+        <Typography variant="body2">{item.likes.length}</Typography>
+      </Box>
 
-      <IconButton>
-        <FaRegComments />
-      </IconButton>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.3rem",
-        }}
-      >
-        <CiRead style={{ fontSize: "1.2rem" }} />
+      <Box sx={boxStyle}>
+        <IconButton>
+          <FaRegComments style={iconStyle} />
+        </IconButton>
+        <Typography variant="body2">{item.comments.length}</Typography>
+      </Box>
+
+      <Box sx={boxStyle}>
+        <IconButton>
+          <CiRead style={iconStyle} />
+        </IconButton>
         <Typography variant="body2">{item.countOfVisitors}</Typography>
       </Box>
     </Box>

@@ -5,9 +5,10 @@ interface ButtonType {
   to?: string;
   type: "primary" | "secondary" | "tertiary";
   onClick?: () => void;
+  style: React.CSSProperties;
 }
 
-const MyButton = ({ children, to, type, onClick }: ButtonType) => {
+const MyButton = ({ children, to, type, onClick, style }: ButtonType) => {
   const base =
     "rounded-[.5rem] bg-[#bbb2cd] px-[1.2rem] py-[.6rem] text-md font-[500]  text-[#111]shadow-sm dark:bg-[#bbb2cd] dark:text-[#111] ";
 
@@ -20,14 +21,14 @@ const MyButton = ({ children, to, type, onClick }: ButtonType) => {
 
   if (to) {
     return (
-      <Link to={to} className={styles[type]}>
+      <Link to={to} className={styles[type]} style={style}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button onClick={onClick} className={styles[type]}>
+    <button onClick={onClick} className={styles[type]} style={style}>
       {children}
     </button>
   );
