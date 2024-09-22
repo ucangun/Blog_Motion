@@ -2,37 +2,22 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { CiRead } from "react-icons/ci";
-import { FaRegComments } from "react-icons/fa6";
 import MyButton from "../Button";
 import { formatDateTime } from "../../helpers/format";
-import useBlogCall from "../../hooks/useBlogCall";
-import { FaHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
+import BlogIcons from "./BlogIcons";
 
-interface BlogCardProps {
+export interface BlogCardProps {
   item: BlogPost;
 }
 
 export default function BlogCard({ item }: BlogCardProps) {
-  const { addRemoveLike } = useBlogCall();
-  const { currentUser } = useSelector((state: RootState) => state.auth);
-
-  const handleLikeClicked = () => {
-    addRemoveLike(item._id);
-  };
-
   return (
     <Card
       sx={{
         display: "flex",
         minWidth: "30rem",
         maxWidth: "35rem",
-        // height: "10rem",
         cursor: "pointer",
       }}
     >
@@ -82,29 +67,8 @@ export default function BlogCard({ item }: BlogCardProps) {
             alignItems: "center",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              justifyConten: "flex-start",
-              alignItems: "center",
-              gap: "1rem",
-              px: "1rem",
-            }}
-          >
-            <IconButton onClick={handleLikeClicked}>
-              {item.likes.includes(currentUser ? currentUser?._id : "") ? (
-                <FaHeart color="red" />
-              ) : (
-                <FaRegHeart />
-              )}
-            </IconButton>
-            <IconButton>
-              <FaRegComments />
-            </IconButton>
-            <IconButton>
-              <CiRead />
-            </IconButton>
-          </Box>
+          <BlogIcons item={item} />
+
           <MyButton to={`/blog/${item._id}`} type="secondary">
             Read More &rarr;
           </MyButton>
