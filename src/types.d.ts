@@ -56,9 +56,7 @@ interface CategoryPost {
 /* ---------------------------------- */
 
 interface NewBlogFormValues {
-  categoryId: {
-    _id: string;
-  };
+  categoryId: string;
   title: string;
   content: string;
   image: string;

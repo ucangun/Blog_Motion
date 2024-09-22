@@ -60,10 +60,10 @@ const NewBlogForm: React.FC<
           <FormControl>
             <InputLabel id="categoryId">Category</InputLabel>
             <Select
-              labelId="categoryId"
               name="categoryId"
+              labelId="categoryId"
               id="demo-simple-select"
-              value={values.categoryId._id || ""}
+              value={values.categoryId || ""}
               label="Category"
               onChange={handleChange}
               sx={{ width: "32ch" }}

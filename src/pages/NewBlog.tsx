@@ -15,9 +15,7 @@ const NewBlog: React.FC = () => {
   const isEditMode = Boolean(id);
 
   const initialValues: NewBlogFormValues = {
-    categoryId: {
-      _id: isEditMode ? (singleBlog?.categoryId?._id as string) : "",
-    },
+    categoryId: isEditMode ? (singleBlog?.categoryId?._id as string) : "",
     title: isEditMode ? (singleBlog?.title as string) : "",
     content: isEditMode ? (singleBlog?.content as string) : "",
     image: isEditMode ? (singleBlog?.image as string) : "",
