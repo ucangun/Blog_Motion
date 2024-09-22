@@ -84,7 +84,7 @@ const Blog: React.FC = () => {
 
           <BlogInfo
             createdAt={singleBlog?.createdAt || ""}
-            likes={singleBlog?.likes.length || 0}
+            likes={singleBlog?.likes || []}
             comments={singleBlog?.comments.length || 0}
             visitors={singleBlog?.countOfVisitors || 0}
             avatarUrl="/static/images/avatar/1.jpg"

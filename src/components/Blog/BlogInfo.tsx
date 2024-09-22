@@ -1,11 +1,13 @@
 import { Box, Typography, Avatar } from "@mui/material";
-import { CiHeart, CiRead } from "react-icons/ci";
-import { FaRegComments } from "react-icons/fa6";
+import { CiRead } from "react-icons/ci";
+import { FaHeart, FaRegComments, FaRegHeart } from "react-icons/fa6";
 import { formatDateTime } from "../../helpers/format";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 interface BlogInfoProps {
   createdAt: string;
-  likes: number;
+  likes: string[];
   comments: number;
   visitors: number;
   avatarUrl?: string;
@@ -18,20 +20,33 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
   visitors,
   avatarUrl,
 }) => {
+  const { currentUser } = useSelector((state: RootState) => state.auth);
+
+  const iconStyle = { fontSize: "1.2rem" };
+
+  const userHasLiked = likes.includes(currentUser ? currentUser?._id : "");
+
   const metaData = [
-    { icon: <CiHeart />, value: likes },
-    { icon: <FaRegComments />, value: comments },
-    { icon: <CiRead />, value: visitors },
+    {
+      icon: userHasLiked ? (
+        <FaHeart style={iconStyle} color="red" />
+      ) : (
+        <FaRegHeart style={iconStyle} />
+      ),
+      value: likes.length,
+    },
+    { icon: <FaRegComments style={iconStyle} />, value: comments },
+    { icon: <CiRead style={iconStyle} />, value: visitors },
   ];
 
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
-        gap: "1rem",
-        paddingRight: "1rem",
         alignItems: "center",
+        justifyContent: "space-between",
+        gap: "1.2rem",
+        paddingRight: "1rem",
         cursor: "pointer",
       }}
     >
@@ -39,17 +54,18 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
         sx={{
           display: "flex",
           flexDirection: "column",
+          alignItems: "flex-end",
           gap: "0.3rem",
         }}
       >
-        <Typography variant="body1">
+        <Typography variant="body2">
           {formatDateTime(new Date(createdAt), "DD/MM/YYYY HH:mm")}
         </Typography>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: ".5rem",
+            gap: ".6rem",
           }}
         >
           {metaData.map((item, index) => (
@@ -58,7 +74,7 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: ".3rem",
+                gap: ".2rem",
               }}
             >
               {item.icon}
