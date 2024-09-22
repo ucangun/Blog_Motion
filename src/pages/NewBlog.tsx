@@ -16,12 +16,12 @@ const NewBlog: React.FC = () => {
 
   const initialValues: NewBlogFormValues = {
     categoryId: {
-      _id: isEditMode ? singleBlog?.categoryId?._id || "" : "",
+      _id: isEditMode ? (singleBlog?.categoryId?._id as string) : "",
     },
-    title: isEditMode ? singleBlog?.title || "" : "",
-    content: isEditMode ? singleBlog?.content || "" : "",
-    image: isEditMode ? singleBlog?.image || "" : "",
-    isPublish: isEditMode ? singleBlog?.isPublish || true : true,
+    title: isEditMode ? (singleBlog?.title as string) : "",
+    content: isEditMode ? (singleBlog?.content as string) : "",
+    image: isEditMode ? (singleBlog?.image as string) : "",
+    isPublish: isEditMode ? (singleBlog?.isPublish as boolean) : true,
   };
 
   useEffect(() => {
