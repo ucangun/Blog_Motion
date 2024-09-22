@@ -4,17 +4,38 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { CiHeart } from "react-icons/ci";
 import { CiRead } from "react-icons/ci";
 import { FaRegComments } from "react-icons/fa6";
 import MyButton from "../Button";
 import { formatDateTime } from "../../helpers/format";
+import useBlogCall from "../../hooks/useBlogCall";
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 interface BlogCardProps {
   item: BlogPost;
 }
 
 export default function BlogCard({ item }: BlogCardProps) {
+  const { addRemoveLike, getLikeInfo } = useBlogCall();
+  const [likeInfo, setLikeInfo] = useState<LikeInfoType | null>(null);
+
+  useEffect(() => {
+    const fetchLikeInfo = async () => {
+      const data = await getLikeInfo(item._id);
+      setLikeInfo(data);
+    };
+
+    fetchLikeInfo();
+  }, [item._id]);
+
+  const handleLikeClicked = async () => {
+    await addRemoveLike(item._id);
+    const updatedInfo = await getLikeInfo(item._id);
+    setLikeInfo(updatedInfo);
+  };
+
   return (
     <Card
       sx={{
@@ -80,8 +101,8 @@ export default function BlogCard({ item }: BlogCardProps) {
               px: "1rem",
             }}
           >
-            <IconButton>
-              <CiHeart />
+            <IconButton onClick={handleLikeClicked}>
+              {likeInfo?.didUserLike ? <FaRegHeart /> : <FaHeart color="red" />}
             </IconButton>
             <IconButton>
               <FaRegComments />

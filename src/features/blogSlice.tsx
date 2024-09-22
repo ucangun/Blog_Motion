@@ -50,6 +50,7 @@ const blogSlice = createSlice({
     setPage: (state, { payload }) => {
       state.currentPage = payload;
     },
+
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;

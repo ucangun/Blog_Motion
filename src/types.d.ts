@@ -66,6 +66,15 @@ interface NewBlogFormValues {
 }
 
 /* ---------------------------------- */
+/*              Like Info             */
+/* ---------------------------------- */
+
+interface LikeInfoType {
+  didUserLike: boolean;
+  countOfLikes: number;
+}
+
+/* ---------------------------------- */
 /*              LoginForm             */
 /* ---------------------------------- */
 interface LoginFormValues {

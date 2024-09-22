@@ -9,7 +9,6 @@ const MyBlog = () => {
   const { getBlogByUserId } = useBlogCall();
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const { userBlogs } = useSelector((state: RootState) => state.blog);
-  console.log(userBlogs);
 
   useEffect(() => {
     if (currentUser && currentUser._id) {
