@@ -11,29 +11,19 @@ import { formatDateTime } from "../../helpers/format";
 import useBlogCall from "../../hooks/useBlogCall";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 interface BlogCardProps {
   item: BlogPost;
 }
 
 export default function BlogCard({ item }: BlogCardProps) {
-  const { addRemoveLike, getLikeInfo } = useBlogCall();
-  const [likeInfo, setLikeInfo] = useState<LikeInfoType | null>(null);
+  const { addRemoveLike } = useBlogCall();
+  const { currentUser } = useSelector((state: RootState) => state.auth);
 
-  useEffect(() => {
-    const fetchLikeInfo = async () => {
-      const data = await getLikeInfo(item._id);
-      setLikeInfo(data);
-    };
-
-    fetchLikeInfo();
-  }, [item._id]);
-
-  const handleLikeClicked = async () => {
-    await addRemoveLike(item._id);
-    const updatedInfo = await getLikeInfo(item._id);
-    setLikeInfo(updatedInfo);
+  const handleLikeClicked = () => {
+    addRemoveLike(item._id);
   };
 
   return (
@@ -102,7 +92,11 @@ export default function BlogCard({ item }: BlogCardProps) {
             }}
           >
             <IconButton onClick={handleLikeClicked}>
-              {likeInfo?.didUserLike ? <FaRegHeart /> : <FaHeart color="red" />}
+              {item.likes.includes(currentUser ? currentUser?._id : "") ? (
+                <FaRegHeart />
+              ) : (
+                <FaHeart color="red" />
+              )}
             </IconButton>
             <IconButton>
               <FaRegComments />

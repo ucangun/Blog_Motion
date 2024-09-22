@@ -143,6 +143,8 @@ const useBlogCall = () => {
     } catch (error) {
       console.error(error);
       dispatch(fetchFail());
+    } finally {
+      getBlogData("blogs");
     }
   };
 
