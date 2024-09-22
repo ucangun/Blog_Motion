@@ -112,7 +112,7 @@ const NewBlogForm: React.FC<
           <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting
               ? "Loading..."
-              : singleBlog
+              : singleBlog && values.title
               ? "Update Blog"
               : "Create New Blog"}
           </Button>

@@ -26,7 +26,7 @@ export default function OpenIconSpeedDial({ blogId }: OpenIconSpeedDialProps) {
     {
       icon: <EditNoteIcon />,
       name: "Edit",
-      onClick: () => navigate(`/newblog/${blogId}`),
+      onClick: () => navigate(`/updateblog/${blogId}`),
     },
     { icon: <ShareIcon />, name: "Share" },
   ];

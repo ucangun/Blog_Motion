@@ -12,24 +12,24 @@ const NewBlog: React.FC = () => {
   const { id } = useParams();
   const { singleBlog } = useSelector((state: RootState) => state.blog);
 
-  useEffect(() => {
-    getBlogData("categories");
-    if (id) {
-      getSingleBlog(id);
-    }
-  }, [id]);
-
   const isEditMode = Boolean(id);
 
   const initialValues: NewBlogFormValues = {
     categoryId: {
-      _id: singleBlog?.categoryId?._id || "",
+      _id: isEditMode ? singleBlog?.categoryId?._id || "" : "",
     },
-    title: singleBlog?.title || "",
-    content: singleBlog?.content || "",
-    image: singleBlog?.image || "",
-    isPublish: singleBlog?.isPublish || true,
+    title: isEditMode ? singleBlog?.title || "" : "",
+    content: isEditMode ? singleBlog?.content || "" : "",
+    image: isEditMode ? singleBlog?.image || "" : "",
+    isPublish: isEditMode ? singleBlog?.isPublish || true : true,
   };
+
+  useEffect(() => {
+    getBlogData("categories");
+    if (isEditMode && id) {
+      getSingleBlog(id);
+    }
+  }, [id, isEditMode]);
 
   return (
     <Container maxWidth="lg" sx={{ padding: "3rem 1rem" }}>
@@ -40,8 +40,8 @@ const NewBlog: React.FC = () => {
           enableReinitialize
           initialValues={initialValues}
           onSubmit={(values, actions) => {
-            if (isEditMode) {
-              updateBlog(id as string, values);
+            if (isEditMode && id) {
+              updateBlog(id, values);
             } else {
               addNewBlog("blogs", values);
             }
