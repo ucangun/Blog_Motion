@@ -88,6 +88,7 @@ const Blog: React.FC = () => {
             comments={singleBlog?.comments.length || 0}
             visitors={singleBlog?.countOfVisitors || 0}
             avatarUrl="/static/images/avatar/1.jpg"
+            id={singleBlog ? singleBlog._id : ""}
           />
         </Box>
         <Typography

@@ -143,6 +143,7 @@ const useBlogCall = () => {
       dispatch(fetchFail());
     } finally {
       getBlogData("blogs");
+      getSingleBlog(id);
     }
   };
 

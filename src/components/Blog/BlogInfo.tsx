@@ -4,8 +4,10 @@ import { FaHeart, FaRegComments, FaRegHeart } from "react-icons/fa6";
 import { formatDateTime } from "../../helpers/format";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import useBlogCall from "../../hooks/useBlogCall";
 
 interface BlogInfoProps {
+  id: string;
   createdAt: string;
   likes: string[];
   comments: number;
@@ -14,6 +16,7 @@ interface BlogInfoProps {
 }
 
 const BlogInfo: React.FC<BlogInfoProps> = ({
+  id,
   createdAt,
   likes,
   comments,
@@ -21,10 +24,14 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
   avatarUrl,
 }) => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
+  const { addRemoveLike } = useBlogCall();
 
   const iconStyle = { fontSize: "1.2rem" };
-
   const userHasLiked = likes.includes(currentUser ? currentUser?._id : "");
+
+  const handleLikeClick = () => {
+    addRemoveLike(id);
+  };
 
   const metaData = [
     {
@@ -34,6 +41,7 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
         <FaRegHeart style={iconStyle} />
       ),
       value: likes.length,
+      onClick: () => handleLikeClick(),
     },
     { icon: <FaRegComments style={iconStyle} />, value: comments },
     { icon: <CiRead style={iconStyle} />, value: visitors },
@@ -71,6 +79,7 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
           {metaData.map((item, index) => (
             <Box
               key={index}
+              onClick={item.onClick}
               sx={{
                 display: "flex",
                 alignItems: "center",
