@@ -7,7 +7,7 @@ import {
   getSingleBlogSuccess,
 } from "../features/blogSlice";
 import { RootState } from "../app/store";
-import { toastSuccess } from "../helpers/ToastNotify";
+import { toastError, toastSuccess } from "../helpers/ToastNotify";
 import { useNavigate } from "react-router-dom";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
@@ -65,11 +65,35 @@ const useBlogCall = () => {
           Authorization: `Token ${token}`,
         },
       });
+      toastSuccess("New blog has been successfully added");
     } catch (error) {
+      toastError("Failed to add the new blog");
       dispatch(fetchFail());
       console.error(error);
     } finally {
       getBlogData(endpoint);
+    }
+  };
+
+  const updateBlog = async (
+    id: string,
+    blogInfo: NewBlogFormValues
+  ): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axios.put(`${BASE_URL}blogs/${id}`, blogInfo, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      toastSuccess("Blog has successfully updated");
+      navigate(-1);
+    } catch (error) {
+      toastError("Failed to update the blog");
+      console.error(error);
+      dispatch(fetchFail());
+    } finally {
+      getBlogData("blogs");
     }
   };
 
@@ -84,6 +108,7 @@ const useBlogCall = () => {
       toastSuccess("Blog has successfully deleted");
       navigate(-1);
     } catch (error) {
+      toastError("Failed to delete the blog");
       dispatch(fetchFail());
       console.error(error);
     } finally {
@@ -95,8 +120,9 @@ const useBlogCall = () => {
     getBlogData,
     getSingleBlog,
     getBlogByUserId,
-    deleteBlog,
     addNewBlog,
+    updateBlog,
+    deleteBlog,
   };
 };
 
