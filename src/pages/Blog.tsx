@@ -9,6 +9,7 @@ import BlogInfo from "../components/Blog/BlogInfo";
 import BlogSkeleton from "../components/Blog/BlogSkeleton";
 import OpenIconSpeedDial from "../components/Blog/OpenIconSpeedDial";
 import BlogUser from "../components/Blog/BlogUser";
+import BlogComments from "../components/Blog/BlogComments";
 
 const Blog: React.FC = () => {
   const navigate = useNavigate();
@@ -95,12 +96,12 @@ const Blog: React.FC = () => {
         >
           {singleBlog?.content}
         </Typography>
+        <BlogInfo />
+        <BlogComments />
       </Box>
       {singleBlog?.userId?._id === currentUser?._id && (
         <OpenIconSpeedDial blogId={singleBlog?._id} />
       )}
-
-      <BlogInfo />
     </Container>
   );
 };

@@ -2,34 +2,44 @@
 /*              BlogSlice             */
 /* ---------------------------------- */
 
+interface UserType {
+  _id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+}
+
+interface CommentType {
+  _id: string;
+  blogId: string;
+  userId: UserType;
+  comment: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface BlogPost {
   _id: string;
-  userId: {
-    _id: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-  };
+  userId: UserType;
   categoryId: string;
   title: string;
   content: string;
   image: string;
   isPublish: boolean;
-  comments: string[];
+  comments: commentType[];
   likes: string[];
   countOfVisitors: number;
   createdAt: string;
   updatedAt: string;
 }
 
+/* ---------------------------------- */
+/*             Single Blog            */
+/* ---------------------------------- */
+
 interface SinglePost {
   _id: string;
-  userId: {
-    _id: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-  };
+  userId: UserType;
   categoryId: {
     _id: string;
     name: string;
@@ -38,7 +48,7 @@ interface SinglePost {
   content: string;
   image: string;
   isPublish: boolean;
-  comments: string[];
+  comments: CommentType[];
   likes: string[];
   countOfVisitors: number;
   createdAt: string;
