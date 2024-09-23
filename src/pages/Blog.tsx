@@ -82,10 +82,7 @@ const Blog: React.FC = () => {
           >
             {singleBlog?.title}
           </Typography>
-          <BlogUser
-            avatarUrl="/static/images/avatar/1.jpg"
-            createdAt={singleBlog?.createdAt || ""}
-          />
+          <BlogUser />
         </Box>
 
         <Typography

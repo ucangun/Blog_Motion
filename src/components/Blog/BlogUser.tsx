@@ -1,12 +1,13 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import { formatDateTime } from "../../helpers/format";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
-interface BlogUserType {
-  avatarUrl: string;
-  createdAt: string;
-}
+const BlogUser: React.FC = () => {
+  const { singleBlog } = useSelector((state: RootState) => state.blog);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
+  console.log(singleBlog);
 
-const BlogUser: React.FC<BlogUserType> = ({ avatarUrl, createdAt }) => {
   return (
     <Box
       sx={{
@@ -18,16 +19,18 @@ const BlogUser: React.FC<BlogUserType> = ({ avatarUrl, createdAt }) => {
       <Box
         sx={{
           display: "flex",
+          alignItems: "flex-end",
           flexDirection: "column",
         }}
       >
         <Typography variant="body2">
-          {formatDateTime(new Date(createdAt), "DD/MM/YYYY HH:mm")}
+          {formatDateTime(new Date(singleBlog?.createdAt || ""), "DD/MM/YYYY ")}
         </Typography>
+        <Typography variant="body2">{`${singleBlog?.userId.firstName} ${singleBlog?.userId.lastName} `}</Typography>
       </Box>
       <Avatar
         alt="User Avatar"
-        src={avatarUrl || "/static/images/avatar/1.jpg"}
+        src={currentUser?.image || "/static/images/avatar/1.jpg"}
       />
     </Box>
   );
