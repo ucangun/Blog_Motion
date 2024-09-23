@@ -8,6 +8,7 @@ import MyButton from "../components/Button";
 import BlogInfo from "../components/Blog/BlogInfo";
 import BlogSkeleton from "../components/Blog/BlogSkeleton";
 import OpenIconSpeedDial from "../components/Blog/OpenIconSpeedDial";
+import BlogUser from "../components/Blog/BlogUser";
 
 const Blog: React.FC = () => {
   const navigate = useNavigate();
@@ -81,16 +82,12 @@ const Blog: React.FC = () => {
           >
             {singleBlog?.title}
           </Typography>
-
-          <BlogInfo
-            createdAt={singleBlog?.createdAt || ""}
-            likes={singleBlog?.likes || []}
-            comments={singleBlog?.comments.length || 0}
-            visitors={singleBlog?.countOfVisitors || 0}
+          <BlogUser
             avatarUrl="/static/images/avatar/1.jpg"
-            id={singleBlog ? singleBlog._id : ""}
+            createdAt={singleBlog?.createdAt || ""}
           />
         </Box>
+
         <Typography
           variant="body1"
           sx={{
@@ -104,6 +101,12 @@ const Blog: React.FC = () => {
       {singleBlog?.userId?._id === currentUser?._id && (
         <OpenIconSpeedDial blogId={singleBlog?._id} />
       )}
+      <BlogInfo
+        likes={singleBlog?.likes || []}
+        comments={singleBlog?.comments.length || 0}
+        visitors={singleBlog?.countOfVisitors || 0}
+        id={singleBlog ? singleBlog._id : ""}
+      />
     </Container>
   );
 };

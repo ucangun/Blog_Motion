@@ -1,27 +1,22 @@
-import { Box, Typography, Avatar } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { CiRead } from "react-icons/ci";
 import { FaHeart, FaRegComments, FaRegHeart } from "react-icons/fa6";
-import { formatDateTime } from "../../helpers/format";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import useBlogCall from "../../hooks/useBlogCall";
 
 interface BlogInfoProps {
   id: string;
-  createdAt: string;
   likes: string[];
   comments: number;
   visitors: number;
-  avatarUrl?: string;
 }
 
 const BlogInfo: React.FC<BlogInfoProps> = ({
   id,
-  createdAt,
   likes,
   comments,
   visitors,
-  avatarUrl,
 }) => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const { addRemoveLike } = useBlogCall();
@@ -66,9 +61,6 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
           gap: "0.3rem",
         }}
       >
-        <Typography variant="body2">
-          {formatDateTime(new Date(createdAt), "DD/MM/YYYY HH:mm")}
-        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -92,10 +84,6 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
           ))}
         </Box>
       </Box>
-      <Avatar
-        alt="User Avatar"
-        src={avatarUrl || "/static/images/avatar/1.jpg"}
-      />
     </Box>
   );
 };
