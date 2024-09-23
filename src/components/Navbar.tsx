@@ -53,7 +53,7 @@ function Navbar() {
   const settings: SettingsType[] = [
     {
       title: "Account",
-      onClick: () => {},
+      onClick: () => navigate("/account"),
     },
     {
       title: "My Blogs",
