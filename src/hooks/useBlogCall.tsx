@@ -147,6 +147,22 @@ const useBlogCall = () => {
     }
   };
 
+  const createComment = async (commentInfo: NewCommentType) => {
+    dispatch(fetchStart());
+    try {
+      await axios.post(`${BASE_URL}comments`, commentInfo, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+    } catch (error) {
+      dispatch(fetchFail());
+      console.error(error);
+    } finally {
+      getSingleBlog(commentInfo.blogId);
+    }
+  };
+
   return {
     getBlogData,
     getSingleBlog,
@@ -156,6 +172,7 @@ const useBlogCall = () => {
     deleteBlog,
     getLikeInfo,
     addRemoveLike,
+    createComment,
   };
 };
 

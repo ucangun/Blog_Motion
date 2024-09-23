@@ -74,6 +74,15 @@ interface NewBlogFormValues {
 }
 
 /* ---------------------------------- */
+/*               Comment              */
+/* ---------------------------------- */
+
+interface NewCommentType {
+  blogId: string;
+  comment: string;
+}
+
+/* ---------------------------------- */
 /*              Like Info             */
 /* ---------------------------------- */
 
