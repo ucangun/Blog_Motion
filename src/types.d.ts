@@ -26,7 +26,7 @@ interface BlogPost {
   content: string;
   image: string;
   isPublish: boolean;
-  comments: commentType[];
+  comments: CommentType[];
   likes: string[];
   countOfVisitors: number;
   createdAt: string;

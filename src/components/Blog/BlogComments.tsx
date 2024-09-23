@@ -24,49 +24,53 @@ const BlogComments = () => {
         <Typography variant="h6" component="h2" gutterBottom fontWeight="bold">
           Comments
         </Typography>
-
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {singleBlog?.comments.map((comment) => (
-            <Paper
-              key={comment._id}
-              elevation={3}
-              sx={{ p: 2, borderRadius: 2 }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Avatar
-                  src="https://via.placeholder.com/40"
-                  alt="User Avatar"
-                  sx={{ width: 40, height: 40, mr: 2 }}
-                />
-                <Box>
-                  <Typography fontWeight="bold">
-                    {comment.userId.firstName} {comment.userId.lastName}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {`Posted on ${new Date(
-                      comment.createdAt || ""
-                    ).toLocaleDateString("de-DE", {
-                      day: "numeric",
-                      month: "long",
-                    })}`}
-                  </Typography>
+        {singleBlog && singleBlog?.comments?.length > 0 ? (
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {singleBlog?.comments.map((comment) => (
+              <Paper
+                key={comment._id}
+                elevation={3}
+                sx={{ p: 2, borderRadius: 2 }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                  <Avatar
+                    src="https://via.placeholder.com/40"
+                    alt="User Avatar"
+                    sx={{ width: 40, height: 40, mr: 2 }}
+                  />
+                  <Box>
+                    <Typography fontWeight="bold">
+                      {comment.userId.firstName} {comment.userId.lastName}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {`Posted on ${new Date(
+                        comment.createdAt || ""
+                      ).toLocaleDateString("de-DE", {
+                        day: "numeric",
+                        month: "long",
+                      })}`}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-              <Typography variant="body1" color="textPrimary">
-                {comment.comment}
-              </Typography>
-              <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                <Button
-                  startIcon={<ThumbUpAltIcon />}
-                  sx={{ color: "primary.main", mr: 2 }}
-                >
-                  Like
-                </Button>
-                <Button sx={{ color: "grey.500" }}>Reply</Button>
-              </Box>
-            </Paper>
-          ))}
-        </Box>
+                <Typography variant="body1" color="textPrimary">
+                  {comment.comment}
+                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+                  <Button
+                    startIcon={<ThumbUpAltIcon />}
+                    sx={{ color: "primary.main", mr: 2 }}
+                  >
+                    Like
+                  </Button>
+                  <Button sx={{ color: "grey.500" }}>Reply</Button>
+                </Box>
+              </Paper>
+            ))}
+          </Box>
+        ) : (
+          <Typography>No comments yet. Be the first to comment!</Typography>
+        )}
+
         <AddComment />
       </Container>
     </Box>

@@ -6,6 +6,7 @@ import useBlogCall from "../../hooks/useBlogCall";
 
 const AddComment = () => {
   const { singleBlog } = useSelector((state: RootState) => state.blog);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
   const { createComment } = useBlogCall();
 
   const initialValues: NewCommentType = {
@@ -29,40 +30,44 @@ const AddComment = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ mt: 4, p: 2, borderRadius: 2 }}>
-      <Typography variant="h6" component="h3" gutterBottom>
-        Add a Comment
-      </Typography>
+    <>
+      {singleBlog?.userId._id !== currentUser?._id && (
+        <Paper elevation={3} sx={{ mt: 4, p: 2, borderRadius: 2 }}>
+          <Typography variant="h6" component="h3" gutterBottom>
+            Add a Comment
+          </Typography>
 
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          id="comment"
-          name="comment"
-          fullWidth
-          label="Comment"
-          variant="outlined"
-          margin="normal"
-          required
-          multiline
-          rows={4}
-          onChange={handleChange}
-          value={commentData.comment}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-        >
-          Post Comment
-        </Button>
-      </Box>
-    </Paper>
+          <Box
+            component="form"
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              id="comment"
+              name="comment"
+              fullWidth
+              label="Comment"
+              variant="outlined"
+              margin="normal"
+              required
+              multiline
+              rows={4}
+              onChange={handleChange}
+              value={commentData.comment}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{ mt: 2 }}
+            >
+              Post Comment
+            </Button>
+          </Box>
+        </Paper>
+      )}
+    </>
   );
 };
 
