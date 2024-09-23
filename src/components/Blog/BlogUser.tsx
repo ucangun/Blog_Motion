@@ -6,7 +6,6 @@ import { RootState } from "../../app/store";
 const BlogUser: React.FC = () => {
   const { singleBlog } = useSelector((state: RootState) => state.blog);
   const { currentUser } = useSelector((state: RootState) => state.auth);
-  console.log(singleBlog);
 
   return (
     <Box

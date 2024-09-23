@@ -5,27 +5,18 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import useBlogCall from "../../hooks/useBlogCall";
 
-interface BlogInfoProps {
-  id: string;
-  likes: string[];
-  comments: number;
-  visitors: number;
-}
-
-const BlogInfo: React.FC<BlogInfoProps> = ({
-  id,
-  likes,
-  comments,
-  visitors,
-}) => {
+const BlogInfo: React.FC = () => {
+  const { singleBlog } = useSelector((state: RootState) => state.blog);
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const { addRemoveLike } = useBlogCall();
 
   const iconStyle = { fontSize: "1.2rem" };
-  const userHasLiked = likes.includes(currentUser ? currentUser?._id : "");
+  const userHasLiked = singleBlog?.likes.includes(
+    currentUser ? currentUser?._id : ""
+  );
 
   const handleLikeClick = () => {
-    addRemoveLike(id);
+    addRemoveLike(singleBlog ? singleBlog._id : "");
   };
 
   const metaData = [
@@ -35,11 +26,14 @@ const BlogInfo: React.FC<BlogInfoProps> = ({
       ) : (
         <FaRegHeart style={iconStyle} />
       ),
-      value: likes.length,
+      value: singleBlog?.likes.length,
       onClick: () => handleLikeClick(),
     },
-    { icon: <FaRegComments style={iconStyle} />, value: comments },
-    { icon: <CiRead style={iconStyle} />, value: visitors },
+    {
+      icon: <FaRegComments style={iconStyle} />,
+      value: singleBlog?.comments.length,
+    },
+    { icon: <CiRead style={iconStyle} />, value: singleBlog?.countOfVisitors },
   ];
 
   return (

@@ -82,6 +82,7 @@ const Blog: React.FC = () => {
           >
             {singleBlog?.title}
           </Typography>
+
           <BlogUser />
         </Box>
 
@@ -98,12 +99,8 @@ const Blog: React.FC = () => {
       {singleBlog?.userId?._id === currentUser?._id && (
         <OpenIconSpeedDial blogId={singleBlog?._id} />
       )}
-      <BlogInfo
-        likes={singleBlog?.likes || []}
-        comments={singleBlog?.comments.length || 0}
-        visitors={singleBlog?.countOfVisitors || 0}
-        id={singleBlog ? singleBlog._id : ""}
-      />
+
+      <BlogInfo />
     </Container>
   );
 };
