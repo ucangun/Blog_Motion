@@ -7,6 +7,7 @@ import {
   loginSuccess,
   logoutSuccess,
   registerSuccess,
+  updateSuccess,
 } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
@@ -74,12 +75,17 @@ const useAuthCall = () => {
   const updateUser = async (userData: CurrentUserType): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.put(`${BASE_URL}users/${userData._id}`, userData, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const { data } = await axios.put(
+        `${BASE_URL}users/${userData._id}`,
+        userData,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
       toastSuccess("You have successfully updated your profile!");
+      dispatch(updateSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       toastError("Oops! Something went wrong during update.");

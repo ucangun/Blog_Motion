@@ -23,9 +23,9 @@ const ProfileSettings = () => {
     firstName: currentUser?.firstName || "",
     lastName: currentUser?.lastName || "",
     email: currentUser?.email || "",
-    image: "",
-    city: "",
-    bio: "",
+    image: currentUser?.image || "",
+    city: currentUser?.city || "",
+    bio: currentUser?.bio || "",
   };
 
   const [userData, setUserData] = useState(initialValues);
