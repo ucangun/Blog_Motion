@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import AccountHeader from "../components/Account/AccountHeader";
 import ProfileSettings from "../components/Account/ProfileSettings";
+import DangerZone from "../components/Account/DangerZone";
 
 function Account() {
   const { currentUser } = useSelector((state: RootState) => state.auth);
@@ -50,23 +51,7 @@ function Account() {
 
         <Divider />
 
-        {/* Danger Zone */}
-        <Box sx={{ cursor: "pointer" }}>
-          <Typography variant="h5" color="error">
-            Danger zone
-          </Typography>
-          <Alert
-            severity="error"
-            action={
-              <Button color="inherit" size="small" variant="outlined">
-                Delete account
-              </Button>
-            }
-            sx={{ mt: 2 }}
-          >
-            Permanently remove your account. This action is not reversible.
-          </Alert>
-        </Box>
+        <DangerZone />
       </Box>
     </Box>
   );
