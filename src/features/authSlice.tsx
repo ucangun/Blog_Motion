@@ -10,13 +10,14 @@ interface AuthInitial {
 export interface CurrentUserType {
   bio: string;
   city: string;
-  createdAt: string;
+  createdAt?: string;
   email: string;
   firstName: string;
   image: string;
   lastName: string;
   username: string;
-  _id: string;
+  password: string;
+  _id?: string;
 }
 
 const initialState: AuthInitial = {

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
+  CurrentUserType,
   fetchFail,
   fetchStart,
   loginSuccess,
@@ -68,7 +69,25 @@ const useAuthCall = () => {
     }
   };
 
-  return { register, login, logout };
+  // update
+
+  const updateUser = async (userData: CurrentUserType): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axios.put(`${BASE_URL}users/${userData._id}`, userData, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      toastSuccess("You have successfully updated your profile!");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastError("Oops! Something went wrong during update.");
+      console.error(error);
+    }
+  };
+
+  return { register, login, logout, updateUser };
 };
 
 export default useAuthCall;

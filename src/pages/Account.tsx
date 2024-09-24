@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Typography, Divider, Alert } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import AccountHeader from "../components/Account/AccountHeader";
@@ -12,9 +12,8 @@ function Account() {
   console.log(currentUser);
   return (
     <Box
-      flexGrow={1}
       display="flex"
-      flexDirection="column"
+      justifyContent="center"
       alignItems="center"
       sx={{ py: 6, px: 3 }}
     >
