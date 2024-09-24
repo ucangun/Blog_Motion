@@ -47,25 +47,22 @@ const ProfileSettings = () => {
       <Box sx={{ mb: 2 }}>
         <Typography variant="h5">Profile</Typography>
         <Box display="flex" alignItems="center" gap={2} mt={2}>
-          <Typography variant="body2" fontWeight="bold">
-            Avatar
-          </Typography>
           <Avatar
             alt="Avatar"
             src={currentUser?.image}
             sx={{ width: 48, height: 48 }}
           />
-          <Box>
-            <TextField
-              fullWidth
-              name="image"
-              label="Image"
-              variant="outlined"
-              value={userData?.image}
-              placeholder="https://via.placeholder.com/300"
-              onChange={handleChange}
-            />
-          </Box>
+
+          <TextField
+            fullWidth
+            name="image"
+            label="Image"
+            variant="outlined"
+            value={userData?.image}
+            placeholder="https://via.placeholder.com/300"
+            onChange={handleChange}
+            sx={{ flexGrow: 1 }}
+          />
         </Box>
       </Box>
 

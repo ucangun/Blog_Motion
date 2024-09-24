@@ -29,7 +29,11 @@ const BlogUser: React.FC = () => {
       </Box>
       <Avatar
         alt="User Avatar"
-        src={currentUser?.image || "/static/images/avatar/1.jpg"}
+        src={
+          singleBlog?.userId._id === currentUser?._id
+            ? currentUser?.image
+            : "/static/images/avatar/1.jpg"
+        }
       />
     </Box>
   );
