@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import PopularSection from "../components/Home/PopularSection";
+import ArticleList from "../components/Home/TopBlogWriter";
 
 const Home = () => {
   const { getBlogData } = useBlogCall();
@@ -21,12 +22,13 @@ const Home = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: ".5rem",
-        padding: ".4rem 0.1rem",
+        gap: "1rem",
+        padding: "1rem 0.1rem",
       }}
     >
       <HomeMasonry firstThreeBlogs={firstThreeBlogs} />
       <PopularSection />
+      <ArticleList />
     </Container>
   );
 };
