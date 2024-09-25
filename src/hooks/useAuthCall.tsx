@@ -93,7 +93,22 @@ const useAuthCall = () => {
     }
   };
 
-  return { register, login, logout, updateUser };
+  const deleteUser = async (id: string): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axios.delete(`${BASE_URL}users/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+    } catch (error) {
+      dispatch(fetchFail());
+      toastError("Oops! Something went wrong during delete.");
+      console.error(error);
+    }
+  };
+
+  return { register, login, logout, updateUser, deleteUser };
 };
 
 export default useAuthCall;
