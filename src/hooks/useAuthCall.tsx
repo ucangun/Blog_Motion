@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
+import { SweetAlertIcons, SweetNotify } from "../helpers/SweetNotify";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
@@ -94,7 +95,19 @@ const useAuthCall = () => {
     }
   };
 
+  // delete
+
   const deleteUser = async (id: string): Promise<void> => {
+    const isConfirmed = await SweetNotify(
+      "Are you sure you want to delete your account? This action cannot be undone.",
+      SweetAlertIcons.WARNING
+    );
+
+    if (!isConfirmed) {
+      toastError("Delete operation was canceled.");
+      return;
+    }
+
     dispatch(fetchStart());
     try {
       await axios.delete(`${BASE_URL}users/${id}`, {
