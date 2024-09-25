@@ -55,6 +55,11 @@ const authSlice = createSlice({
       state.loading = false;
       state.currentUser = payload.new as CurrentUserType;
     },
+    deleteSuccess: (state) => {
+      state.loading = false;
+      state.token = "";
+      state.currentUser = null;
+    },
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -69,6 +74,7 @@ export const {
   logoutSuccess,
   fetchFail,
   updateSuccess,
+  deleteSuccess,
 } = authSlice.actions;
 
 export default authSlice.reducer;

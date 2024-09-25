@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
   CurrentUserType,
+  deleteSuccess,
   fetchFail,
   fetchStart,
   loginSuccess,
@@ -101,6 +102,9 @@ const useAuthCall = () => {
           Authorization: `Token ${token}`,
         },
       });
+      toastSuccess("You have successfully deleted your account!");
+      dispatch(deleteSuccess());
+      navigate("/");
     } catch (error) {
       dispatch(fetchFail());
       toastError("Oops! Something went wrong during delete.");
