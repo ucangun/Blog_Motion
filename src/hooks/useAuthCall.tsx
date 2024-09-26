@@ -5,6 +5,7 @@ import {
   deleteSuccess,
   fetchFail,
   fetchStart,
+  getsingleUserSuccess,
   loginSuccess,
   logoutSuccess,
   registerSuccess,
@@ -125,7 +126,22 @@ const useAuthCall = () => {
     }
   };
 
-  return { register, login, logout, updateUser, deleteUser };
+  const getSingleUser = async (id: string) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios.get(`${BASE_URL}users${id}/$`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      dispatch(getsingleUserSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.error(error);
+    }
+  };
+
+  return { register, login, logout, updateUser, deleteUser, getSingleUser };
 };
 
 export default useAuthCall;

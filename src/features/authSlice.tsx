@@ -5,6 +5,7 @@ interface AuthInitial {
   error: boolean;
   currentUser: CurrentUserType | null;
   token: string;
+  singleUser: CurrentUserType | null;
 }
 
 export interface CurrentUserType {
@@ -24,6 +25,7 @@ const initialState: AuthInitial = {
   loading: false,
   error: false,
   currentUser: null,
+  singleUser: null,
   token: "",
 };
 
@@ -55,10 +57,15 @@ const authSlice = createSlice({
       state.loading = false;
       state.currentUser = payload.new as CurrentUserType;
     },
+
     deleteSuccess: (state) => {
       state.loading = false;
       state.token = "";
       state.currentUser = null;
+    },
+    getsingleUserSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.singleUser = payload.data;
     },
     fetchFail: (state) => {
       state.loading = false;
@@ -75,6 +82,7 @@ export const {
   fetchFail,
   updateSuccess,
   deleteSuccess,
+  getsingleUserSuccess,
 } = authSlice.actions;
 
 export default authSlice.reducer;
