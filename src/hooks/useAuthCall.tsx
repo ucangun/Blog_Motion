@@ -129,7 +129,7 @@ const useAuthCall = () => {
   const getSingleUser = async (id: string) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.get(`${BASE_URL}users${id}/$`, {
+      const { data } = await axios.get(`${BASE_URL}users/${id}`, {
         headers: {
           Authorization: `Token ${token}`,
         },

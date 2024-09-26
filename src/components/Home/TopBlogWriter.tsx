@@ -15,14 +15,18 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import TopBlogWriterCard from "./TopBlogWriterCard";
 import { useNavigate } from "react-router-dom";
+import useAuthCall from "../../hooks/useAuthCall";
 
 const TopBlogWriter: React.FC = () => {
   const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
+  const { singleUser } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
+  const { getSingleUser } = useAuthCall();
   const { getBlogByUserId } = useBlogCall();
 
   useEffect(() => {
     getBlogByUserId("66e89b0252415f1a693c86a4");
+    getSingleUser("66e89b0252415f1a693c86a4");
   }, []);
 
   if (loading) {
@@ -108,10 +112,10 @@ const TopBlogWriter: React.FC = () => {
               <Box display="flex" alignItems="center">
                 <Avatar
                   alt="Author's Avatar"
-                  src="https://via.placeholder.com/40"
+                  src={singleUser?.image}
                   sx={{ width: 32, height: 32, mr: 1 }}
                 />
-                <Typography variant="body2">by ucangun</Typography>
+                <Typography variant="body2">{singleUser?.username}</Typography>
               </Box>
             </Box>
           </CardContent>
