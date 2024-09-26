@@ -7,36 +7,53 @@ import {
   Box,
   Avatar,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import { useEffect } from "react";
 import useBlogCall from "../../hooks/useBlogCall";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import TopBlogWriterCard from "./TopBlogWriterCard";
+import { useNavigate } from "react-router-dom";
 
 const TopBlogWriter: React.FC = () => {
-  const { currentUser } = useSelector((state: RootState) => state.auth);
-  const { userBlogs } = useSelector((state: RootState) => state.blog);
-  console.log(currentUser);
+  const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
+  const navigate = useNavigate();
   const { getBlogByUserId } = useBlogCall();
 
   useEffect(() => {
     getBlogByUserId("66e89b0252415f1a693c86a4");
   }, []);
 
+  if (loading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  const bestBlog = userBlogs[0];
+  const topWriterBlogs = userBlogs.slice(1, 5);
+
   return (
     <Grid2 container spacing={2}>
-      {/* main article on left */}
+      {/* Main article on left */}
       <Grid2 size={{ xs: 12, md: 6 }}>
         <Card sx={{ maxWidth: "100%" }}>
           <CardMedia
             component="img"
             height="400"
-            image="https://via.placeholder.com/900x400"
+            image={bestBlog?.image}
             alt="Main article image"
           />
 
-          {/* İçerik */}
+          {/* Content */}
           <CardContent sx={{ padding: 3 }}>
             {/* Category and time */}
             <Box
@@ -53,22 +70,23 @@ const TopBlogWriter: React.FC = () => {
                   borderRadius: "12px",
                 }}
               >
-                Sport
+                Category
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                4 Hours read
+                10 min read
               </Typography>
             </Box>
 
             {/* Title */}
             <Typography variant="h4" gutterBottom>
-              2022 NFL: Top 4 Quaterbacks selected
+              {bestBlog?.title || "No Title"}
             </Typography>
 
             {/* Description */}
             <Typography variant="body2" color="text.secondary" paragraph>
-              The social-media company is in discussions to sell itself to Elon,
-              a dramatic turn of events just 11 days after the ...
+              {bestBlog?.content
+                ? bestBlog.content.split(" ").slice(0, 15).join(" ") + "..."
+                : "No content available"}
             </Typography>
 
             {/* Author and Button */}
@@ -78,7 +96,11 @@ const TopBlogWriter: React.FC = () => {
               justifyContent="space-between"
               mt={3}
             >
-              <Button variant="outlined" sx={{ textTransform: "none" }}>
+              <Button
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+                onClick={() => navigate(`/blog/${bestBlog._id}`)}
+              >
                 Read Article
               </Button>
 
@@ -89,16 +111,16 @@ const TopBlogWriter: React.FC = () => {
                   src="https://via.placeholder.com/40"
                   sx={{ width: 32, height: 32, mr: 1 }}
                 />
-                <Typography variant="body2">by Anastasia</Typography>
+                <Typography variant="body2">by ucangun</Typography>
               </Box>
             </Box>
           </CardContent>
         </Card>
       </Grid2>
 
-      {/* Sağ tarafa küçük makaleler */}
+      {/* Article cards on right side */}
       <Grid2 size={{ xs: 12, md: 6 }}>
-        {userBlogs.map((blog: BlogPost, index) => (
+        {topWriterBlogs.map((blog, index) => (
           <TopBlogWriterCard key={index} blog={blog} />
         ))}
       </Grid2>

@@ -1,6 +1,10 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
-const TopBlogWriterCard = ({ blog }: BlogPost) => (
+interface TopBlogCardType {
+  blog: BlogPost;
+}
+
+const TopBlogWriterCard = ({ blog }: TopBlogCardType) => (
   <Card sx={{ display: "flex", marginBottom: 2 }}>
     <CardMedia
       component="img"
