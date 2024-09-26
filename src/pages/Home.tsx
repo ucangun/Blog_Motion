@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import PopularSection from "../components/Home/PopularSection";
-import ArticleList from "../components/Home/TopBlogWriter";
+import TopBlogWriter from "../components/Home/TopBlogWriter";
 
 const Home = () => {
   const { getBlogData } = useBlogCall();
@@ -28,7 +28,7 @@ const Home = () => {
     >
       <HomeMasonry firstThreeBlogs={firstThreeBlogs} />
       <PopularSection />
-      <ArticleList />
+      <TopBlogWriter />
     </Container>
   );
 };

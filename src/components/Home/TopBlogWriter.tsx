@@ -12,26 +12,9 @@ import { useEffect } from "react";
 import useBlogCall from "../../hooks/useBlogCall";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import TopBlogWriterCard from "./TopBlogWriterCard";
 
-const ArticleCard = ({ blog }: BlogPost) => (
-  <Card sx={{ display: "flex", marginBottom: 2 }}>
-    <CardMedia
-      component="img"
-      sx={{ width: 151 }}
-      image={blog.image}
-      alt="image"
-    />
-    <CardContent>
-      <Typography variant="button">Category</Typography>
-      <Typography variant="body2" color="text.secondary">
-        10 min read
-      </Typography>
-      <Typography variant="h6">{blog.title}</Typography>
-    </CardContent>
-  </Card>
-);
-
-const ArticleList: React.FC = () => {
+const TopBlogWriter: React.FC = () => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const { userBlogs } = useSelector((state: RootState) => state.blog);
   console.log(currentUser);
@@ -116,11 +99,11 @@ const ArticleList: React.FC = () => {
       {/* Sağ tarafa küçük makaleler */}
       <Grid2 size={{ xs: 12, md: 6 }}>
         {userBlogs.map((blog: BlogPost, index) => (
-          <ArticleCard key={index} blog={blog} />
+          <TopBlogWriterCard key={index} blog={blog} />
         ))}
       </Grid2>
     </Grid2>
   );
 };
 
-export default ArticleList;
+export default TopBlogWriter;
