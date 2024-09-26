@@ -2,6 +2,11 @@
 /*              BlogSlice             */
 /* ---------------------------------- */
 
+interface SingleCategoryType {
+  id: string;
+  name: string;
+}
+
 interface UserType {
   _id: string;
   username: string;

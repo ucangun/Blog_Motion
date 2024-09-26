@@ -5,6 +5,7 @@ import {
   getBlogByUserIdSuccess,
   getBlogSuccess,
   getSingleBlogSuccess,
+  getSingleCategorySuccess,
 } from "../features/blogSlice";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
@@ -163,6 +164,21 @@ const useBlogCall = () => {
     }
   };
 
+  const getSingleCategory = async (id: string) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios(`${BASE_URL}categories/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      dispatch(getSingleCategorySuccess(data));
+    } catch (error) {
+      console.error(error);
+      dispatch(fetchFail());
+    }
+  };
+
   return {
     getBlogData,
     getSingleBlog,
@@ -173,6 +189,7 @@ const useBlogCall = () => {
     getLikeInfo,
     addRemoveLike,
     createComment,
+    getSingleCategory,
   };
 };
 

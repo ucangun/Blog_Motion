@@ -7,6 +7,7 @@ interface BlogSliceInitial {
   categories: CategoryPost[];
   singleBlog: SinglePost | null;
   userBlogs: BlogPost[];
+  singleCategory: SingleCategoryType | null;
   currentPage: number;
   itemsPerPage: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,6 +20,7 @@ const initialState: BlogSliceInitial = {
   blogs: [],
   categories: [],
   singleBlog: null,
+  singleCategory: null,
   userBlogs: [],
   currentPage: 1,
   itemsPerPage: 5,
@@ -50,7 +52,10 @@ const blogSlice = createSlice({
     setPage: (state, { payload }) => {
       state.currentPage = payload;
     },
-
+    getSingleCategorySuccess: (state, { payload }) => {
+      state.loading = false;
+      state.singleCategory = payload.data;
+    },
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -63,6 +68,7 @@ export const {
   getBlogSuccess,
   getSingleBlogSuccess,
   getBlogByUserIdSuccess,
+  getSingleCategorySuccess,
   setPage,
   fetchFail,
 } = blogSlice.actions;
