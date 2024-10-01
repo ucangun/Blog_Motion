@@ -2,7 +2,7 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 interface TopBlogCardType {
   blog: BlogPost;
-  category: string; // category prop'u eklendi
+  category: string;
 }
 
 const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => (
