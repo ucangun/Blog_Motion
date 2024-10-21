@@ -18,7 +18,7 @@ export interface CurrentUserType {
   lastName: string;
   username: string;
   password: string;
-  _id?: string;
+  _id: string;
 }
 
 const initialState: AuthInitial = {
