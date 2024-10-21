@@ -1,15 +1,11 @@
 "use client";
 
 import { Box, Divider } from "@mui/material";
-import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
 import AccountHeader from "../components/Account/AccountHeader";
 import ProfileSettings from "../components/Account/ProfileSettings";
 import DangerZone from "../components/Account/DangerZone";
 
 function Account() {
-  const { currentUser } = useSelector((state: RootState) => state.auth);
-  console.log(currentUser);
   return (
     <Box
       display="flex"
