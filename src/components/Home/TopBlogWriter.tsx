@@ -60,7 +60,7 @@ const TopBlogWriter: React.FC = () => {
       {/* Main article on left */}
       <Grid2 size={{ xs: 12, md: 6 }}>
         {bestBlog && (
-          <Card sx={{ maxWidth: "100%" }}>
+          <Card sx={{ maxWidth: "100%", cursor: "pointer" }}>
             <CardMedia
               component="img"
               height="400"
