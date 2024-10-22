@@ -1,10 +1,12 @@
 import { Card, Grid2 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { useNavigate } from "react-router-dom";
 
 const PopularCards = () => {
   const { blogs } = useSelector((state: RootState) => state.blog);
-  const PopularBlogs = blogs.slice(3, 6);
+  const PopularBlogs = blogs.slice(16, 19);
+  const navigate = useNavigate();
 
   return (
     <Grid2
@@ -18,6 +20,7 @@ const PopularCards = () => {
       {PopularBlogs.map((blog, index) => (
         <Grid2 key={index} size={{ xs: 12, md: 4 }}>
           <Card
+            onClick={() => navigate(`/blog/${blog._id}`)}
             sx={{
               maxWidth: "auto",
               height: 200,

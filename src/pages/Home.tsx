@@ -10,7 +10,7 @@ import TopBlogWriter from "../components/Home/TopBlogWriter";
 const Home = () => {
   const { getBlogData } = useBlogCall();
   const { blogs } = useSelector((state: RootState) => state.blog);
-  const firstThreeBlogs = blogs.slice(0, 3);
+  const firstThreeBlogs = blogs.slice(22, 25);
 
   useEffect(() => {
     getBlogData("blogs");
