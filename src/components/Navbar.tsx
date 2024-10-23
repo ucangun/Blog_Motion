@@ -189,7 +189,11 @@ function Navbar() {
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
+                      src={
+                        currentUser
+                          ? currentUser.image
+                          : "/static/images/avatar/1.jpg"
+                      }
                     />
                   </IconButton>
                 </Tooltip>
