@@ -135,7 +135,13 @@ function Navbar() {
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page.title}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    page.onClick(); // Sayfa yönlendirmesi burada yapılır
+                  }}
+                >
                   <Typography sx={{ textAlign: "center" }}>
                     {page.title}
                   </Typography>
