@@ -6,11 +6,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import PopularSection from "../components/Home/PopularSection";
 import TopBlogWriter from "../components/Home/TopBlogWriter";
+import Newsletter from "../components/Home/Newsletter";
 
 const Home = () => {
   const { getBlogData } = useBlogCall();
   const { blogs } = useSelector((state: RootState) => state.blog);
-  const firstThreeBlogs = blogs.slice(22, 25);
+  const firstThreeBlogs = blogs.slice(10, 13);
 
   useEffect(() => {
     getBlogData("blogs");
@@ -29,6 +30,7 @@ const Home = () => {
       <HomeMasonry firstThreeBlogs={firstThreeBlogs} />
       <PopularSection />
       <TopBlogWriter />
+      <Newsletter />
     </Container>
   );
 };

@@ -32,8 +32,8 @@ const TopBlogWriter: React.FC = () => {
 
   useEffect(() => {
     // Fetch data
-    getBlogByUserId("66e89b0252415f1a693c86a4");
-    getSingleUser("66e89b0252415f1a693c86a4");
+    getBlogByUserId("671a412a6dd99d224acddb58");
+    getSingleUser("671a412a6dd99d224acddb58");
     getBlogData("categories");
   }, []);
 
