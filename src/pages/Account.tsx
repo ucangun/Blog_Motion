@@ -2,7 +2,7 @@
 
 import { Container, Grid2 } from "@mui/material";
 import ProfileCard from "../components/Account/ProfileCard";
-import SettingsContainer from "../components/Account/SettingsContainer";
+// import SettingsContainer from "../components/Account/SettingsContainer";
 
 function Account() {
   return (
@@ -16,7 +16,7 @@ function Account() {
         <Grid2 size={{ xs: 12, md: 4 }}>
           <ProfileCard />
         </Grid2>
-        <Grid2
+        {/* <Grid2
           size={{ xs: 12, md: 8 }}
           maxWidth="576px"
           width="100%"
@@ -25,7 +25,7 @@ function Account() {
           gap={3}
         >
           <SettingsContainer />
-        </Grid2>
+        </Grid2> */}
       </Grid2>
     </Container>
   );

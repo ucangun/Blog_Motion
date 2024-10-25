@@ -27,6 +27,7 @@ const style = {
     md: "60%",
   },
   maxWidth: "48rem",
+  maxHeight: { xs: "80vh", sm: "100vh" },
   bgcolor: "background.paper",
   boxShadow: 24,
   padding: {
@@ -35,6 +36,7 @@ const style = {
     lg: "2rem 6rem",
   },
   borderRadius: ".5rem",
+  overflowY: "auto",
 };
 
 const ProfileCard: React.FC = () => {
