@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import MyButton from "../Button";
 
 interface TopBlogCardType {
@@ -8,15 +7,8 @@ interface TopBlogCardType {
 }
 
 const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => {
-  const navigate = useNavigate();
-
   return (
-    <Card
-      sx={{ display: "flex", marginBottom: 2, cursor: "pointer" }}
-      onClick={() => {
-        navigate(`/blog/${blog._id}`);
-      }}
-    >
+    <Card sx={{ display: "flex", marginBottom: 2, cursor: "pointer" }}>
       <CardMedia
         component="img"
         sx={{ width: 151 }}
