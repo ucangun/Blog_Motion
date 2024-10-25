@@ -60,7 +60,7 @@ const TopBlogWriter: React.FC = () => {
       {/* Main article on left */}
       <Grid2 size={{ xs: 12, md: 6 }}>
         {bestBlog && (
-          <Card sx={{ maxWidth: "100%", cursor: "pointer" }}>
+          <Card sx={{ maxWidth: "100%" }}>
             <CardMedia
               component="img"
               height="400"
@@ -78,11 +78,12 @@ const TopBlogWriter: React.FC = () => {
                 mb={2}
               >
                 <Typography
-                  variant="button"
                   sx={{
                     background: "#f0f0f0",
+                    fontSize: ".8rem",
                     padding: "0.2rem 0.6rem",
-                    borderRadius: "12px",
+                    borderRadius: ".8rem",
+                    textTransform: "uppercase",
                   }}
                 >
                   {getCategoryName(bestBlog.categoryId)}
@@ -93,7 +94,7 @@ const TopBlogWriter: React.FC = () => {
               </Box>
 
               {/* Title */}
-              <Typography variant="h4" gutterBottom>
+              <Typography variant="h5" gutterBottom>
                 {bestBlog?.title || "No Title"}
               </Typography>
 

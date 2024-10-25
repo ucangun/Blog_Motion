@@ -29,6 +29,7 @@ const PopularCards = () => {
               backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(${blog.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              padding: "1rem",
             }}
           >
             {blog.title}

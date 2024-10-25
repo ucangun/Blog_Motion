@@ -32,7 +32,7 @@ export default function HomeMasonry({ firstThreeBlogs }: HomeMasonryProps) {
               backgroundPosition: "center",
             }}
           >
-            <Box sx={{ color: "white", padding: 1 }}>{blog.title}</Box>
+            <Box sx={{ color: "white", padding: "1.2rem" }}>{blog.title}</Box>
           </Item>
         ))}
       </Masonry>
