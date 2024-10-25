@@ -14,16 +14,27 @@ import { RootState } from "../../app/store";
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import useBlogCall from "../../hooks/useBlogCall";
+import SettingsContainer from "./SettingsContainer";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: {
+    xs: "100%",
+    sm: "80%",
+    md: "60%",
+  },
+  maxWidth: "48rem",
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4,
+  padding: {
+    xs: "1rem .8rem",
+    sm: "2rem 4rem",
+    lg: "2rem 6rem",
+  },
+  borderRadius: ".5rem",
 };
 
 const ProfileCard: React.FC = () => {
@@ -103,7 +114,7 @@ const ProfileCard: React.FC = () => {
 
       <Box
         sx={{
-          padding: "1rem",
+          padding: ".5rem",
         }}
       >
         <Button
@@ -123,7 +134,9 @@ const ProfileCard: React.FC = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}></Box>
+          <Box sx={style}>
+            <SettingsContainer />
+          </Box>
         </Modal>
       </Box>
     </Card>

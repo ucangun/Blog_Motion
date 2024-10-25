@@ -1,10 +1,8 @@
 "use client";
 
-import { Container, Divider, Grid2 } from "@mui/material";
-import AccountHeader from "../components/Account/AccountSettings/AccountHeader";
-import ProfileSettings from "../components/Account/AccountSettings/ProfileSettings";
-import DangerZone from "../components/Account/AccountSettings/DangerZone";
+import { Container, Grid2 } from "@mui/material";
 import ProfileCard from "../components/Account/ProfileCard";
+import SettingsContainer from "../components/Account/SettingsContainer";
 
 function Account() {
   return (
@@ -26,10 +24,7 @@ function Account() {
           flexDirection="column"
           gap={3}
         >
-          <AccountHeader />
-          <ProfileSettings />
-          <Divider />
-          <DangerZone />
+          <SettingsContainer />
         </Grid2>
       </Grid2>
     </Container>

@@ -71,7 +71,13 @@ const ProfileSettings = () => {
       <Grid2 container spacing={2}>
         <Grid2 size={{ xs: 12, sm: 6 }}>
           <TextField
-            fullWidth
+            sx={{
+              width: {
+                xs: "100%",
+                sm: "80%",
+                md: "100%",
+              },
+            }}
             name="firstName"
             label="First name"
             variant="outlined"
@@ -145,7 +151,7 @@ const ProfileSettings = () => {
           color="primary"
           sx={{ mt: 2 }}
         >
-          Update User
+          Confirm
         </Button>
       </Grid2>
     </Box>
