@@ -12,7 +12,7 @@ function Newsletter() {
         backgroundColor: "#111",
         color: "#fff",
         textAlign: "center",
-        padding: "3rem",
+        padding: "4rem",
         borderRadius: ".5rem",
         cursor: "pointer",
       }}
@@ -26,9 +26,10 @@ function Newsletter() {
         sx={{
           display: "flex",
           alignItems: "center",
-          backgroundColor: "#1A1A1A", // Arka plan rengi (siyah-gri tonlarında)
-          border: "1px solid #fff", // Beyaz sınır çizgisi
-          borderRadius: "8px",
+          backgroundColor: "#333",
+          outline: "1px solid #fff",
+          outlineOffset: ".5rem",
+          borderRadius: ".3rem",
           overflow: "hidden",
         }}
       >
@@ -36,13 +37,14 @@ function Newsletter() {
           placeholder="Email Address"
           variant="outlined"
           sx={{
-            // flex: 1,
+            width: "22ch",
             backgroundColor: "#333",
+            borderRadius: ".4rem",
             input: {
               color: "#ccc",
-              padding: "10px",
+              padding: ".6rem",
             },
-            fieldset: { border: "none" }, // Sınırları kaldır
+            fieldset: { border: "none" },
           }}
         />
         <Button
@@ -50,8 +52,8 @@ function Newsletter() {
           sx={{
             backgroundColor: "#C4A8F5",
             color: "#000",
-            borderRadius: 1,
-            padding: ".6rem .8rem",
+            borderRadius: ".3rem",
+            padding: ".5rem .6rem",
             "&:hover": {
               backgroundColor: "#B296E0",
             },
