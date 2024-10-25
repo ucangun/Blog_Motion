@@ -5,13 +5,40 @@ import {
   Avatar,
   Typography,
   Box,
-  Grid,
+  Button,
+  Modal,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import GroupIcon from "@mui/icons-material/Group";
-import WorkIcon from "@mui/icons-material/Work";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import { RootState } from "../../app/store";
+import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import useBlogCall from "../../hooks/useBlogCall";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+};
 
 const ProfileCard: React.FC = () => {
+  const { currentUser } = useSelector((state: RootState) => state.auth);
+  const { userBlogs } = useSelector((state: RootState) => state.blog);
+  const { getBlogByUserId } = useBlogCall();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    getBlogByUserId(currentUser?._id || "");
+  }, []);
+
   return (
     <Card
       sx={{
@@ -38,7 +65,7 @@ const ProfileCard: React.FC = () => {
         }}
       >
         <Avatar
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+          src={currentUser?.image}
           alt="user image"
           sx={{
             width: 124,
@@ -49,44 +76,56 @@ const ProfileCard: React.FC = () => {
       </Box>
       <CardContent>
         <Typography variant="h6" component="div" gutterBottom>
-          Sarah Smith
+          {currentUser?.username}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Freelance Web Designer
+        <Typography variant="body1" color="text.secondary">
+          {currentUser?.bio}
         </Typography>
-        <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
-          <Grid item xs={4} textAlign="center">
-            <StarIcon sx={{ color: "primary.main" }} />
-            <Typography variant="body2">2k</Typography>
-          </Grid>
-          <Grid item xs={4} textAlign="center">
-            <GroupIcon sx={{ color: "primary.main" }} />
-            <Typography variant="body2">10k</Typography>
-          </Grid>
-          <Grid item xs={4} textAlign="center">
-            <WorkIcon sx={{ color: "primary.main" }} />
-            <Typography variant="body2">15</Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-      {/* İsteğe bağlı Follow butonu */}
-      {/* <Box sx={{ padding: 2, borderTop: '1px solid #e0e0e0' }}>
-        <Button
-          variant="contained"
+
+        <Box
           sx={{
-            width: '50%',
-            borderRadius: '50px',
-            backgroundColor: '#424242',
-            color: '#fff',
-            fontWeight: 'bold',
-            '&:hover': {
-              backgroundColor: '#333',
-            },
+            marginTop: 2,
+            display: "flex",
+            justifyContent: "center",
+            gap: "1.2rem",
           }}
         >
-          Follow
+          <Box sx={{ display: "flex", alignItems: "center", gap: ".2rem" }}>
+            <StarIcon sx={{ color: "primary.main" }} />
+            <Typography variant="body2">5</Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: ".2rem" }}>
+            <ArticleOutlinedIcon sx={{ color: "primary.main" }} />
+            <Typography variant="body2">{userBlogs.length}</Typography>
+          </Box>
+        </Box>
+      </CardContent>
+
+      <Box
+        sx={{
+          padding: "1rem",
+        }}
+      >
+        <Button
+          variant="outlined"
+          sx={{
+            fontSize: ".8rem",
+            padding: ".2rem .5rem",
+            borderRadius: ".5rem",
+          }}
+          onClick={handleOpen}
+        >
+          Edit Profile
         </Button>
-      </Box> */}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}></Box>
+        </Modal>
+      </Box>
     </Card>
   );
 };
