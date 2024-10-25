@@ -1,7 +1,7 @@
 import { Alert, Box, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-import useAuthCall from "../../hooks/useAuthCall";
+import { RootState } from "../../../app/store";
+import useAuthCall from "../../../hooks/useAuthCall";
 
 const DangerZone = () => {
   const { currentUser } = useSelector((state: RootState) => state.auth);

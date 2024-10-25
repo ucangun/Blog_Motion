@@ -1,32 +1,49 @@
 "use client";
 
-import { Box, Divider } from "@mui/material";
-import AccountHeader from "../components/Account/AccountHeader";
-import ProfileSettings from "../components/Account/ProfileSettings";
-import DangerZone from "../components/Account/DangerZone";
+import { Container, Divider, Grid2 } from "@mui/material";
+import AccountHeader from "../components/Account/AccountSettings/AccountHeader";
+import ProfileSettings from "../components/Account/AccountSettings/ProfileSettings";
+import DangerZone from "../components/Account/AccountSettings/DangerZone";
+import ProfileCard from "../components/Account/ProfileCard";
 
 function Account() {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      sx={{ py: 6, px: 3 }}
+    <Container
+      sx={{
+        py: 6,
+        px: 1,
+      }}
     >
-      <Box
-        maxWidth="576px"
-        width="100%"
-        display="flex"
-        flexDirection="column"
-        gap={3}
-      >
-        <AccountHeader />
+      <Grid2 container spacing={{ xs: 8, md: 2 }}>
+        <Grid2 size={{ xs: 12, md: 4 }}>
+          <ProfileCard />
+        </Grid2>
+        <Grid2
+          size={{ xs: 12, md: 8 }}
+          maxWidth="576px"
+          width="100%"
+          display="flex"
+          flexDirection="column"
+          gap={3}
+        >
+          <AccountHeader />
+          <ProfileSettings />
+          <Divider />
+          <DangerZone />
+        </Grid2>
+      </Grid2>
+    </Container>
+  );
+}
 
-        <ProfileSettings />
+export default Account;
 
-        {/* Password Section */}
+{
+  /* Password Section */
+}
 
-        {/* <Box>
+{
+  /* <Box>
           <Typography variant="h5">Password</Typography>
           <TextField
             fullWidth
@@ -42,14 +59,5 @@ function Account() {
           <Button variant="contained" color="primary" sx={{ mt: 2 }}>
             Change password
           </Button>
-        </Box> */}
-
-        <Divider />
-
-        <DangerZone />
-      </Box>
-    </Box>
-  );
+        </Box> */
 }
-
-export default Account;

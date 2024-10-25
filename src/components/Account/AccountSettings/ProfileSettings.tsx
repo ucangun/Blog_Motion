@@ -7,10 +7,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-import { CurrentUserType } from "../../features/authSlice";
+import { RootState } from "../../../app/store";
+import { CurrentUserType } from "../../../features/authSlice";
 import { useState } from "react";
-import useAuthCall from "../../hooks/useAuthCall";
+import useAuthCall from "../../../hooks/useAuthCall";
 
 const ProfileSettings = () => {
   const { currentUser } = useSelector((state: RootState) => state.auth);

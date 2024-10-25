@@ -26,7 +26,7 @@ const PopularCards = () => {
               height: 200,
               color: "primary.text",
               textAlign: "center",
-              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(${blog.image})`,
+              backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${blog.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               padding: "1rem",
