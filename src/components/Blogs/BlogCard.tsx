@@ -19,6 +19,7 @@ export default function BlogCard({ item }: BlogCardProps) {
         minWidth: "30rem",
         maxWidth: "35rem",
         cursor: "pointer",
+        boxShadow: 4,
       }}
     >
       <CardMedia

@@ -3,13 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface UtilsInitial {
   loading: boolean;
   error: boolean;
-  data: NewsArticle | null;
+  data: NewsArticle[];
 }
 
 const initialState: UtilsInitial = {
   loading: false,
   error: false,
-  data: null,
+  data: [],
 };
 
 const utilsSlice = createSlice({
