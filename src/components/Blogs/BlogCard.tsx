@@ -39,8 +39,9 @@ export default function BlogCard({ item }: BlogCardProps) {
           </Typography>
           <Typography
             component="div"
-            variant="h6"
+            variant="body1"
             sx={{
+              fontSize: "1.1rem",
               display: "inline-block",
             }}
           >

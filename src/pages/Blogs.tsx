@@ -5,14 +5,20 @@ import { RootState } from "../app/store";
 import { useEffect } from "react";
 import { Container, Grid2 } from "@mui/material";
 import MuiPagination from "../components/Pagination";
+import useUtilsCall from "../hooks/useUtilsCall";
 
 const Blogs = () => {
   const { getBlogData } = useBlogCall();
+  const { getNewsData } = useUtilsCall();
   const { pagBlogs } = useSelector((state: RootState) => state.blog);
+  const { data } = useSelector((state: RootState) => state.utils);
 
   useEffect(() => {
     getBlogData("blogs");
+    getNewsData();
   }, []);
+
+  console.log(data);
 
   return (
     <Container
