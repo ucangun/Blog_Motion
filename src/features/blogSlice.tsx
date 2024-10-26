@@ -4,6 +4,7 @@ interface BlogSliceInitial {
   loading: boolean;
   error: boolean;
   blogs: BlogPost[];
+  pagBlogs: BlogPost[];
   categories: CategoryPost[];
   singleBlog: SinglePost | null;
   userBlogs: BlogPost[];
@@ -18,6 +19,7 @@ const initialState: BlogSliceInitial = {
   loading: false,
   error: false,
   blogs: [],
+  pagBlogs: [],
   categories: [],
   singleBlog: null,
   singleCategory: null,
@@ -38,6 +40,11 @@ const blogSlice = createSlice({
       state.loading = false;
       state.error = false;
       state[payload.endpoint] = payload.data.data;
+    },
+    getPagBlogSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state.pagBlogs = payload.data.data;
     },
     getSingleBlogSuccess: (state, { payload }) => {
       state.loading = false;
@@ -66,6 +73,7 @@ const blogSlice = createSlice({
 export const {
   fetchStart,
   getBlogSuccess,
+  getPagBlogSuccess,
   getSingleBlogSuccess,
   getBlogByUserIdSuccess,
   getSingleCategorySuccess,

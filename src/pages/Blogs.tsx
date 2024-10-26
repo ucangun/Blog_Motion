@@ -8,17 +8,11 @@ import MuiPagination from "../components/Pagination";
 
 const Blogs = () => {
   const { getBlogData } = useBlogCall();
-  const { blogs, currentPage, itemsPerPage } = useSelector(
-    (state: RootState) => state.blog
-  );
+  const { pagBlogs } = useSelector((state: RootState) => state.blog);
 
   useEffect(() => {
     getBlogData("blogs");
   }, []);
-
-  const indexOfLastBlog = currentPage * itemsPerPage;
-  const indexOfFirstBlog = indexOfLastBlog - itemsPerPage;
-  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
   return (
     <Container
@@ -31,7 +25,7 @@ const Blogs = () => {
       }}
     >
       <Grid2 container spacing={2} justifyContent="center" alignItems="center">
-        {currentBlogs.map((item) => (
+        {pagBlogs.map((item) => (
           <Grid2
             display="flex"
             justifyContent="center"

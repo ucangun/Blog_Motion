@@ -4,6 +4,7 @@ import { fetchFail, fetchStart } from "../features/authSlice";
 import {
   getBlogByUserIdSuccess,
   getBlogSuccess,
+  getPagBlogSuccess,
   getSingleBlogSuccess,
   getSingleCategorySuccess,
 } from "../features/blogSlice";
@@ -23,6 +24,19 @@ const useBlogCall = () => {
     try {
       const { data } = await axios(`${BASE_URL}${endpoint}`);
       dispatch(getBlogSuccess({ endpoint, data }));
+    } catch (error) {
+      dispatch(fetchFail());
+      console.error(error);
+    }
+  };
+
+  const getBlogsByPage = async (limit: number, page: number) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios(
+        `${BASE_URL}blogs/?limit=${limit}&page=${page}`
+      );
+      dispatch(getPagBlogSuccess({ endpoint: "/blogs", data }));
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);
@@ -181,6 +195,7 @@ const useBlogCall = () => {
 
   return {
     getBlogData,
+    getBlogsByPage,
     getSingleBlog,
     getBlogByUserId,
     addNewBlog,
