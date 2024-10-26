@@ -8,8 +8,8 @@ import {
   Button,
   Modal,
 } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import PlaceIcon from "@mui/icons-material/Place";
 import { RootState } from "../../app/store";
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
@@ -104,8 +104,8 @@ const ProfileCard: React.FC = () => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: ".2rem" }}>
-            <StarIcon sx={{ color: "primary.main" }} />
-            <Typography variant="body2">5</Typography>
+            <PlaceIcon sx={{ color: "primary.main" }} />
+            <Typography variant="body2">{currentUser?.city}</Typography>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: ".2rem" }}>
             <ArticleOutlinedIcon sx={{ color: "primary.main" }} />
