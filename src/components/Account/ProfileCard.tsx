@@ -55,7 +55,6 @@ const ProfileCard: React.FC = () => {
   return (
     <Card
       sx={{
-        maxWidth: 500,
         borderRadius: 2,
         textAlign: "center",
         overflow: "hidden",

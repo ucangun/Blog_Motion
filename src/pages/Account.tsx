@@ -2,30 +2,30 @@
 
 import { Container, Grid2 } from "@mui/material";
 import ProfileCard from "../components/Account/ProfileCard";
-// import SettingsContainer from "../components/Account/SettingsContainer";
+import LatestBlogCard from "../components/Account/UserLatestBlogs/LatestBlogCard";
 
 function Account() {
   return (
     <Container
       sx={{
-        py: 6,
+        py: 5,
         px: 1,
       }}
     >
-      <Grid2 container spacing={{ xs: 8, md: 2 }}>
+      <Grid2 container spacing={{ xs: 6, md: 4 }}>
         <Grid2 size={{ xs: 12, md: 4 }}>
           <ProfileCard />
         </Grid2>
-        {/* <Grid2
+        <Grid2
           size={{ xs: 12, md: 8 }}
-          maxWidth="576px"
+          maxWidth="676px"
           width="100%"
           display="flex"
           flexDirection="column"
-          gap={3}
+          gap={1}
         >
-          <SettingsContainer />
-        </Grid2> */}
+          <LatestBlogCard />
+        </Grid2>
       </Grid2>
     </Container>
   );
