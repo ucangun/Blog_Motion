@@ -67,6 +67,7 @@ const LatestBlogCard: React.FC = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <Typography
