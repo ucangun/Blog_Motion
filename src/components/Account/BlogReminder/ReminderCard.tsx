@@ -1,8 +1,27 @@
-import React from "react";
-import { Card, CardContent, Typography, IconButton } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  IconButton,
+  TextField,
+  Box,
+} from "@mui/material";
 import { Edit } from "@mui/icons-material";
 
 const ReminderCard: React.FC = () => {
+  const [notes, setNotes] = useState<string[]>([]);
+  const [newNote, setNewNote] = useState<string>("");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const handleAddNote = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && newNote.trim() !== "") {
+      setNotes([...notes, newNote]);
+      setNewNote("");
+      setIsEditing(false);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -25,20 +44,54 @@ const ReminderCard: React.FC = () => {
           variant="h6"
           sx={{
             fontWeight: "bold",
-            mb: 2,
+            mb: 1,
           }}
         >
-          Remember Card
+          Note Your Blog Ideas 📝
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            color: "text.secondary",
-            fontSize: "0.9rem",
-          }}
-        >
-          Add Your upcoming blog ideas 🙃
-        </Typography>
+
+        <Box>
+          {notes.map((note, index) => (
+            <Box
+              key={index}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                color: "text.secondary",
+                fontSize: "1rem",
+                mb: ".5rem",
+              }}
+            >
+              <Typography sx={{ marginRight: 1 }}>•</Typography>
+              <Typography sx={{ fontSize: "1rem" }}>{note}</Typography>
+            </Box>
+          ))}
+        </Box>
+
+        {isEditing ? (
+          <TextField
+            value={newNote}
+            onChange={(e) => setNewNote(e.target.value)}
+            onKeyDown={handleAddNote}
+            onBlur={() => setIsEditing(false)}
+            autoFocus
+            variant="standard"
+            sx={{
+              width: "100%",
+              marginTop: 1,
+              backgroundColor: "primary.main",
+              border: "1px solid #000",
+              borderRadius: "4px",
+              padding: "6px",
+              "& .MuiInputBase-root": {
+                border: "none",
+              },
+              "&:hover": {
+                border: "1px solid #000",
+              },
+            }}
+          />
+        ) : null}
       </CardContent>
 
       <IconButton
@@ -56,6 +109,7 @@ const ReminderCard: React.FC = () => {
           },
         }}
         aria-label="edit note"
+        onClick={() => setIsEditing(true)}
       >
         <Edit sx={{ fontSize: 18 }} />
       </IconButton>
