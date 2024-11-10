@@ -17,7 +17,7 @@ function Account() {
         <Grid2
           size={{ xs: 12, md: 4 }}
           sx={{
-            pt: 6,
+            pt: { xs: 0, md: 6 },
             pb: 2,
             display: "flex",
             flexDirection: "column",

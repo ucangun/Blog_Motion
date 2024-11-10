@@ -41,12 +41,20 @@ const Blog: React.FC = () => {
       <Box
         sx={{
           padding: "1rem .3rem ",
+          width: "100%",
+          aspectRatio: "16/9",
+          overflow: "hidden",
         }}
       >
         <img
           src={singleBlog?.image}
           alt={singleBlog?.title}
-          style={{ borderRadius: ".5rem" }}
+          style={{
+            borderRadius: ".5rem",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
         />
       </Box>
 
