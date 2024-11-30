@@ -1,5 +1,6 @@
 import { Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import RecommendedCards from "./RecommmendedCards";
 
 const RecomendedSection = () => {
   const navigate = useNavigate();
@@ -7,7 +8,15 @@ const RecomendedSection = () => {
   return (
     <Box
       maxWidth="lg"
-      sx={{ paddingY: 4, backgroundColor: "#F5D1A1", borderRadius: ".3rem" }}
+      sx={{
+        paddingY: 4,
+        backgroundColor: "#F5D1A1",
+        borderRadius: ".3rem",
+        padding: {
+          xs: "1rem .9rem",
+          md: "1.8rem 1.2rem",
+        },
+      }}
     >
       <Typography
         variant="h4"
@@ -31,7 +40,7 @@ const RecomendedSection = () => {
         The latest news, tips, and advice to help you run your business with
         ease.
       </Typography>
-      {/* <RecommendedCards/> */}
+      <RecommendedCards />
       <Box textAlign="center" sx={{ marginTop: 4 }}>
         <button
           style={{
