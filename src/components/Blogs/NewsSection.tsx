@@ -11,9 +11,8 @@ import { RootState } from "../../app/store";
 
 const NewsSection = () => {
   let { data } = useSelector((state: RootState) => state.utils);
-  console.log(data);
 
-  data = data.slice(0, 10);
+  data = data.slice(0, 3);
 
   return (
     <>
@@ -24,17 +23,19 @@ const NewsSection = () => {
           fontSize: 24,
           textAlign: "center",
           mb: "1rem",
+          "@media (max-width: 600px)": {
+            fontSize: 18,
+          },
         }}
       >
         Latest News
       </Typography>
       <Box
         sx={{
-          maxHeight: "70vh",
+          width: "100%",
           overflowY: "auto",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           gap: 2,
         }}
       >
@@ -42,16 +43,24 @@ const NewsSection = () => {
           <Card
             key={item.title}
             sx={{
-              backgroundColor: "#fcfcfc",
+              backgroundColor: "#f8f8f8",
               display: "flex",
-              minWidth: 275,
-              maxWidth: "35rem",
+              width: "100%",
               minHeight: "10rem",
+              boxShadow: 0,
+              "@media (max-width: 600px)": {
+                minHeight: "8rem",
+              },
             }}
           >
             <CardMedia
               component="img"
-              sx={{ width: 130 }}
+              sx={{
+                width: 130,
+                "@media (max-width: 600px)": {
+                  width: 100,
+                },
+              }}
               image={
                 item.urlToImage ||
                 "https://licindia.in/documents/d/guest/no_image_news"
@@ -66,17 +75,15 @@ const NewsSection = () => {
                 alignItems: "flex-end",
               }}
             >
-              {/* <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ mb: 0.5, fontSize: ".6rem" }}
-            >
-              {formatDateTime(new Date(item.publishedAt), "DD.MM.YYYY")}
-            </Typography> */}
               <Typography
                 variant="body1"
                 component="div"
-                sx={{ fontSize: ".9rem" }}
+                sx={{
+                  fontSize: ".9rem",
+                  "@media (max-width: 600px)": {
+                    fontSize: ".8rem",
+                  },
+                }}
               >
                 {item.title}
               </Typography>
@@ -86,6 +93,9 @@ const NewsSection = () => {
                 sx={{
                   mt: "1rem",
                   fontSize: ".6rem",
+                  "@media (max-width: 600px)": {
+                    fontSize: ".5rem",
+                  },
                 }}
                 onClick={() => window.open(item.url, "_blank")}
               >

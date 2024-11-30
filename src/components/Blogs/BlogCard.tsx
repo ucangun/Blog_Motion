@@ -22,7 +22,7 @@ export default function BlogCard({ item }: BlogCardProps) {
       sx={{
         display: "flex",
         width: "100%",
-        maxWidth: "36rem",
+        // maxWidth: "40rem",
         minWidth: "20rem",
         cursor: "pointer",
         boxShadow: 0,
@@ -32,7 +32,7 @@ export default function BlogCard({ item }: BlogCardProps) {
       <CardMedia
         component="img"
         sx={{
-          width: { xs: "100%", sm: 170 },
+          width: { xs: "100%", sm: 200 },
           height: { xs: "200px", sm: "auto" },
           objectFit: "cover",
           objectPosition: "center",

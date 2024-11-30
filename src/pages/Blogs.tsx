@@ -22,7 +22,7 @@ const Blogs = () => {
   return (
     <Grid2
       container
-      spacing={{ xs: 4, md: 2 }}
+      spacing={{ xs: 4, md: 1 }}
       sx={{
         display: "flex",
         padding: "1rem .3rem",
