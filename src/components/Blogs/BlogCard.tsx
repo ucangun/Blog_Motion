@@ -23,9 +23,9 @@ export default function BlogCard({ item }: BlogCardProps) {
         display: "flex",
         width: "100%",
         maxWidth: "36rem",
-        minWidth: "30rem",
+        minWidth: "20rem",
         cursor: "pointer",
-        boxShadow: 1,
+        boxShadow: 0,
         flexDirection: { xs: "column", sm: "row" },
       }}
     >
@@ -49,7 +49,9 @@ export default function BlogCard({ item }: BlogCardProps) {
           padding: ".1rem .6rem",
         }}
       >
-        <CardContent sx={{ flex: "1 0 auto" }}>
+        <CardContent
+          sx={{ flex: "1 0 auto", padding: { xs: "0.5rem", sm: "1rem" } }}
+        >
           <Typography
             component="div"
             variant="body2"

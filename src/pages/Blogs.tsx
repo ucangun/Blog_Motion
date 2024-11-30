@@ -22,19 +22,17 @@ const Blogs = () => {
   return (
     <Grid2
       container
-      spacing={{ xs: 6, md: 2 }}
+      spacing={{ xs: 4, md: 2 }}
       sx={{
         display: "flex",
-        justifyContent: "center",
-        padding: "2rem .3rem",
+        padding: "1rem .3rem",
       }}
     >
       <Grid2
-        size={{ xs: 12, md: 7 }}
+        size={{ xs: 12, md: 8 }}
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           gap: "1rem",
         }}
       >
@@ -43,9 +41,18 @@ const Blogs = () => {
             <BlogCard item={item} />
           </Box>
         ))}
-        <MuiPagination />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            marginTop: "1rem",
+          }}
+        >
+          <MuiPagination />
+        </Box>
       </Grid2>
-      <Grid2 size={{ xs: 12, md: 5 }}>
+      <Grid2 size={{ xs: 12, md: 4 }}>
         <NewsSection />
       </Grid2>
     </Grid2>
