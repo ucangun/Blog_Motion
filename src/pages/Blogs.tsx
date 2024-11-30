@@ -15,6 +15,7 @@ const Blogs = () => {
 
   useEffect(() => {
     getBlogData("blogs");
+    getBlogData("categories");
     getNewsData();
   }, []);
 
@@ -25,7 +26,7 @@ const Blogs = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        padding: "4rem .3rem",
+        padding: "2rem .3rem",
       }}
     >
       <Grid2
