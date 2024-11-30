@@ -15,17 +15,18 @@ const NewsSection = () => {
   data = data.slice(0, 3);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: { xs: "none", md: "block" },
+      }}
+    >
       <Typography
         variant="body1"
         component="h2"
         sx={{
-          fontSize: 24,
+          fontSize: "1.4rem",
           textAlign: "center",
           mb: "1rem",
-          "@media (max-width: 600px)": {
-            fontSize: 18,
-          },
         }}
       >
         Latest News
@@ -79,9 +80,9 @@ const NewsSection = () => {
                 variant="body1"
                 component="div"
                 sx={{
-                  fontSize: ".9rem",
-                  "@media (max-width: 600px)": {
-                    fontSize: ".8rem",
+                  fontSize: ".8rem",
+                  "@media (max-width: 1150px)": {
+                    fontSize: ".75rem",
                   },
                 }}
               >
@@ -105,7 +106,7 @@ const NewsSection = () => {
           </Card>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

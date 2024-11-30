@@ -25,7 +25,7 @@ const initialState: BlogSliceInitial = {
   singleCategory: null,
   userBlogs: [],
   currentPage: 1,
-  itemsPerPage: 5,
+  itemsPerPage: 10,
 };
 
 const blogSlice = createSlice({

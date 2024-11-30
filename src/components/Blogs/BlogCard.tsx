@@ -21,12 +21,12 @@ export default function BlogCard({ item }: BlogCardProps) {
     <Card
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
         width: "100%",
         // maxWidth: "40rem",
         minWidth: "20rem",
         cursor: "pointer",
         boxShadow: 0,
-        flexDirection: { xs: "column", sm: "row" },
       }}
     >
       <CardMedia

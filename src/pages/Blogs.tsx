@@ -26,6 +26,8 @@ const Blogs = () => {
       sx={{
         display: "flex",
         padding: "1rem .3rem",
+        maxHeight: "100vh",
+        overflow: "hidden",
       }}
     >
       <Grid2
@@ -35,6 +37,14 @@ const Blogs = () => {
           flexDirection: "column",
           gap: "1rem",
           borderRight: "1px solid #f5f5f5",
+          maxHeight: "calc(100vh - 1rem)",
+          overflowY: "auto",
+          position: "relative",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
         }}
       >
         {pagBlogs.map((item) => (
@@ -54,7 +64,19 @@ const Blogs = () => {
         </Box>
       </Grid2>
       <Grid2 size={{ xs: 12, md: 4 }}>
-        <NewsSection />
+        <Box
+          sx={{
+            maxHeight: "calc(100vh - 1rem)",
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            "-ms-overflow-style": "none",
+            "scrollbar-width": "none",
+          }}
+        >
+          <NewsSection />
+        </Box>
       </Grid2>
     </Grid2>
   );
