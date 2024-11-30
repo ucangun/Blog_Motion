@@ -34,6 +34,7 @@ const Blogs = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
+          borderRight: "1px solid #f5f5f5",
         }}
       >
         {pagBlogs.map((item) => (
