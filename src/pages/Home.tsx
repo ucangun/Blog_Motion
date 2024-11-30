@@ -7,6 +7,7 @@ import { RootState } from "../app/store";
 import PopularSection from "../components/Home/PopularSection";
 import TopBlogWriter from "../components/Home/TopBlogWriter";
 import Newsletter from "../components/Home/Newsletter";
+import RecomendedSection from "../components/Home/RecommendedSection";
 
 const Home = () => {
   const { getBlogData } = useBlogCall();
@@ -30,6 +31,7 @@ const Home = () => {
       <HomeMasonry firstThreeBlogs={firstThreeBlogs} />
       <PopularSection />
       <TopBlogWriter />
+      <RecomendedSection />
       <Newsletter />
     </Container>
   );
