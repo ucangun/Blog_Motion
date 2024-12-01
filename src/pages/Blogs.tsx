@@ -7,6 +7,7 @@ import { Box, Grid2 } from "@mui/material";
 import MuiPagination from "../components/Pagination";
 import useUtilsCall from "../hooks/useUtilsCall";
 import NewsSection from "../components/Blogs/NewsSection";
+import CategoryBubbles from "../components/Blogs/CategoryBubbles";
 
 const Blogs = () => {
   const { getBlogData } = useBlogCall();
@@ -76,6 +77,7 @@ const Blogs = () => {
           }}
         >
           <NewsSection />
+          <CategoryBubbles />
         </Box>
       </Grid2>
     </Grid2>
