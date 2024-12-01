@@ -19,7 +19,7 @@ const CategoryBubbles = () => {
           key={category.name}
           sx={{
             background: "#f0f0f0",
-            fontSize: { xs: ".6rem", sm: ".7rem" },
+            fontSize: { xs: ".8rem", md: ".7rem" },
             padding: "0.2rem 0.4rem",
             borderRadius: ".8rem",
             textTransform: "uppercase",

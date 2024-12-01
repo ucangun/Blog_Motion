@@ -69,7 +69,7 @@ const Blogs = () => {
         {/* Pagination for blog list */}
         <Box
           sx={{
-            display: { xs: "flex", sm: "flex" }, // Ensures pagination is visible on all screen sizes
+            display: { xs: "flex", sm: "flex" },
             justifyContent: "center",
             width: "100%",
             marginTop: "1rem",
