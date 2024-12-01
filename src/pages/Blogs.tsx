@@ -28,8 +28,8 @@ const Blogs = () => {
       sx={{
         display: "flex",
         padding: "1rem .3rem",
-        maxHeight: "120vh",
-        overflow: "hidden",
+        maxHeight: { xs: "unset", md: "120vh" }, // Only apply maxHeight from md and above
+        overflow: { xs: "unset", md: "hidden" }, // Disable overflow and scrollbar for xs/sm
       }}
     >
       {/* CategoryBubbles for Small Screens (xs and sm) */}
@@ -49,14 +49,14 @@ const Blogs = () => {
           flexDirection: "column",
           gap: "1rem",
           borderRight: "1px solid #f5f5f5",
-          maxHeight: "calc(110vh - 1rem)",
-          overflowY: "auto",
+          maxHeight: { xs: "unset", md: "calc(100vh - 2rem)" }, // Only apply maxHeight on md and above
+          overflowY: { xs: "unset", md: "auto" }, // Enable scroll only on md and above
           position: "relative",
           "&::-webkit-scrollbar": {
-            display: "none",
+            display: "none", // Hide scrollbar for md and above
           },
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
+          "-ms-overflow-style": "none", // Hide scrollbar for Internet Explorer
+          "scrollbar-width": "none", // Hide scrollbar for Firefox
         }}
       >
         {/* Blogs section: Display each blog card */}
@@ -85,13 +85,13 @@ const Blogs = () => {
           display: "flex",
           flexDirection: "column",
           gap: "1rem",
-          maxHeight: "calc(110vh - 1rem)",
-          overflowY: "auto",
+          maxHeight: { xs: "unset", md: "calc(100vh - 2rem)" }, // Only apply maxHeight on md and above
+          overflowY: { xs: "unset", md: "auto" }, // Enable scroll only on md and above
           "&::-webkit-scrollbar": {
-            display: "none",
+            display: "none", // Hide scrollbar for md and above
           },
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
+          "-ms-overflow-style": "none", // Hide scrollbar for Internet Explorer
+          "scrollbar-width": "none", // Hide scrollbar for Firefox
         }}
       >
         {/* News section: Display news articles */}
