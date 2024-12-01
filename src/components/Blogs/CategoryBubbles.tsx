@@ -11,7 +11,7 @@ const CategoryBubbles = () => {
         display: "flex",
         flexWrap: "wrap",
         gap: "0.5rem",
-        padding: "2rem 0",
+        padding: ".5rem 0",
       }}
     >
       {categories.map((category: { name: string }) => (

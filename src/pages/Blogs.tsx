@@ -14,6 +14,7 @@ const Blogs = () => {
   const { getNewsData } = useUtilsCall();
   const { pagBlogs } = useSelector((state: RootState) => state.blog);
 
+  // Fetching blog and category data on component mount
   useEffect(() => {
     getBlogData("blogs");
     getBlogData("categories");
@@ -27,10 +28,20 @@ const Blogs = () => {
       sx={{
         display: "flex",
         padding: "1rem .3rem",
-        maxHeight: "100vh",
+        maxHeight: "120vh",
         overflow: "hidden",
       }}
     >
+      {/* CategoryBubbles for Small Screens (xs and sm) */}
+      <Grid2
+        size={{ xs: 12 }}
+        sx={{
+          display: { xs: "block", md: "none" },
+        }}
+      >
+        <CategoryBubbles />
+      </Grid2>
+
       <Grid2
         size={{ xs: 12, md: 8 }}
         sx={{
@@ -38,7 +49,7 @@ const Blogs = () => {
           flexDirection: "column",
           gap: "1rem",
           borderRight: "1px solid #f5f5f5",
-          maxHeight: "calc(100vh - 1rem)",
+          maxHeight: "calc(110vh - 1rem)",
           overflowY: "auto",
           position: "relative",
           "&::-webkit-scrollbar": {
@@ -48,14 +59,17 @@ const Blogs = () => {
           "scrollbar-width": "none",
         }}
       >
+        {/* Blogs section: Display each blog card */}
         {pagBlogs.map((item) => (
           <Box display="flex" key={item._id}>
             <BlogCard item={item} />
           </Box>
         ))}
+
+        {/* Pagination for blog list */}
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "flex", sm: "flex" }, // Ensures pagination is visible on all screen sizes
             justifyContent: "center",
             width: "100%",
             marginTop: "1rem",
@@ -64,19 +78,31 @@ const Blogs = () => {
           <MuiPagination />
         </Box>
       </Grid2>
-      <Grid2 size={{ xs: 12, md: 4 }}>
+
+      <Grid2
+        size={{ xs: 12, md: 4 }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          maxHeight: "calc(110vh - 1rem)",
+          overflowY: "auto",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+        }}
+      >
+        {/* News section: Display news articles */}
+        <NewsSection />
+
+        {/* CategoryBubbles for Medium+ Screens (md and above) */}
         <Box
           sx={{
-            maxHeight: "calc(100vh - 1rem)",
-            overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
-            "-ms-overflow-style": "none",
-            "scrollbar-width": "none",
+            display: { xs: "none", md: "block" },
           }}
         >
-          <NewsSection />
           <CategoryBubbles />
         </Box>
       </Grid2>
