@@ -41,12 +41,12 @@ function Navbar() {
       onClick: () => navigate("/blogs"),
     },
     {
-      title: "New blog",
+      title: "New Blog",
       onClick: () => navigate("/newblog"),
     },
     {
-      title: "Products",
-      onClick: () => {},
+      title: "About",
+      onClick: () => navigate("/about"),
     },
   ];
 

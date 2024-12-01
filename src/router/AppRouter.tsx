@@ -9,6 +9,7 @@ import AppLayout from "../components/AppLayout";
 import NewBlog from "../pages/NewBlog";
 import MyBlog from "../pages/MyBlogs";
 import Account from "../pages/Account";
+import About from "../pages/About";
 
 const AppRouter = () => {
   return (
@@ -30,6 +31,7 @@ const AppRouter = () => {
             <Route path="/updateblog/:id" element={<NewBlog />} />
             <Route path="/myblogs" element={<MyBlog />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/about" element={<About />} />
           </Route>
         </Route>
       </Routes>

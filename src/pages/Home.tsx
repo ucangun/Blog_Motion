@@ -25,7 +25,7 @@ const Home = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: "1rem",
+        gap: ".8rem",
         padding: "1rem 0.1rem",
       }}
     >
