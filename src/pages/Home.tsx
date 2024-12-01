@@ -8,6 +8,7 @@ import PopularSection from "../components/Home/PopularSection";
 import TopBlogWriter from "../components/Home/TopBlogWriter";
 import Newsletter from "../components/Home/Newsletter";
 import RecomendedSection from "../components/Home/RecommendedSection";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const { getBlogData } = useBlogCall();
@@ -33,6 +34,7 @@ const Home = () => {
       <TopBlogWriter />
       <RecomendedSection />
       <Newsletter />
+      <Footer />
     </Container>
   );
 };
