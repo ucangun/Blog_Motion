@@ -28,7 +28,7 @@ const TopBlogWriter: React.FC = () => {
 
   // Get the best blog after loading
   const bestBlog = userBlogs.length > 0 ? userBlogs[0] : null;
-  const topWriterBlogs = userBlogs.slice(1, 5);
+  const topWriterBlogs = userBlogs.slice(1, 4);
 
   useEffect(() => {
     // Fetch data
@@ -58,13 +58,17 @@ const TopBlogWriter: React.FC = () => {
   return (
     <Grid2 container spacing={2}>
       {/* Main article on left */}
+
       <Grid2 size={{ xs: 12, md: 6 }}>
         {bestBlog && (
           <Card sx={{ maxWidth: "100%" }}>
             <CardMedia
               component="img"
-              height="400"
               image={bestBlog.image}
+              sx={{
+                height: { sx: "auto", sm: "20.3rem" },
+                objectFit: "cover",
+              }}
               alt="Main article image"
             />
 
@@ -94,7 +98,7 @@ const TopBlogWriter: React.FC = () => {
               </Box>
 
               {/* Title */}
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h6" gutterBottom>
                 {bestBlog?.title || "No Title"}
               </Typography>
 

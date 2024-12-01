@@ -11,7 +11,11 @@ const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => {
     <Card sx={{ display: "flex", marginBottom: 2, cursor: "pointer" }}>
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        sx={{
+          width: 150,
+          height: { xs: "auto", md: "11.5rem" },
+          objectFit: "cover",
+        }}
         image={blog.image}
         alt="image"
       />
@@ -31,7 +35,7 @@ const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => {
           <Typography
             sx={{
               background: "#f0f0f0",
-              fontSize: ".7rem",
+              fontSize: ".6rem",
               padding: "0.2rem 0.4rem",
               borderRadius: ".8rem",
               textTransform: "uppercase",
@@ -45,7 +49,7 @@ const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => {
         </Box>
         <Typography
           sx={{
-            fontSize: "1rem",
+            fontSize: { xs: ".9rem", lg: "1rem" },
           }}
         >
           {blog.title}
