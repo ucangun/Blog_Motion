@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
 import { Box, Button, TextField } from "@mui/material";
-import { LoginFormValues } from "../../pages/Login";
 import MyButton from "../../components/Button";
 import googleLogo from "../../assets/images/Google.png";
 
@@ -32,47 +31,98 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
-          gap: 3,
         }}
       >
-        <TextField
-          name="username"
-          label="Username"
-          value={values.username}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.username && errors.username}
-          error={touched.username && Boolean(errors.username)}
-          sx={{ width: "27ch" }}
-        />
+        <Box
+          sx={{
+            backgroundImage:
+              "url(https://plus.unsplash.com/premium_photo-1720192861639-1524439fc166?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9naW58ZW58MHx8MHx8fDA%3D)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            display: { xs: "none", lg: "block" },
+            width: { lg: "40%" },
+            height: { lg: "23rem" },
+            borderRadius: "1rem 0 0 1rem",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            bgcolor: "#f1f2f1",
+            padding: "2rem",
+            borderRadius: { xs: "1rem", lg: "0 1rem 1rem 0" },
+            gap: 3,
+            width: { lg: "50%" },
+            height: { lg: "23rem" },
+          }}
+        >
+          <TextField
+            name="username"
+            label="Username"
+            value={values.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.username && errors.username}
+            error={touched.username && Boolean(errors.username)}
+            sx={{ width: "27ch" }}
+          />
 
-        <TextField
-          label="Password"
-          name="password"
-          id="password"
-          type="password"
-          variant="outlined"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.password && errors.password}
-          error={touched.password && Boolean(errors.password)}
-          sx={{ width: "27ch" }}
-        />
-        <Box sx={{ display: "flex", gap: "1.1rem" }}>
-          <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Login"}
-          </Button>
-          <Button type="submit" variant="contained" disabled={isSubmitting}>
-            {isSubmitting ? "Loading..." : "Continue with"}
-            <img src={googleLogo} alt="" />
-          </Button>
+          <TextField
+            label="Password"
+            name="password"
+            id="password"
+            type="password"
+            variant="outlined"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.password && errors.password}
+            error={touched.password && Boolean(errors.password)}
+            sx={{ width: "27ch" }}
+          />
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "2rem",
+              mb: ".5rem",
+            }}
+          >
+            <MyButton to="/forgot" type="secondary">
+              Forgot Password
+            </MyButton>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={isSubmitting}
+              sx={{ width: "15ch", height: "2rem" }}
+            >
+              {isSubmitting ? "Loading..." : "Login"}
+            </Button>
+          </Box>
+
+          <Box>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={isSubmitting}
+              sx={{ width: "35ch" }}
+            >
+              {isSubmitting ? "Loading..." : "Continue with"}
+              <img src={googleLogo} alt="" />
+            </Button>
+          </Box>
+
+          <MyButton to="/signup" type="secondary">
+            Don't have an account? Register
+          </MyButton>
         </Box>
-        <MyButton to="/signup" type="secondary">
-          Don't have an account? Register
-        </MyButton>
       </Box>
     </Form>
   );

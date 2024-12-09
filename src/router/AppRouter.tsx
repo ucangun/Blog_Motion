@@ -10,16 +10,18 @@ import NewBlog from "../pages/NewBlog";
 import MyBlog from "../pages/MyBlogs";
 import Account from "../pages/Account";
 import About from "../pages/About";
+import ForgotPassword from "../pages/ForgotPassword";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         {/* Public Area */}
-        <Route element={<AppLayout />}>
+        <Route>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/blogs" element={<Blogs />} />
         </Route>
 
