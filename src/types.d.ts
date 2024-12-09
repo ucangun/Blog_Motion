@@ -105,6 +105,13 @@ interface LoginFormValues {
 }
 
 /* ---------------------------------- */
+/*            ForgotPassword          */
+/* ---------------------------------- */
+interface ForgotPasswordValues {
+  email: string;
+}
+
+/* ---------------------------------- */
 /*            RegisterForm            */
 /* ---------------------------------- */
 

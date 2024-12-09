@@ -17,7 +17,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         {/* Public Area */}
-        <Route>
+        <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />

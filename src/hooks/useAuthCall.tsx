@@ -141,7 +141,35 @@ const useAuthCall = () => {
     }
   };
 
-  return { register, login, logout, updateUser, deleteUser, getSingleUser };
+  const forgotPassword = async (
+    userInfo: ForgotPasswordValues
+  ): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios.post(
+        `${BASE_URL}auth/forgotPassword`,
+        userInfo
+      );
+      console.log(data);
+      toastSuccess("Password reset link sent successfully!");
+
+      // navigate("/");
+    } catch (error) {
+      // dispatch(fetchFail());
+      toastError("Oops! Something went wrong during login.");
+      console.error(error);
+    }
+  };
+
+  return {
+    register,
+    login,
+    logout,
+    updateUser,
+    deleteUser,
+    getSingleUser,
+    forgotPassword,
+  };
 };
 
 export default useAuthCall;
