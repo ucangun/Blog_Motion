@@ -28,6 +28,7 @@ const AppRouter = () => {
             element={<ResetPassword />}
           />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/about" element={<About />} />
         </Route>
 
         {/* Private Area */}
@@ -38,7 +39,6 @@ const AppRouter = () => {
             <Route path="/updateblog/:id" element={<NewBlog />} />
             <Route path="/myblogs" element={<MyBlog />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/about" element={<About />} />
           </Route>
         </Route>
       </Routes>

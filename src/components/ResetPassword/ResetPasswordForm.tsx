@@ -1,28 +1,22 @@
 import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
 import { Box, Button, TextField } from "@mui/material";
+import reset from "../../assets/images/reset.png";
 
 export const ResetPasswordSchema = Yup.object().shape({
   password: Yup.string()
-    .required()
-    .min(8)
-    .matches(/\d+/, "password must contain at least one digit!")
-    .matches(/[a-z]/, "must contain lowercase letters!")
-    .matches(/[A-Z]/, "must contain uppercase letters!")
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(/\d+/, "Password must contain at least one digit!")
+    .matches(/[a-z]/, "Password must contain lowercase letters!")
+    .matches(/[A-Z]/, "Password must contain uppercase letters!")
     .matches(
       /[@$?!%&*]+/,
-      "must contain at least one special character(@$?!%&*)"
+      "Password must contain at least one special character(@$?!%&*)"
     ),
   confirmPassword: Yup.string()
-    .required()
-    .min(8)
-    .matches(/\d+/, "password must contain at least one digit!")
-    .matches(/[a-z]/, "must contain lowercase letters!")
-    .matches(/[A-Z]/, "must contain uppercase letters!")
-    .matches(
-      /[@$?!%&*]+/,
-      "must contain at least one special character(@$?!%&*)"
-    ),
+    .required("Confirm Password is required")
+    .oneOf([Yup.ref("password")], "Passwords must match"),
 });
 
 const ResetPasswordForm: React.FC<FormikProps<ResetPasswordValues>> = ({
@@ -38,39 +32,64 @@ const ResetPasswordForm: React.FC<FormikProps<ResetPasswordValues>> = ({
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
-          gap: 2,
         }}
       >
-        <TextField
-          name="password"
-          label="Password"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.password && errors.password}
-          error={touched.password && Boolean(errors.password)}
-          sx={{ width: "27ch" }}
-        />
-        <TextField
-          name="confirmPassword"
-          label="Confirm Password"
-          value={values.confirmPassword}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.confirmPassword && errors.confirmPassword}
-          error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-          sx={{ width: "27ch" }}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={isSubmitting}
-          sx={{ width: "35ch" }}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 3,
+            width: { lg: "50%" },
+          }}
         >
-          {isSubmitting ? "Loading..." : "Set New Password"}
-        </Button>
+          <TextField
+            name="password"
+            label="Password"
+            id="password"
+            type="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.password && errors.password}
+            error={touched.password && Boolean(errors.password)}
+            sx={{ width: "27ch" }}
+          />
+          <TextField
+            name="confirmPassword"
+            label="Confirm Password"
+            id="confirmPassword"
+            type="password"
+            value={values.confirmPassword}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.confirmPassword && errors.confirmPassword}
+            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+            sx={{ width: "27ch" }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isSubmitting}
+            sx={{ width: "35ch" }}
+          >
+            {isSubmitting ? "Loading..." : "Change Password"}
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            backgroundImage: `url(${reset})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            display: { xs: "none", lg: "block" },
+            width: { lg: "40%" },
+            height: { lg: "23rem" },
+            borderRadius: "1rem 0 0 1rem",
+          }}
+        ></Box>
       </Box>
     </Form>
   );

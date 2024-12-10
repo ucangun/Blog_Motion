@@ -3,6 +3,7 @@ import { Form, FormikProps } from "formik";
 import { Box, Button, TextField } from "@mui/material";
 import MyButton from "../../components/Button";
 import googleLogo from "../../assets/images/Google.png";
+import login from "../../assets/images/login.png";
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -37,8 +38,7 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
       >
         <Box
           sx={{
-            backgroundImage:
-              "url(https://plus.unsplash.com/premium_photo-1720192861639-1524439fc166?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bG9naW58ZW58MHx8MHx8fDA%3D)",
+            backgroundImage: `url(${login})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -53,12 +53,8 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            bgcolor: "#f1f2f1",
-            padding: "2rem",
-            borderRadius: { xs: "1rem", lg: "0 1rem 1rem 0" },
             gap: 3,
             width: { lg: "50%" },
-            height: { lg: "23rem" },
           }}
         >
           <TextField

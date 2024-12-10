@@ -27,7 +27,7 @@ const useAuthCall = () => {
   const register = async (userInfo: RegisterFormValues): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.post(`${BASE_URL}users`, userInfo);
+      const { data } = await axios.post(`${BASE_URL}auth/signup`, userInfo);
       dispatch(registerSuccess(data));
       navigate("/login");
       toastSuccess("You have successfully registered!");
@@ -58,7 +58,7 @@ const useAuthCall = () => {
   const logout = async (): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios(`${BASE_URL}auth/logout`, {
+      await axios.get(`${BASE_URL}auth/logout`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -74,7 +74,6 @@ const useAuthCall = () => {
   };
 
   // update
-
   const updateUser = async (userData: CurrentUserType): Promise<void> => {
     dispatch(fetchStart());
     try {
@@ -154,7 +153,7 @@ const useAuthCall = () => {
       toastSuccess("Password reset link sent successfully!");
       navigate(`/auth/reset-password/${data.resetToken}`);
     } catch (error) {
-      // dispatch(fetchFail());
+      dispatch(fetchFail());
       toastError("Oops! Something went wrong.");
       console.error(error);
     }

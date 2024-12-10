@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
 import { Box, Button, TextField } from "@mui/material";
+import forgotPassword from "../../assets/images/forgotPassword.png";
 
 export const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -19,29 +20,55 @@ const ForgotPasswordForm: React.FC<FormikProps<ForgotPasswordValues>> = ({
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
-          gap: 2,
         }}
       >
-        <TextField
-          name="email"
-          label="Email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          helperText={touched.email && errors.email}
-          error={touched.email && Boolean(errors.email)}
-          sx={{ width: "27ch" }}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={isSubmitting}
-          sx={{ width: "35ch" }}
+        <Box
+          sx={{
+            backgroundImage: `url(${forgotPassword})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            display: { xs: "none", lg: "block" },
+            width: { lg: "40%" },
+            height: { lg: "23rem" },
+            borderRadius: "1rem 0 0 1rem",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            bgcolor: "#fff",
+            padding: "2rem",
+            borderRadius: { xs: "1rem", lg: "0 1rem 1rem 0" },
+            gap: 3,
+            width: { lg: "50%" },
+            height: { lg: "23rem" },
+          }}
         >
-          {isSubmitting ? "Loading..." : "Forgot Password"}
-        </Button>
+          <TextField
+            name="email"
+            label="Email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.email && errors.email}
+            error={touched.email && Boolean(errors.email)}
+            sx={{ width: "27ch" }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isSubmitting}
+            sx={{ width: "35ch" }}
+          >
+            {isSubmitting ? "Loading..." : "Forgot Password"}
+          </Button>
+        </Box>
       </Box>
     </Form>
   );
