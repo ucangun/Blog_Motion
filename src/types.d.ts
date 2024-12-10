@@ -111,6 +111,11 @@ interface ForgotPasswordValues {
   email: string;
 }
 
+interface ResetPasswordValues {
+  password: string;
+  confirmPassword: string;
+}
+
 /* ---------------------------------- */
 /*            RegisterForm            */
 /* ---------------------------------- */

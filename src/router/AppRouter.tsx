@@ -11,6 +11,7 @@ import MyBlog from "../pages/MyBlogs";
 import Account from "../pages/Account";
 import About from "../pages/About";
 import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,10 @@ const AppRouter = () => {
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route
+            path="/auth/reset-password/:token"
+            element={<ResetPassword />}
+          />
           <Route path="/blogs" element={<Blogs />} />
         </Route>
 

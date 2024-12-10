@@ -152,11 +152,29 @@ const useAuthCall = () => {
       );
       console.log(data);
       toastSuccess("Password reset link sent successfully!");
-
-      // navigate("/");
+      navigate(`/auth/reset-password/${data.resetToken}`);
     } catch (error) {
       // dispatch(fetchFail());
-      toastError("Oops! Something went wrong during login.");
+      toastError("Oops! Something went wrong.");
+      console.error(error);
+    }
+  };
+
+  const resetPassword = async (
+    token: string,
+    passwords: ResetPasswordValues
+  ): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios.patch(
+        `${BASE_URL}auth/reset-password/${token}`,
+        passwords
+      );
+      console.log(data);
+      toastSuccess("Password reset successful!");
+      navigate("/login");
+    } catch (error) {
+      toastError("Failed to reset password. Please try again.");
       console.error(error);
     }
   };
@@ -169,6 +187,7 @@ const useAuthCall = () => {
     deleteUser,
     getSingleUser,
     forgotPassword,
+    resetPassword,
   };
 };
 

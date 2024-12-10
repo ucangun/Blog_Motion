@@ -6,6 +6,7 @@ interface AuthInitial {
   currentUser: CurrentUserType | null;
   token: string;
   singleUser: CurrentUserType | null;
+  resetToken: string;
 }
 
 export interface CurrentUserType {
@@ -27,6 +28,7 @@ const initialState: AuthInitial = {
   currentUser: null,
   singleUser: null,
   token: "",
+  resetToken: "",
 };
 
 const authSlice = createSlice({
@@ -67,6 +69,10 @@ const authSlice = createSlice({
       state.loading = false;
       state.singleUser = payload.data;
     },
+    forgotPasswordSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.resetToken = payload.resetToken;
+    },
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -83,6 +89,7 @@ export const {
   updateSuccess,
   deleteSuccess,
   getsingleUserSuccess,
+  forgotPasswordSuccess,
 } = authSlice.actions;
 
 export default authSlice.reducer;
