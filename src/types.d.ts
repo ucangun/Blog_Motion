@@ -12,6 +12,8 @@ interface UserType {
   username: string;
   firstName: string;
   lastName: string;
+  image: string;
+  author: string;
 }
 
 interface CommentType {
@@ -23,10 +25,15 @@ interface CommentType {
   updatedAt: string;
 }
 
+interface CategoryType {
+  _id: string;
+  name: string;
+}
+
 interface BlogPost {
   _id: string;
   userId: UserType;
-  categoryId: string;
+  categoryId: CategoryType;
   title: string;
   content: string;
   image: string;
@@ -71,6 +78,7 @@ interface CategoryPost {
 /* ---------------------------------- */
 
 interface NewBlogFormValues {
+  userId: string;
   categoryId: string;
   title: string;
   content: string;

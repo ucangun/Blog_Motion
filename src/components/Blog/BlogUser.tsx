@@ -5,7 +5,6 @@ import { RootState } from "../../app/store";
 
 const BlogUser: React.FC = () => {
   const { singleBlog } = useSelector((state: RootState) => state.blog);
-  const { currentUser } = useSelector((state: RootState) => state.auth);
 
   return (
     <Box
@@ -25,13 +24,13 @@ const BlogUser: React.FC = () => {
         <Typography variant="body2">
           {formatDateTime(new Date(singleBlog?.createdAt || ""), "DD/MM/YYYY ")}
         </Typography>
-        <Typography variant="body2">{`${singleBlog?.userId.firstName} ${singleBlog?.userId.lastName} `}</Typography>
+        <Typography variant="body2">{singleBlog?.userId.author}</Typography>
       </Box>
       <Avatar
         alt="User Avatar"
         src={
-          singleBlog?.userId._id === currentUser?._id
-            ? currentUser?.image
+          singleBlog?.userId?.image
+            ? singleBlog?.userId?.image
             : "/static/images/avatar/1.jpg"
         }
       />

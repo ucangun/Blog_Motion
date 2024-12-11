@@ -2,21 +2,12 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import MyButton from "../Button";
 import { formatDateTime } from "../../helpers/format";
 import BlogIcons from "./BlogIcons";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
 
 export interface BlogCardProps {
   item: BlogPost;
 }
 
 export default function BlogCard({ item }: BlogCardProps) {
-  const { categories } = useSelector((state: RootState) => state.blog);
-
-  const getCategoryName = (categoryId: string) => {
-    const category = categories?.find((cat) => cat._id === categoryId);
-    return category ? category.name : "Unknown Category";
-  };
-
   return (
     <Card
       sx={{
@@ -65,7 +56,7 @@ export default function BlogCard({ item }: BlogCardProps) {
               marginBottom: "0.5rem",
             }}
           >
-            {getCategoryName(item.categoryId)}{" "}
+            {item.categoryId?.name}
           </Typography>
           <Typography
             component="div"
@@ -96,7 +87,7 @@ export default function BlogCard({ item }: BlogCardProps) {
               fontSize: { xs: ".8rem", sm: ".9rem" },
             }}
           >
-            "Unknown Author"
+            {item.userId?.author}
           </Typography>
         </CardContent>
         <Box

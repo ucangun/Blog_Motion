@@ -11,10 +11,12 @@ const NewBlog: React.FC = () => {
   const { getBlogData, getSingleBlog, addNewBlog, updateBlog } = useBlogCall();
   const { id } = useParams();
   const { singleBlog } = useSelector((state: RootState) => state.blog);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
 
   const isEditMode = Boolean(id);
 
   const initialValues: NewBlogFormValues = {
+    userId: currentUser?._id as string,
     categoryId: isEditMode ? (singleBlog?.categoryId?._id as string) : "",
     title: isEditMode ? (singleBlog?.title as string) : "",
     content: isEditMode ? (singleBlog?.content as string) : "",
