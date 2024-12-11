@@ -15,16 +15,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import TopBlogWriterCard from "./TopBlogWriterCard";
 import { useNavigate } from "react-router-dom";
-import useAuthCall from "../../hooks/useAuthCall";
 
 const TopBlogWriter: React.FC = () => {
-  const { userBlogs, loading, categories } = useSelector(
-    (state: RootState) => state.blog
-  );
-  const { singleUser } = useSelector((state: RootState) => state.auth);
+  const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
+  const { getBlogByUserId } = useBlogCall();
   const navigate = useNavigate();
-  const { getSingleUser } = useAuthCall();
-  const { getBlogByUserId, getBlogData } = useBlogCall();
 
   // Get the best blog after loading
   const bestBlog = userBlogs.length > 0 ? userBlogs[0] : null;
@@ -32,15 +27,8 @@ const TopBlogWriter: React.FC = () => {
 
   useEffect(() => {
     // Fetch data
-    getBlogByUserId("671a412a6dd99d224acddb58");
-    getSingleUser("671a412a6dd99d224acddb58");
-    getBlogData("categories");
+    getBlogByUserId("6757ffcfe5ac66a45aadba94");
   }, []);
-
-  const getCategoryName = (categoryId: string) => {
-    const category = categories?.find((cat) => cat._id === categoryId);
-    return category ? category.name : "Unknown Category";
-  };
 
   if (loading) {
     return (
@@ -90,7 +78,7 @@ const TopBlogWriter: React.FC = () => {
                     textTransform: "uppercase",
                   }}
                 >
-                  {getCategoryName(bestBlog.categoryId)}
+                  {bestBlog.categoryId?.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   10 min read
@@ -128,11 +116,11 @@ const TopBlogWriter: React.FC = () => {
                 <Box display="flex" alignItems="center">
                   <Avatar
                     alt="Author's Avatar"
-                    src={singleUser?.image}
+                    src={bestBlog?.userId?.image}
                     sx={{ width: 32, height: 32, mr: 1 }}
                   />
                   <Typography variant="body2">
-                    {singleUser?.username || "Unknown Author"}
+                    {bestBlog?.userId?.username || "Unknown Author"}
                   </Typography>
                 </Box>
               </Box>
@@ -147,7 +135,7 @@ const TopBlogWriter: React.FC = () => {
           <TopBlogWriterCard
             key={index}
             blog={blog}
-            category={getCategoryName(blog.categoryId)} // category is passed here
+            category={blog.categoryId?.name}
           />
         ))}
       </Grid2>

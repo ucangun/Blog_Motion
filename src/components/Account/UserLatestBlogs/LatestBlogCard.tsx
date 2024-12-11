@@ -13,22 +13,14 @@ import { RootState } from "../../../app/store";
 import { useSelector } from "react-redux";
 
 const LatestBlogCard: React.FC = () => {
-  const { getBlogByUserId, getBlogData } = useBlogCall();
-  const { userBlogs, categories } = useSelector(
-    (state: RootState) => state.blog
-  );
+  const { getBlogByUserId } = useBlogCall();
+  const { userBlogs } = useSelector((state: RootState) => state.blog);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch blog and category data
     getBlogByUserId("671a412a6dd99d224acddb58");
-    getBlogData("categories");
   }, []);
-
-  const getCategoryName = (categoryId: string) => {
-    const category = categories?.find((cat) => cat._id === categoryId);
-    return category ? category.name : "Unknown Category";
-  };
 
   return (
     <Box>
@@ -79,7 +71,7 @@ const LatestBlogCard: React.FC = () => {
                   textTransform: "uppercase",
                 }}
               >
-                {getCategoryName(blog.categoryId)}
+                {blog.categoryId?.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 10 min read

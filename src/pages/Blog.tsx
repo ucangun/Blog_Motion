@@ -25,7 +25,7 @@ const Blog: React.FC = () => {
       getSingleBlog(id);
     }
 
-    const minimumSkeletonTime = 300;
+    const minimumSkeletonTime = 500;
     const timer = setTimeout(() => {
       setShowSkeleton(false);
     }, minimumSkeletonTime);
@@ -79,14 +79,15 @@ const Blog: React.FC = () => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            gap: "2rem",
+            gap: "1.2rem",
+            mb: "1rem",
             flexWrap: "wrap",
           }}
         >
           <Typography
             variant="h4"
             sx={{
-              fontSize: { xs: "1.4rem", sm: "1.8rem", md: "2rem" },
+              fontSize: { xs: "1.1rem", sm: "1.4rem", md: "1.7rem" },
             }}
           >
             {singleBlog?.title}
@@ -95,15 +96,18 @@ const Blog: React.FC = () => {
           <BlogUser />
         </Box>
 
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: { xs: "1rem", sm: "1.1rem" },
-            padding: "3rem 0",
-          }}
-        >
-          {singleBlog?.content}
-        </Typography>
+        {singleBlog?.content?.split("\n\n").map((paragraph, index) => (
+          <Typography
+            key={index}
+            variant="body1"
+            sx={{
+              fontSize: { xs: "1rem", sm: "1.1rem" },
+              padding: "1rem 0",
+            }}
+          >
+            {paragraph}
+          </Typography>
+        ))}
         <BlogInfo />
         <BlogComments />
       </Box>

@@ -13,7 +13,7 @@ import Footer from "../components/Footer";
 const Home = () => {
   const { getBlogData } = useBlogCall();
   const { blogs } = useSelector((state: RootState) => state.blog);
-  const firstThreeBlogs = blogs.slice(10, 13);
+  const firstThreeBlogs = blogs.slice(2, 5);
 
   useEffect(() => {
     getBlogData("blogs");

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const PopularCards = () => {
   const { blogs } = useSelector((state: RootState) => state.blog);
-  const PopularBlogs = blogs.slice(13, 16);
+  const PopularBlogs = blogs.slice(1, 4);
   const navigate = useNavigate();
 
   return (

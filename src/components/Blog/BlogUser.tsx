@@ -21,10 +21,18 @@ const BlogUser: React.FC = () => {
           flexDirection: "column",
         }}
       >
-        <Typography variant="body2">
+        <Typography
+          variant="body2"
+          sx={{ fontSize: { xs: ".8rem", md: ".9rem" } }}
+        >
           {formatDateTime(new Date(singleBlog?.createdAt || ""), "DD/MM/YYYY ")}
         </Typography>
-        <Typography variant="body2">{singleBlog?.userId.author}</Typography>
+        <Typography
+          variant="body2"
+          sx={{ fontSize: { xs: ".8rem", md: ".9rem" } }}
+        >
+          {singleBlog?.userId.username}
+        </Typography>
       </Box>
       <Avatar
         alt="User Avatar"
