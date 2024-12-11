@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFail, fetchStart } from "../features/authSlice";
+import { fetchFail, fetchStart } from "../features/blogSlice";
 import {
   getBlogByUserIdSuccess,
   getBlogSuccess,
@@ -8,6 +8,7 @@ import {
   getSingleBlogSuccess,
   getSingleCategorySuccess,
 } from "../features/blogSlice";
+import { updateUserBlogsSuccess } from "../features/authSlice";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
 import { useNavigate } from "react-router-dom";
@@ -61,8 +62,13 @@ const useBlogCall = () => {
   const getBlogByUserId = async (userId: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}blogs/?author=${userId}`);
+      const { data } = await axios(`${BASE_URL}blogs/?author=${userId}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
       dispatch(getBlogByUserIdSuccess(data));
+      dispatch(updateUserBlogsSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);

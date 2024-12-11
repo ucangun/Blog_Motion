@@ -35,8 +35,8 @@ const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => {
           <Typography
             sx={{
               background: "#f0f0f0",
-              fontSize: ".6rem",
-              padding: "0.2rem 0.4rem",
+              fontSize: ".55rem",
+              padding: "0.2rem 0.2rem",
               borderRadius: ".8rem",
               textTransform: "uppercase",
             }}

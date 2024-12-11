@@ -59,6 +59,10 @@ const blogSlice = createSlice({
     setPage: (state, { payload }) => {
       state.currentPage = payload;
     },
+    logoutBlogSuccess: (state) => {
+      state.loading = false;
+      state.userBlogs = [];
+    },
     getSingleCategorySuccess: (state, { payload }) => {
       state.loading = false;
       state.singleCategory = payload.data;
@@ -77,6 +81,7 @@ export const {
   getSingleBlogSuccess,
   getBlogByUserIdSuccess,
   getSingleCategorySuccess,
+  logoutBlogSuccess,
   setPage,
   fetchFail,
 } = blogSlice.actions;

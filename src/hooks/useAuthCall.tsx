@@ -11,6 +11,7 @@ import {
   registerSuccess,
   updateSuccess,
 } from "../features/authSlice";
+import { logoutBlogSuccess } from "../features/blogSlice";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
@@ -43,7 +44,7 @@ const useAuthCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.post(`${BASE_URL}auth/login`, userInfo);
-      console.log(data);
+      // console.log(data);
       dispatch(loginSuccess(data));
       toastSuccess("You have successfully logged in!");
       navigate("/");
@@ -64,6 +65,7 @@ const useAuthCall = () => {
         },
       });
       dispatch(logoutSuccess());
+      dispatch(logoutBlogSuccess());
       toastSuccess("You have successfully logged out!");
       navigate("/");
     } catch (error) {

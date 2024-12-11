@@ -54,7 +54,7 @@ const TopBlogWriter: React.FC = () => {
               component="img"
               image={bestBlog.image}
               sx={{
-                height: { sx: "auto", sm: "20.3rem" },
+                height: { sx: "auto", sm: "20.5rem" },
                 objectFit: "cover",
               }}
               alt="Main article image"
@@ -91,9 +91,9 @@ const TopBlogWriter: React.FC = () => {
               </Typography>
 
               {/* Description */}
-              <Typography variant="body2" color="text.secondary" paragraph>
+              <Typography variant="body2" color="text.secondary">
                 {bestBlog?.content
-                  ? bestBlog.content.split(" ").slice(0, 15).join(" ") + "..."
+                  ? bestBlog.content.split(" ").slice(0, 25).join(" ") + "..."
                   : "No content available"}
               </Typography>
 

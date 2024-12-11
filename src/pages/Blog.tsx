@@ -102,7 +102,7 @@ const Blog: React.FC = () => {
             variant="body1"
             sx={{
               fontSize: { xs: "1rem", sm: "1.1rem" },
-              padding: "1rem 0",
+              padding: ".8rem 0",
             }}
           >
             {paragraph}
