@@ -19,7 +19,7 @@ const MyBlog = () => {
   return (
     <Container
       sx={{
-        padding: "4rem 1rem",
+        padding: "2rem 1rem",
       }}
     >
       <Grid2 container spacing={3} justifyContent="center">

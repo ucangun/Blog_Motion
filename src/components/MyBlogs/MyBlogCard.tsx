@@ -23,8 +23,9 @@ const MyBlogCard = ({ blog }: MyBlogCardProps) => {
           {blog.title}
         </Typography>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {blog?.content
+            ? blog.content.split(" ").slice(0, 20).join(" ") + "..."
+            : "No content available"}
         </Typography>
       </CardContent>
       <CardActions>

@@ -15,12 +15,14 @@ import { useSelector } from "react-redux";
 const LatestBlogCard: React.FC = () => {
   const { getBlogByUserId } = useBlogCall();
   const { userBlogs } = useSelector((state: RootState) => state.blog);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch blog and category data
-    getBlogByUserId("671a412a6dd99d224acddb58");
-  }, []);
+    if (currentUser && currentUser._id) {
+      getBlogByUserId(currentUser._id);
+    }
+  }, [currentUser]);
 
   return (
     <Box>
