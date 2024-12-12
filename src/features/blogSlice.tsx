@@ -37,6 +37,7 @@ const blogSlice = createSlice({
       state.loading = true;
       state.error = false;
     },
+
     getBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
@@ -52,6 +53,7 @@ const blogSlice = createSlice({
       state.error = false;
       state.singleBlog = payload.data;
     },
+
     getBlogByUserIdSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;

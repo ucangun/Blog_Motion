@@ -34,13 +34,13 @@ const BlogComments = () => {
               >
                 <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                   <Avatar
-                    src="https://via.placeholder.com/40"
+                    src={comment.userId?.image}
                     alt="User Avatar"
                     sx={{ width: 40, height: 40, mr: 2 }}
                   />
                   <Box>
                     <Typography fontWeight="bold">
-                      {comment.userId.firstName} {comment.userId.lastName}
+                      {comment.userId?.firstName} {comment.userId?.lastName}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
                       {`Posted on ${new Date(

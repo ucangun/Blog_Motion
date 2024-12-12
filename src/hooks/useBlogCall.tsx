@@ -31,19 +31,18 @@ const useBlogCall = () => {
       const url = query
         ? `${BASE_URL}${endpoint}?${query}`
         : `${BASE_URL}${endpoint}`;
-      // console.log(url);
+
       const { data } = await axios(url, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
-      // console.log(data);
+
       if (query?.includes("author=")) {
         dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
       } else if (query?.includes("category=")) {
         dispatch(getFilteredBlogsSuccess({ endpoint: "filteredBlogs", data }));
       } else {
-        // console.log("from default");
         dispatch(getBlogSuccess({ endpoint, data }));
       }
     } catch (error) {
@@ -200,7 +199,7 @@ const useBlogCall = () => {
       dispatch(fetchFail());
       console.error(error);
     } finally {
-      getSingleBlog(commentInfo.blogId);
+      getSingleBlog(commentInfo?.blogId);
     }
   };
 
