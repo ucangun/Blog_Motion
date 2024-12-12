@@ -54,7 +54,7 @@ const blogSlice = createSlice({
     getBlogByUserIdSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.userBlogs = payload.data;
+      state[payload.endpoint] = payload.data;
     },
     setPage: (state, { payload }) => {
       state.currentPage = payload;

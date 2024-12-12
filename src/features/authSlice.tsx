@@ -68,10 +68,7 @@ const authSlice = createSlice({
       state.token = "";
       state.currentUser = null;
     },
-    updateUserBlogsSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.userBlogs = payload.data;
-    },
+
     getsingleUserSuccess: (state, { payload }) => {
       state.loading = false;
       state.singleUser = payload.data;
@@ -95,7 +92,7 @@ export const {
   fetchFail,
   updateSuccess,
   deleteSuccess,
-  updateUserBlogsSuccess,
+
   getsingleUserSuccess,
   forgotPasswordSuccess,
 } = authSlice.actions;

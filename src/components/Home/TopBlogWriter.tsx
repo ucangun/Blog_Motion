@@ -17,13 +17,14 @@ import TopBlogWriterCard from "./TopBlogWriterCard";
 import { useNavigate } from "react-router-dom";
 
 const TopBlogWriter: React.FC = () => {
-  const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
+  const { userBlogs, loading } = useSelector((state: RootState) => state.auth);
   const { getBlogByUserId } = useBlogCall();
   const navigate = useNavigate();
 
   // Get the best blog after loading
-  const bestBlog = userBlogs.length > 0 ? userBlogs[0] : null;
-  const topWriterBlogs = userBlogs.slice(1, 4);
+  const bestBlog = userBlogs && userBlogs.length > 0 ? userBlogs[0] : null;
+  const topWriterBlogs =
+    userBlogs && userBlogs.length > 1 ? userBlogs.slice(1, 4) : [];
 
   useEffect(() => {
     // Fetch data
@@ -46,7 +47,6 @@ const TopBlogWriter: React.FC = () => {
   return (
     <Grid2 container spacing={2}>
       {/* Main article on left */}
-
       <Grid2 size={{ xs: 12, md: 6 }}>
         {bestBlog && (
           <Card sx={{ maxWidth: "100%" }}>

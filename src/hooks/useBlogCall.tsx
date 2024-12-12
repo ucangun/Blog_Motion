@@ -8,7 +8,7 @@ import {
   getSingleBlogSuccess,
   getSingleCategorySuccess,
 } from "../features/blogSlice";
-import { updateUserBlogsSuccess } from "../features/authSlice";
+
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
 import { useNavigate } from "react-router-dom";
@@ -20,11 +20,25 @@ const useBlogCall = () => {
   const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
-  const getBlogData = async (endpoint: string): Promise<void> => {
+  const getBlogData = async (
+    endpoint: string,
+    query?: string
+  ): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}${endpoint}`);
-      dispatch(getBlogSuccess({ endpoint, data }));
+      const url = query
+        ? `${BASE_URL}${endpoint}?${query}`
+        : `${BASE_URL}${endpoint}`;
+      const { data } = await axios(url, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      if (query?.includes("author=")) {
+        dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
+      } else {
+        dispatch(getBlogSuccess({ endpoint, data }));
+      }
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);
@@ -67,8 +81,7 @@ const useBlogCall = () => {
           Authorization: `Token ${token}`,
         },
       });
-      dispatch(getBlogByUserIdSuccess(data));
-      dispatch(updateUserBlogsSuccess(data));
+      dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
     } catch (error) {
       dispatch(fetchFail());
       console.error(error);

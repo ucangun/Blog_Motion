@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 
 const LatestBlogCard: React.FC = () => {
   const { getBlogByUserId } = useBlogCall();
-  const { userBlogs } = useSelector((state: RootState) => state.blog);
+  const { userBlogs } = useSelector((state: RootState) => state.auth);
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
 

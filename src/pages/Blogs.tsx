@@ -55,8 +55,8 @@ const Blogs = () => {
           "&::-webkit-scrollbar": {
             display: "none", // Hide scrollbar for md and above
           },
-          "-ms-overflow-style": "none", // Hide scrollbar for Internet Explorer
-          "scrollbar-width": "none", // Hide scrollbar for Firefox
+          msOverflowStyle: "none", // Hide scrollbar for Internet Explorer
+          scrollbarWidth: "none", // Hide scrollbar for Firefox
         }}
       >
         {/* Blogs section: Display each blog card */}
@@ -90,8 +90,8 @@ const Blogs = () => {
           "&::-webkit-scrollbar": {
             display: "none", // Hide scrollbar for md and above
           },
-          "-ms-overflow-style": "none", // Hide scrollbar for Internet Explorer
-          "scrollbar-width": "none", // Hide scrollbar for Firefox
+          msOverflowStyle: "none", // Hide scrollbar for Internet Explorer
+          scrollbarWidth: "none", // Hide scrollbar for Firefox
         }}
       >
         {/* News section: Display news articles */}
