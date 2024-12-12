@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFail, fetchStart } from "../features/blogSlice";
+
 import {
+  fetchFail,
+  fetchStart,
+  getFilteredBlogsSuccess,
   getBlogByUserIdSuccess,
   getBlogSuccess,
   getPagBlogSuccess,
@@ -36,8 +39,9 @@ const useBlogCall = () => {
       });
       // console.log(data);
       if (query?.includes("author=")) {
-        console.log("from author");
         dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
+      } else if (query?.includes("category=")) {
+        dispatch(getFilteredBlogsSuccess({ endpoint: "filteredBlogs", data }));
       } else {
         // console.log("from default");
         dispatch(getBlogSuccess({ endpoint, data }));

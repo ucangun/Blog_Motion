@@ -8,6 +8,7 @@ interface BlogSliceInitial {
   categories: CategoryPost[];
   singleBlog: SinglePost | null;
   userBlogs: BlogPost[];
+  filteredBlogs: BlogPost[];
   singleCategory: SingleCategoryType | null;
   currentPage: number;
   itemsPerPage: number;
@@ -23,6 +24,7 @@ const initialState: BlogSliceInitial = {
   singleBlog: null,
   singleCategory: null,
   userBlogs: [],
+  filteredBlogs: [],
   currentPage: 1,
   itemsPerPage: 10,
 };
@@ -55,6 +57,11 @@ const blogSlice = createSlice({
       state.error = false;
       state[payload.endpoint] = payload.data.data;
     },
+    getFilteredBlogsSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state[payload.endpoint] = payload.data.data;
+    },
     setPage: (state, { payload }) => {
       state.currentPage = payload;
     },
@@ -80,6 +87,7 @@ export const {
   getSingleBlogSuccess,
   getBlogByUserIdSuccess,
   getSingleCategorySuccess,
+  getFilteredBlogsSuccess,
   logoutBlogSuccess,
   setPage,
   fetchFail,

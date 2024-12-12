@@ -2,8 +2,14 @@ import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import { RootState } from "../../app/store";
 
-const CategoryBubbles = () => {
+interface Props {
+  onCategoryClick: (category: string) => void;
+}
+
+const CategoryBubbles: React.FC<Props> = ({ onCategoryClick }) => {
   const { categories } = useSelector((state: RootState) => state.blog);
+
+  console.log(categories);
 
   return (
     <Box
@@ -14,7 +20,7 @@ const CategoryBubbles = () => {
         padding: ".5rem 0",
       }}
     >
-      {categories.map((category: { name: string }) => (
+      {categories.map((category: { _id: string; name: string }) => (
         <Box
           key={category.name}
           sx={{
@@ -28,6 +34,7 @@ const CategoryBubbles = () => {
             color: "#333",
             cursor: "pointer",
           }}
+          onClick={() => onCategoryClick(category._id)}
         >
           {category.name}
         </Box>

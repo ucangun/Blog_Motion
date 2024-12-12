@@ -12,7 +12,9 @@ import CategoryBubbles from "../components/Blogs/CategoryBubbles";
 const Blogs = () => {
   const { getBlogData } = useBlogCall();
   const { getNewsData } = useUtilsCall();
-  const { pagBlogs } = useSelector((state: RootState) => state.blog);
+  const { pagBlogs, filteredBlogs } = useSelector(
+    (state: RootState) => state.blog
+  );
 
   // Fetching blog and category data on component mount
   useEffect(() => {
@@ -20,6 +22,13 @@ const Blogs = () => {
     getBlogData("categories");
     getNewsData();
   }, []);
+
+  const handleCategoryClick = (category: string) => {
+    const query = `category=${category}`;
+    getBlogData("blogs", query);
+  };
+
+  const displayedBlogs = filteredBlogs.length > 0 ? filteredBlogs : pagBlogs;
 
   return (
     <Grid2
@@ -39,7 +48,7 @@ const Blogs = () => {
           display: { xs: "block", md: "none" },
         }}
       >
-        <CategoryBubbles />
+        <CategoryBubbles onCategoryClick={handleCategoryClick} />
       </Grid2>
 
       <Grid2
@@ -60,7 +69,7 @@ const Blogs = () => {
         }}
       >
         {/* Blogs section: Display each blog card */}
-        {pagBlogs.map((item) => (
+        {displayedBlogs.map((item) => (
           <Box display="flex" key={item._id}>
             <BlogCard item={item} />
           </Box>
@@ -103,7 +112,7 @@ const Blogs = () => {
             display: { xs: "none", md: "block" },
           }}
         >
-          <CategoryBubbles />
+          <CategoryBubbles onCategoryClick={handleCategoryClick} />
         </Box>
       </Grid2>
     </Grid2>
