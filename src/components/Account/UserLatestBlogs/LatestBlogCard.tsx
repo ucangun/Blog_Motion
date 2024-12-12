@@ -13,14 +13,14 @@ import { RootState } from "../../../app/store";
 import { useSelector } from "react-redux";
 
 const LatestBlogCard: React.FC = () => {
-  const { getBlogByUserId } = useBlogCall();
-  const { userBlogs } = useSelector((state: RootState) => state.auth);
+  const { getBlogData } = useBlogCall();
+  const { userBlogs } = useSelector((state: RootState) => state.blog);
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser && currentUser._id) {
-      getBlogByUserId(currentUser._id);
+      getBlogData("blogs", `aurhor=${currentUser._id}`);
     }
   }, [currentUser]);
 

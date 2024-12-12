@@ -8,7 +8,7 @@ import MyBlogCard from "../components/MyBlogs/MyBlogCard";
 const MyBlog = () => {
   const { getBlogData } = useBlogCall();
   const { currentUser } = useSelector((state: RootState) => state.auth);
-  const { userBlogs } = useSelector((state: RootState) => state.auth);
+  const { userBlogs } = useSelector((state: RootState) => state.blog);
 
   // useEffect hook'unda currentUser değişkenini bağımlılıklar arasına ekledik
   useEffect(() => {

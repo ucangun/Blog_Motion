@@ -8,7 +8,6 @@ import {
   getSingleBlogSuccess,
   getSingleCategorySuccess,
 } from "../features/blogSlice";
-
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
 import { useNavigate } from "react-router-dom";
@@ -29,14 +28,18 @@ const useBlogCall = () => {
       const url = query
         ? `${BASE_URL}${endpoint}?${query}`
         : `${BASE_URL}${endpoint}`;
+      // console.log(url);
       const { data } = await axios(url, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
+      // console.log(data);
       if (query?.includes("author=")) {
+        console.log("from author");
         dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
       } else {
+        // console.log("from default");
         dispatch(getBlogSuccess({ endpoint, data }));
       }
     } catch (error) {

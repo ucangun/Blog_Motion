@@ -19,12 +19,12 @@ const MyBlogCard = ({ blog }: MyBlogCardProps) => {
     <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
       <CardMedia sx={{ height: 160 }} image={blog.image} title={blog.title} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {blog.title}
         </Typography>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {blog?.content
-            ? blog.content.split(" ").slice(0, 20).join(" ") + "..."
+            ? blog.content.split(" ").slice(0, 30).join(" ") + "..."
             : "No content available"}
         </Typography>
       </CardContent>

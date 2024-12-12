@@ -17,18 +17,18 @@ import TopBlogWriterCard from "./TopBlogWriterCard";
 import { useNavigate } from "react-router-dom";
 
 const TopBlogWriter: React.FC = () => {
-  const { userBlogs, loading } = useSelector((state: RootState) => state.auth);
-  const { getBlogByUserId } = useBlogCall();
+  const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
+  const { getBlogData } = useBlogCall();
   const navigate = useNavigate();
 
   // Get the best blog after loading
-  const bestBlog = userBlogs && userBlogs.length > 0 ? userBlogs[0] : null;
+  const bestBlog = userBlogs && userBlogs?.length > 0 ? userBlogs[0] : null;
   const topWriterBlogs =
-    userBlogs && userBlogs.length > 1 ? userBlogs.slice(1, 4) : [];
+    userBlogs && userBlogs?.length > 1 ? userBlogs.slice(1, 4) : [];
 
   useEffect(() => {
     // Fetch data
-    getBlogByUserId("6757ffcfe5ac66a45aadba94");
+    getBlogData("blogs", "author=6757ffcfe5ac66a45aadba94");
   }, []);
 
   if (loading) {

@@ -11,7 +11,6 @@ interface BlogSliceInitial {
   singleCategory: SingleCategoryType | null;
   currentPage: number;
   itemsPerPage: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -54,7 +53,7 @@ const blogSlice = createSlice({
     getBlogByUserIdSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state[payload.endpoint] = payload.data;
+      state[payload.endpoint] = payload.data.data;
     },
     setPage: (state, { payload }) => {
       state.currentPage = payload;
