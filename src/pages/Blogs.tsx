@@ -2,25 +2,32 @@ import { useSelector } from "react-redux";
 import BlogCard from "../components/Blogs/BlogCard";
 import useBlogCall from "../hooks/useBlogCall";
 import { RootState } from "../app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Box, Grid2 } from "@mui/material";
 import MuiPagination from "../components/Pagination";
 import useUtilsCall from "../hooks/useUtilsCall";
 import NewsSection from "../components/Blogs/NewsSection";
 import CategoryBubbles from "../components/Blogs/CategoryBubbles";
-
+import BlogsSkeleton from "../components/Blogs/BlogsSkeleton";
 const Blogs = () => {
   const { getBlogData } = useBlogCall();
   const { getNewsData } = useUtilsCall();
-  const { pagBlogs, filteredBlogs } = useSelector(
+  const { pagBlogs, filteredBlogs, loading } = useSelector(
     (state: RootState) => state.blog
   );
 
-  // Fetching blog and category data on component mount
+  const [showSkeleton, setShowSkeleton] = useState(true);
+
   useEffect(() => {
-    getBlogData("blogs");
-    getBlogData("categories");
-    getNewsData();
+    Promise.all([
+      getBlogData("blogs"),
+      getBlogData("categories"),
+      getNewsData(),
+    ]).then(() => {
+      setTimeout(() => {
+        setShowSkeleton(false);
+      }, 500);
+    });
   }, []);
 
   const handleCategoryClick = (category: string) => {
@@ -29,6 +36,10 @@ const Blogs = () => {
   };
 
   const displayedBlogs = filteredBlogs.length > 0 ? filteredBlogs : pagBlogs;
+
+  if (showSkeleton) {
+    return <BlogsSkeleton />;
+  }
 
   return (
     <Grid2
@@ -78,7 +89,8 @@ const Blogs = () => {
         {/* Pagination for blog list */}
         <Box
           sx={{
-            display: { xs: "flex", sm: "flex" },
+            // display: { xs: "flex", sm: "flex" },
+            display: loading ? "none" : "flex",
             justifyContent: "center",
             width: "100%",
             marginTop: "1rem",
