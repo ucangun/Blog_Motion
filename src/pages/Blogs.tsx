@@ -26,7 +26,7 @@ const Blogs = () => {
     ]).then(() => {
       setTimeout(() => {
         setShowSkeleton(false);
-      }, 500);
+      }, 200);
     });
   }, []);
 

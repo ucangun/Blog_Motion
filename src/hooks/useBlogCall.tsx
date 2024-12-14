@@ -10,6 +10,8 @@ import {
   getPagBlogSuccess,
   getSingleBlogSuccess,
   getSingleCategorySuccess,
+  getNewBlogsSuccess,
+  getPopularBlogsSuccess,
 } from "../features/blogSlice";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
@@ -42,6 +44,10 @@ const useBlogCall = () => {
         dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
       } else if (query?.includes("category=")) {
         dispatch(getFilteredBlogsSuccess({ endpoint: "filteredBlogs", data }));
+      } else if (query?.includes("sort[createdAt]")) {
+        dispatch(getNewBlogsSuccess({ endpoint: "newBlogs", data }));
+      } else if (query?.includes("sort[countOfVisitors]")) {
+        dispatch(getPopularBlogsSuccess({ endpoint: "popularBlogs", data }));
       } else {
         dispatch(getBlogSuccess({ endpoint, data }));
       }

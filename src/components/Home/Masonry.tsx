@@ -3,6 +3,10 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import useBlogCall from "../../hooks/useBlogCall";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(0.5),
@@ -12,16 +16,20 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const heights = [400, 195, 195];
 
-interface HomeMasonryProps {
-  firstThreeBlogs: BlogPost[];
-}
-
-export default function HomeMasonry({ firstThreeBlogs }: HomeMasonryProps) {
+export default function HomeMasonry() {
+  const { getBlogData } = useBlogCall();
+  const { newBlogs } = useSelector((state: RootState) => state.blog);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const query = "sort[createdAt]=desc&limit=3";
+    getBlogData("blogs", query);
+  }, []);
+
   return (
     <Box maxWidth="lg" sx={{ width: "auto", minHeight: 393 }}>
       <Masonry columns={2} spacing={1}>
-        {firstThreeBlogs.map((blog, index) => (
+        {newBlogs.map((blog, index) => (
           <Item
             key={blog._id}
             onClick={() => navigate(`/blog/${blog._id}`)}

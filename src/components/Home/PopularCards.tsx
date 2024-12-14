@@ -2,11 +2,18 @@ import { Card, Grid2 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import useBlogCall from "../../hooks/useBlogCall";
 
 const PopularCards = () => {
-  const { blogs } = useSelector((state: RootState) => state.blog);
-  const PopularBlogs = blogs.slice(1, 4);
+  const { getBlogData } = useBlogCall();
+  const { popularBlogs } = useSelector((state: RootState) => state.blog);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const query = "sort[countOfVisitors]=desc&limit=3";
+    getBlogData("blogs", query);
+  }, []);
 
   return (
     <Grid2
@@ -17,7 +24,7 @@ const PopularCards = () => {
         mt: 6,
       }}
     >
-      {PopularBlogs.map((blog, index) => (
+      {popularBlogs.map((blog, index) => (
         <Grid2 key={index} size={{ xs: 12, md: 4 }}>
           <Card
             onClick={() => navigate(`/blog/${blog._id}`)}
