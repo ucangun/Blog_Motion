@@ -30,6 +30,11 @@ interface CategoryType {
   name: string;
 }
 
+interface CountInfoType {
+  likesCount: number;
+  commentsCount: number;
+}
+
 interface BlogPost {
   _id: string;
   userId: UserType;
@@ -43,6 +48,7 @@ interface BlogPost {
   countOfVisitors: number;
   createdAt: string;
   updatedAt: string;
+  countInfo: CountInfoType;
 }
 
 /* ---------------------------------- */

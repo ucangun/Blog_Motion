@@ -40,14 +40,14 @@ const BlogIcons = ({ item }: BlogCardProps) => {
             <FaRegHeart style={iconStyle} />
           )}
         </IconButton>
-        <Typography variant="body2">{item.likes.length}</Typography>
+        <Typography variant="body2">{item.countInfo?.likesCount}</Typography>
       </Box>
 
       <Box sx={boxStyle}>
         <IconButton>
           <FaRegComments style={iconStyle} />
         </IconButton>
-        <Typography variant="body2">{item.comments.length}</Typography>
+        <Typography variant="body2">{item.countInfo?.commentsCount}</Typography>
       </Box>
 
       <Box sx={boxStyle}>

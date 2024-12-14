@@ -9,8 +9,6 @@ interface Props {
 const CategoryBubbles: React.FC<Props> = ({ onCategoryClick }) => {
   const { categories } = useSelector((state: RootState) => state.blog);
 
-  console.log(categories);
-
   return (
     <Box
       sx={{
