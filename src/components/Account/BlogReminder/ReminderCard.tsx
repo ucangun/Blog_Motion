@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -8,15 +8,30 @@ import {
   Box,
 } from "@mui/material";
 import { Edit } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../app/store";
+import useAuthCall from "../../../hooks/useAuthCall";
 
 const ReminderCard: React.FC = () => {
-  const [notes, setNotes] = useState<string[]>([]);
+  const { currentUser, singleUser } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  console.log(singleUser);
+  const { createNote, getSingleUser } = useAuthCall();
+
+  useEffect(() => {
+    getSingleUser(currentUser?._id || "");
+  }, []);
+
   const [newNote, setNewNote] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const handleAddNote = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleAddNote = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === "Enter" && newNote.trim() !== "") {
-      setNotes([...notes, newNote]);
+      await createNote({ content: newNote });
       setNewNote("");
       setIsEditing(false);
     }
@@ -51,7 +66,7 @@ const ReminderCard: React.FC = () => {
         </Typography>
 
         <Box>
-          {notes.map((note, index) => (
+          {singleUser?.notes?.map((note, index) => (
             <Box
               key={index}
               sx={{
@@ -63,7 +78,7 @@ const ReminderCard: React.FC = () => {
               }}
             >
               <Typography sx={{ marginRight: 1 }}>•</Typography>
-              <Typography sx={{ fontSize: "1rem" }}>{note}</Typography>
+              <Typography sx={{ fontSize: "1rem" }}>{note?.content}</Typography>
             </Box>
           ))}
         </Box>

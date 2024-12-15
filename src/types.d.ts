@@ -1,4 +1,26 @@
 /* ---------------------------------- */
+/*              AuthSlice             */
+/* ---------------------------------- */
+
+interface CurrentUserType {
+  bio: string;
+  city: string;
+  createdAt?: string;
+  email: string;
+  firstName: string;
+  image: string;
+  lastName: string;
+  username: string;
+  password: string;
+  _id: string;
+  notes: UserNotesType[];
+}
+
+interface UserNotesType {
+  content: string;
+}
+
+/* ---------------------------------- */
 /*              BlogSlice             */
 /* ---------------------------------- */
 

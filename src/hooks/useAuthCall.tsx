@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
-  CurrentUserType,
+  // createUserNoteSuccess,
   deleteSuccess,
   fetchFail,
   fetchStart,
@@ -180,6 +180,22 @@ const useAuthCall = () => {
     }
   };
 
+  const createNote = async (userNote: UserNotesType): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axios.post(`${BASE_URL}notes`, userNote, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      toastSuccess("Your note has been created successfully!");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastError("Oops! Something went wrong while creating the note.");
+      console.error(error);
+    }
+  };
+
   return {
     register,
     login,
@@ -189,6 +205,7 @@ const useAuthCall = () => {
     getSingleUser,
     forgotPassword,
     resetPassword,
+    createNote,
   };
 };
 

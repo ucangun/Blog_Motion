@@ -20,7 +20,7 @@ const LatestBlogCard: React.FC = () => {
 
   useEffect(() => {
     if (currentUser && currentUser._id) {
-      getBlogData("blogs", `aurhor=${currentUser._id}`);
+      getBlogData("blogs", `author=${currentUser._id}`);
     }
   }, [currentUser]);
 

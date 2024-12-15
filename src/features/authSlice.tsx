@@ -10,19 +10,6 @@ interface AuthInitial {
   userBlogs: BlogPost[];
 }
 
-export interface CurrentUserType {
-  bio: string;
-  city: string;
-  createdAt?: string;
-  email: string;
-  firstName: string;
-  image: string;
-  lastName: string;
-  username: string;
-  password: string;
-  _id: string;
-}
-
 const initialState: AuthInitial = {
   loading: false,
   error: false,
@@ -57,18 +44,17 @@ const authSlice = createSlice({
       state.token = "";
       state.currentUser = null;
       state.userBlogs = [];
+      // state.notes = [];
     },
     updateSuccess: (state, { payload }) => {
       state.loading = false;
       state.currentUser = payload.new as CurrentUserType;
     },
-
     deleteSuccess: (state) => {
       state.loading = false;
       state.token = "";
       state.currentUser = null;
     },
-
     getsingleUserSuccess: (state, { payload }) => {
       state.loading = false;
       state.singleUser = payload.data;
@@ -77,6 +63,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.resetToken = payload.resetToken;
     },
+
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
@@ -92,7 +79,7 @@ export const {
   fetchFail,
   updateSuccess,
   deleteSuccess,
-
+  // createUserNoteSuccess,
   getsingleUserSuccess,
   forgotPasswordSuccess,
 } = authSlice.actions;

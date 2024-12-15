@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { CurrentUserType } from "../../../features/authSlice";
 import { useState } from "react";
 import useAuthCall from "../../../hooks/useAuthCall";
 
@@ -26,6 +25,7 @@ const ProfileSettings = () => {
     image: currentUser?.image || "",
     city: currentUser?.city || "",
     bio: currentUser?.bio || "",
+    notes: currentUser?.notes || [],
   };
 
   const [userData, setUserData] = useState(initialValues);
