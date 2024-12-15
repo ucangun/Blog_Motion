@@ -22,7 +22,7 @@ const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 const useAuthCall = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { currentUser, token } = useSelector((state: RootState) => state.auth);
 
   // register
   const register = async (userInfo: RegisterFormValues): Promise<void> => {
@@ -193,6 +193,8 @@ const useAuthCall = () => {
       dispatch(fetchFail());
       toastError("Oops! Something went wrong while creating the note.");
       console.error(error);
+    } finally {
+      await getSingleUser(currentUser?._id || "");
     }
   };
 

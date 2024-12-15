@@ -17,12 +17,12 @@ const ReminderCard: React.FC = () => {
     (state: RootState) => state.auth
   );
 
-  console.log(singleUser);
+  // console.log(singleUser);
   const { createNote, getSingleUser } = useAuthCall();
 
   useEffect(() => {
     getSingleUser(currentUser?._id || "");
-  }, []);
+  }, [currentUser?._id]);
 
   const [newNote, setNewNote] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
