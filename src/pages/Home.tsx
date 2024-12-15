@@ -5,8 +5,16 @@ import TopBlogWriter from "../components/Home/TopBlogWriter";
 import Newsletter from "../components/Home/Newsletter";
 import RecomendedSection from "../components/Home/RecommendedSection";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
+import useBlogCall from "../hooks/useBlogCall";
 
 const Home = () => {
+  const { getBlogData } = useBlogCall();
+
+  useEffect(() => {
+    getBlogData("blogs");
+  }, []);
+
   return (
     <Container
       maxWidth="lg"

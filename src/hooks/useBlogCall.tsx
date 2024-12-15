@@ -34,11 +34,7 @@ const useBlogCall = () => {
         ? `${BASE_URL}${endpoint}?${query}`
         : `${BASE_URL}${endpoint}`;
 
-      const { data } = await axios(url, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const { data } = await axios(url);
 
       if (query?.includes("author=")) {
         dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
