@@ -16,6 +16,7 @@
     "@mui/lab": "^6.0.0-beta.9",
     "@mui/material": "^6.1.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "@tinymce/tinymce-react": "^5.1.1",
     "axios": "^1.7.7",
     "formik": "^2.4.6",
     "react": "^18.3.1",

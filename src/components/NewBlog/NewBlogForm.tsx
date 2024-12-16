@@ -1,3 +1,4 @@
+import { Editor } from "@tinymce/tinymce-react";
 import { Form, FormikProps } from "formik";
 import {
   Box,
@@ -24,6 +25,7 @@ const NewBlogForm: React.FC<
   touched,
   handleBlur,
   isSubmitting,
+  setFieldValue,
   singleBlog,
 }) => {
   const { categories } = useSelector((state: RootState) => state.blog);
@@ -89,7 +91,50 @@ const NewBlogForm: React.FC<
           />
         </Box>
 
-        <TextField
+        <Box
+          sx={{
+            width: {
+              xs: "100%",
+              sm: "60ch",
+              md: "90ch",
+            },
+            border: "1px solid #c4c4c4",
+            borderRadius: "4px",
+            overflow: "hidden",
+            "& .tox": {
+              border: "none",
+              borderRadius: 0,
+            },
+          }}
+        >
+          <Editor
+            apiKey={import.meta.env.VITE_TINY_MCE_API_KEY}
+            value={values.content}
+            init={{
+              height: 500,
+              // menubar: false,
+              plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount",
+                "codesample", // Kod bloğu eklentisi
+              ],
+              toolbar:
+                "undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | codesample | help",
+              content_style: `
+                body {
+                  font-family: Helvetica, Arial, sans-serif;
+                  font-size: 1rem;
+                }
+              `,
+            }}
+            onEditorChange={(content) => setFieldValue("content", content)}
+          />
+        </Box>
+
+        {/* <TextField
           label="Blog"
           name="content"
           multiline
@@ -106,7 +151,7 @@ const NewBlogForm: React.FC<
               md: "90ch",
             },
           }}
-        />
+        /> */}
 
         <Box sx={{ display: "flex", gap: "2rem" }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>

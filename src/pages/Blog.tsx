@@ -104,8 +104,9 @@ const Blog: React.FC = () => {
               fontSize: { xs: "1rem", sm: "1.1rem" },
               padding: ".8rem 0",
             }}
+            dangerouslySetInnerHTML={{ __html: paragraph }}
           >
-            {paragraph}
+            {/* {paragraph} */}
           </Typography>
         ))}
         <BlogInfo />
