@@ -18,6 +18,7 @@ interface CurrentUserType {
 
 interface UserNotesType {
   content: string;
+  _id?: string;
 }
 
 /* ---------------------------------- */

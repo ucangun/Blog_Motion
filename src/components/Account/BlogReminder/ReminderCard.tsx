@@ -7,7 +7,7 @@ import {
   TextField,
   Box,
 } from "@mui/material";
-import { Edit } from "@mui/icons-material";
+import { Edit, Delete } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 import useAuthCall from "../../../hooks/useAuthCall";
@@ -17,8 +17,7 @@ const ReminderCard: React.FC = () => {
     (state: RootState) => state.auth
   );
 
-  // console.log(singleUser);
-  const { createNote, getSingleUser } = useAuthCall();
+  const { createNote, getSingleUser, deleteNote } = useAuthCall();
 
   useEffect(() => {
     getSingleUser(currentUser?._id || "");
@@ -35,6 +34,10 @@ const ReminderCard: React.FC = () => {
       setNewNote("");
       setIsEditing(false);
     }
+  };
+
+  const handleDeleteNote = async (noteId: string) => {
+    await deleteNote(noteId);
   };
 
   return (
@@ -66,19 +69,31 @@ const ReminderCard: React.FC = () => {
         </Typography>
 
         <Box>
-          {singleUser?.notes?.map((note, index) => (
+          {singleUser?.notes?.map((note) => (
             <Box
-              key={index}
+              key={note?._id}
               sx={{
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "space-between",
                 color: "text.secondary",
                 fontSize: "1rem",
                 mb: ".5rem",
               }}
             >
-              <Typography sx={{ marginRight: 1 }}>•</Typography>
-              <Typography sx={{ fontSize: "1rem" }}>{note?.content}</Typography>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ marginRight: 1 }}>•</Typography>
+                <Typography sx={{ fontSize: "1rem" }}>
+                  {note?.content}
+                </Typography>
+              </Box>
+
+              <IconButton
+                onClick={() => handleDeleteNote(note?._id || "")}
+                aria-label="delete note"
+              >
+                <Delete sx={{ fontSize: 18 }} />
+              </IconButton>
             </Box>
           ))}
         </Box>

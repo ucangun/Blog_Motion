@@ -198,6 +198,17 @@ const useAuthCall = () => {
     }
   };
 
+  const deleteNote = async (noteId: string) => {
+    try {
+      await axios.delete(`${BASE_URL}notes/${noteId}`);
+      console.log("Note deleted successfully");
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    } finally {
+      await getSingleUser(currentUser?._id || "");
+    }
+  };
+
   return {
     register,
     login,
@@ -208,6 +219,7 @@ const useAuthCall = () => {
     forgotPassword,
     resetPassword,
     createNote,
+    deleteNote,
   };
 };
 
