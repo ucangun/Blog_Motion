@@ -7,7 +7,6 @@ interface AuthInitial {
   token: string;
   singleUser: CurrentUserType | null;
   resetToken: string;
-  userBlogs: BlogPost[];
 }
 
 const initialState: AuthInitial = {
@@ -17,7 +16,6 @@ const initialState: AuthInitial = {
   singleUser: null,
   token: "",
   resetToken: "",
-  userBlogs: [],
 };
 
 const authSlice = createSlice({
@@ -43,8 +41,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.token = "";
       state.currentUser = null;
-      state.userBlogs = [];
-      // state.notes = [];
     },
     updateSuccess: (state, { payload }) => {
       state.loading = false;
