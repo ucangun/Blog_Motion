@@ -34,9 +34,9 @@ const ProfileSettings = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateUser(userData);
+    await updateUser(userData);
     setUserData(initialValues);
   };
 

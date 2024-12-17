@@ -14,7 +14,8 @@ import {
   getPopularBlogsSuccess,
 } from "../features/blogSlice";
 import { RootState } from "../app/store";
-import { toastError, toastSuccess } from "../helpers/ToastNotify";
+import { toastSuccess } from "../helpers/ToastNotify";
+import { handleApiError } from "../helpers/handleApiError";
 import { useNavigate } from "react-router-dom";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
@@ -49,7 +50,7 @@ const useBlogCall = () => {
       }
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to fetch blog data");
     }
   };
 
@@ -62,7 +63,7 @@ const useBlogCall = () => {
       dispatch(getPagBlogSuccess({ endpoint: "/blogs", data }));
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to fetch blogs by page");
     }
   };
 
@@ -77,7 +78,7 @@ const useBlogCall = () => {
       dispatch(getSingleBlogSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to fetch the blog");
     }
   };
 
@@ -92,7 +93,7 @@ const useBlogCall = () => {
       dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to fetch blogs by user ID");
     }
   };
 
@@ -109,9 +110,8 @@ const useBlogCall = () => {
       });
       toastSuccess("New blog has been successfully added");
     } catch (error) {
-      toastError("Failed to add the new blog");
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to add the new blog");
     } finally {
       getBlogData(endpoint);
     }
@@ -131,9 +131,8 @@ const useBlogCall = () => {
       toastSuccess("Blog has successfully updated");
       navigate(-1);
     } catch (error) {
-      toastError("Failed to update the blog");
-      console.error(error);
       dispatch(fetchFail());
+      handleApiError(error, "Failed to update the blog");
     } finally {
       getBlogData("blogs");
     }
@@ -150,9 +149,8 @@ const useBlogCall = () => {
       toastSuccess("Blog has successfully deleted");
       navigate(-1);
     } catch (error) {
-      toastError("Failed to delete the blog");
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to delete the blog");
     } finally {
       getBlogData("blogs");
     }
@@ -167,8 +165,8 @@ const useBlogCall = () => {
         },
       });
     } catch (error) {
-      console.error(error);
       dispatch(fetchFail());
+      handleApiError(error, "Failed to fetch like info");
     }
   };
 
@@ -181,10 +179,9 @@ const useBlogCall = () => {
         },
       });
     } catch (error) {
-      console.error(error);
       dispatch(fetchFail());
+      handleApiError(error, "Failed to like/unlike the blog");
     } finally {
-      getBlogData("blogs");
       getSingleBlog(id);
     }
   };
@@ -199,7 +196,7 @@ const useBlogCall = () => {
       });
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to create comment");
     } finally {
       getSingleBlog(commentInfo?.blogId);
     }
@@ -215,8 +212,8 @@ const useBlogCall = () => {
       });
       dispatch(getSingleCategorySuccess(data));
     } catch (error) {
-      console.error(error);
       dispatch(fetchFail());
+      handleApiError(error, "Failed to fetch the category");
     }
   };
 
