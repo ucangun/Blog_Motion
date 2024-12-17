@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
-  // createUserNoteSuccess,
   deleteSuccess,
   fetchFail,
   fetchStart,
@@ -16,13 +15,16 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
 import { SweetAlertIcons, SweetNotify } from "../helpers/SweetNotify";
+import { handleApiError } from "../helpers/handleApiError";
+import useAxios from "./useAxios";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
 const useAuthCall = () => {
   const dispatch = useDispatch();
+  const axiosWithToken = useAxios();
   const navigate = useNavigate();
-  const { currentUser, token } = useSelector((state: RootState) => state.auth);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
 
   // register
   const register = async (userInfo: RegisterFormValues): Promise<void> => {
@@ -34,8 +36,7 @@ const useAuthCall = () => {
       toastSuccess("You have successfully registered!");
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
-      toastError("Oops! Something went wrong during registration.");
+      handleApiError(error, "Oops! Something went wrong during registration.");
     }
   };
 
@@ -44,14 +45,12 @@ const useAuthCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios.post(`${BASE_URL}auth/login`, userInfo);
-      // console.log(data);
       dispatch(loginSuccess(data));
       toastSuccess("You have successfully logged in!");
       navigate("/");
     } catch (error) {
       dispatch(fetchFail());
-      toastError("Oops! Something went wrong during login.");
-      console.error(error);
+      handleApiError(error, "Oops! Something went wrong during login.");
     }
   };
 
@@ -59,19 +58,14 @@ const useAuthCall = () => {
   const logout = async (): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.get(`${BASE_URL}auth/logout`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.get(`${BASE_URL}auth/logout`);
       dispatch(logoutSuccess());
       dispatch(logoutBlogSuccess());
       toastSuccess("You have successfully logged out!");
       navigate("/");
     } catch (error) {
       dispatch(fetchFail());
-      toastError("Oops! Something went wrong during logout.");
-      console.error(error);
+      handleApiError(error, "Oops! Something went wrong during logout.");
     }
   };
 
@@ -79,21 +73,15 @@ const useAuthCall = () => {
   const updateUser = async (userData: CurrentUserType): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.put(
+      const { data } = await axiosWithToken.put(
         `${BASE_URL}users/${userData._id}`,
-        userData,
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        }
+        userData
       );
       toastSuccess("You have successfully updated your profile!");
       dispatch(updateSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
-      toastError("Oops! Something went wrong during update.");
-      console.error(error);
+      handleApiError(error, "Oops! Something went wrong during update.");
     }
   };
 
@@ -112,33 +100,24 @@ const useAuthCall = () => {
 
     dispatch(fetchStart());
     try {
-      await axios.delete(`${BASE_URL}users/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.delete(`${BASE_URL}users/${id}`);
       toastSuccess("You have successfully deleted your account!");
       dispatch(deleteSuccess());
       navigate("/");
     } catch (error) {
       dispatch(fetchFail());
-      toastError("Oops! Something went wrong during delete.");
-      console.error(error);
+      handleApiError(error, "Oops! Something went wrong during delete.");
     }
   };
 
   const getSingleUser = async (id: string) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.get(`${BASE_URL}users/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const { data } = await axiosWithToken.get(`${BASE_URL}users/${id}`);
       dispatch(getsingleUserSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      handleApiError(error, "Failed to fetch user data");
     }
   };
 
@@ -156,8 +135,10 @@ const useAuthCall = () => {
       navigate(`/auth/reset-password/${data.resetToken}`);
     } catch (error) {
       dispatch(fetchFail());
-      toastError("Oops! Something went wrong.");
-      console.error(error);
+      handleApiError(
+        error,
+        "Oops! Something went wrong during password reset request."
+      );
     }
   };
 
@@ -175,35 +156,34 @@ const useAuthCall = () => {
       toastSuccess("Password reset successful!");
       navigate("/login");
     } catch (error) {
-      toastError("Failed to reset password. Please try again.");
-      console.error(error);
+      handleApiError(error, "Failed to reset password. Please try again.");
     }
   };
 
   const createNote = async (userNote: UserNotesType): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.post(`${BASE_URL}notes`, userNote, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.post(`${BASE_URL}notes`, userNote);
       toastSuccess("Your note has been created successfully!");
     } catch (error) {
       dispatch(fetchFail());
-      toastError("Oops! Something went wrong while creating the note.");
-      console.error(error);
+      handleApiError(
+        error,
+        "Oops! Something went wrong while creating the note."
+      );
     } finally {
       await getSingleUser(currentUser?._id || "");
     }
   };
 
   const deleteNote = async (noteId: string) => {
+    dispatch(fetchStart());
     try {
       await axios.delete(`${BASE_URL}notes/${noteId}`);
       console.log("Note deleted successfully");
     } catch (error) {
-      console.error("Error deleting note:", error);
+      dispatch(fetchFail());
+      handleApiError(error, "Error deleting note");
     } finally {
       await getSingleUser(currentUser?._id || "");
     }
