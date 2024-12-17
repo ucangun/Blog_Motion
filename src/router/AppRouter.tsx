@@ -12,6 +12,7 @@ import Account from "../pages/Account";
 import About from "../pages/About";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+import VerifyEmail from "../pages/VerifyEmail";
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/auth/verify-email" element={<VerifyEmail />} />
           <Route
             path="/auth/reset-password/:token"
             element={<ResetPassword />}

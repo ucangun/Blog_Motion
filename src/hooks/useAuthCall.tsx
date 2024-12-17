@@ -32,8 +32,10 @@ const useAuthCall = () => {
     try {
       const { data } = await axios.post(`${BASE_URL}auth/signup`, userInfo);
       dispatch(registerSuccess(data));
-      navigate("/login");
-      toastSuccess("You have successfully registered!");
+      navigate("/auth/verify-email");
+      toastSuccess(
+        "Registration successful! Please check your email to verify your account."
+      );
     } catch (error) {
       dispatch(fetchFail());
       handleApiError(error, "Oops! Something went wrong during registration.");
