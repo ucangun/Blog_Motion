@@ -58,7 +58,7 @@ const useAuthCall = () => {
   const logout = async (): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.get(`${BASE_URL}auth/logout`);
+      await axiosWithToken.get(`auth/logout`);
       dispatch(logoutSuccess());
       dispatch(logoutBlogSuccess());
       toastSuccess("You have successfully logged out!");
@@ -74,7 +74,7 @@ const useAuthCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosWithToken.put(
-        `${BASE_URL}users/${userData._id}`,
+        `users/${userData._id}`,
         userData
       );
       toastSuccess("You have successfully updated your profile!");
@@ -100,7 +100,7 @@ const useAuthCall = () => {
 
     dispatch(fetchStart());
     try {
-      await axiosWithToken.delete(`${BASE_URL}users/${id}`);
+      await axiosWithToken.delete(`users/${id}`);
       toastSuccess("You have successfully deleted your account!");
       dispatch(deleteSuccess());
       navigate("/");
@@ -113,7 +113,7 @@ const useAuthCall = () => {
   const getSingleUser = async (id: string) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.get(`${BASE_URL}users/${id}`);
+      const { data } = await axiosWithToken.get(`users/${id}`);
       dispatch(getsingleUserSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
@@ -163,7 +163,7 @@ const useAuthCall = () => {
   const createNote = async (userNote: UserNotesType): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.post(`${BASE_URL}notes`, userNote);
+      await axiosWithToken.post(`notes`, userNote);
       toastSuccess("Your note has been created successfully!");
     } catch (error) {
       dispatch(fetchFail());
@@ -179,7 +179,7 @@ const useAuthCall = () => {
   const deleteNote = async (noteId: string) => {
     dispatch(fetchStart());
     try {
-      await axios.delete(`${BASE_URL}notes/${noteId}`);
+      await axiosWithToken.delete(`notes/${noteId}`);
       console.log("Note deleted successfully");
     } catch (error) {
       dispatch(fetchFail());
