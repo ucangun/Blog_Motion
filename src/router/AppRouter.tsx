@@ -14,6 +14,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import VerifyEmail from "../pages/VerifyEmail";
 import NotFoundPage from "../pages/NotFoundPage";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 
 const AppRouter = () => {
   return (
@@ -32,6 +33,7 @@ const AppRouter = () => {
           />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Route>
 
         {/* Private Area */}
