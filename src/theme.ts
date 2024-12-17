@@ -35,6 +35,7 @@ export const lightTheme = createTheme({
     mode: "light",
     ...lightPalette,
   },
+
   components: {},
 });
 
@@ -43,6 +44,5 @@ export const darkTheme = createTheme({
     mode: "dark",
     ...darkPalette,
   },
-  typography: {},
   components: {},
 });
