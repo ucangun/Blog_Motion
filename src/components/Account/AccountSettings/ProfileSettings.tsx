@@ -13,7 +13,7 @@ import useAuthCall from "../../../hooks/useAuthCall";
 
 const ProfileSettings = () => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
-  const { updateUser } = useAuthCall();
+  const { updateMe } = useAuthCall();
 
   const initialValues: CurrentUserType = {
     _id: currentUser?._id || "",
@@ -36,7 +36,7 @@ const ProfileSettings = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await updateUser(userData);
+    await updateMe(userData);
     setUserData(initialValues);
   };
 

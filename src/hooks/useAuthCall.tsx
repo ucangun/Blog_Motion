@@ -69,6 +69,18 @@ const useAuthCall = () => {
     }
   };
 
+  // read
+  const getSingleUser = async (id: string) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.get(`users/${id}`);
+      dispatch(getsingleUserSuccess(data));
+    } catch (error) {
+      dispatch(fetchFail());
+      handleApiError(error, "Failed to fetch user data");
+    }
+  };
+
   // update
   const updateUser = async (userData: CurrentUserType): Promise<void> => {
     dispatch(fetchStart());
@@ -85,8 +97,7 @@ const useAuthCall = () => {
     }
   };
 
-  // delete
-
+  // delete for Admin
   const deleteUser = async (id: string): Promise<void> => {
     const isConfirmed = await SweetNotify(
       "Are you sure you want to delete your account? This action cannot be undone.",
@@ -110,17 +121,46 @@ const useAuthCall = () => {
     }
   };
 
-  const getSingleUser = async (id: string) => {
+  // deleteMe
+  const deleteMe = async (): Promise<void> => {
+    const isConfirmed = await SweetNotify(
+      "Are you sure you want to deactivate your account? This action can be reverted by contacting support.",
+      SweetAlertIcons.WARNING
+    );
+
+    if (!isConfirmed) {
+      toastError("Deactivation operation was canceled.");
+      return;
+    }
+
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.get(`users/${id}`);
-      dispatch(getsingleUserSuccess(data));
+      await axiosWithToken.delete(`users/deleteMe`);
+      toastSuccess("You have successfully deleted your account!");
+      dispatch(deleteSuccess());
+      navigate("/");
     } catch (error) {
       dispatch(fetchFail());
-      handleApiError(error, "Failed to fetch user data");
+      handleApiError(error, "Oops! Something went wrong during delete.");
     }
   };
 
+  // updateMe
+  const updateMe = async (userData: CurrentUserType): Promise<void> => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.patch(`users/updateMe`, userData);
+      toastSuccess("Your account details have been updated successfully!");
+    } catch (error) {
+      dispatch(fetchFail());
+      handleApiError(
+        error,
+        "An error occurred while updating your account. Please check your inputs and try again."
+      );
+    }
+  };
+
+  // forgot password
   const forgotPassword = async (
     userInfo: ForgotPasswordValues
   ): Promise<void> => {
@@ -142,6 +182,7 @@ const useAuthCall = () => {
     }
   };
 
+  // reset password
   const resetPassword = async (
     token: string,
     passwords: ResetPasswordValues
@@ -160,6 +201,7 @@ const useAuthCall = () => {
     }
   };
 
+  // createNote
   const createNote = async (userNote: UserNotesType): Promise<void> => {
     dispatch(fetchStart());
     try {
@@ -176,6 +218,7 @@ const useAuthCall = () => {
     }
   };
 
+  // deleteNote
   const deleteNote = async (noteId: string) => {
     dispatch(fetchStart());
     try {
@@ -193,9 +236,11 @@ const useAuthCall = () => {
     register,
     login,
     logout,
+    getSingleUser,
     updateUser,
     deleteUser,
-    getSingleUser,
+    deleteMe,
+    updateMe,
     forgotPassword,
     resetPassword,
     createNote,
