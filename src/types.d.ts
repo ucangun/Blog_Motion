@@ -151,6 +151,7 @@ interface ForgotPasswordValues {
 interface ResetPasswordValues {
   password: string;
   confirmPassword: string;
+  verificationCode: string;
 }
 
 /* ---------------------------------- */

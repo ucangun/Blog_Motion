@@ -17,6 +17,10 @@ export const ResetPasswordSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required("Confirm Password is required")
     .oneOf([Yup.ref("password")], "Passwords must match"),
+  verificationCode: Yup.string()
+    .required("Verification Code is required")
+    .length(6, "Verification Code must be 6 digits long")
+    .matches(/^\d{6}$/, "Verification Code must be a 6-digit number"),
 });
 
 const ResetPasswordForm: React.FC<FormikProps<ResetPasswordValues>> = ({
@@ -67,6 +71,17 @@ const ResetPasswordForm: React.FC<FormikProps<ResetPasswordValues>> = ({
             onBlur={handleBlur}
             helperText={touched.confirmPassword && errors.confirmPassword}
             error={touched.confirmPassword && Boolean(errors.confirmPassword)}
+            sx={{ width: "27ch" }}
+          />
+          <TextField
+            name="verificationCode"
+            label="Verification Code"
+            id="verificationCode"
+            value={values.verificationCode}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.verificationCode && errors.verificationCode}
+            error={touched.verificationCode && Boolean(errors.verificationCode)}
             sx={{ width: "27ch" }}
           />
           <Button

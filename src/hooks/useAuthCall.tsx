@@ -170,9 +170,8 @@ const useAuthCall = () => {
         `${BASE_URL}auth/forgotPassword`,
         userInfo
       );
-      console.log(data);
       toastSuccess("Password reset link sent successfully!");
-      navigate(`/auth/reset-password/${data.resetToken}`);
+      navigate(`/auth/reset-password/${data.jwtResetToken}`);
     } catch (error) {
       dispatch(fetchFail());
       handleApiError(

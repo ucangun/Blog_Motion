@@ -10,11 +10,12 @@ import { useParams } from "react-router-dom";
 const ResetPassword: React.FC = () => {
   const { resetPassword } = useAuthCall();
   const { token } = useParams<{ token: string }>();
-  console.log(token);
+  // console.log(token);
 
   const initialValues: ResetPasswordValues = {
     password: "",
     confirmPassword: "",
+    verificationCode: "",
   };
 
   return (
