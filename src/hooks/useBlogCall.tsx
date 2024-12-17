@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
 import {
   fetchFail,
   fetchStart,
@@ -13,16 +12,16 @@ import {
   getNewBlogsSuccess,
   getPopularBlogsSuccess,
 } from "../features/blogSlice";
-import { RootState } from "../app/store";
 import { toastSuccess } from "../helpers/ToastNotify";
 import { handleApiError } from "../helpers/handleApiError";
 import { useNavigate } from "react-router-dom";
+import useAxios from "./useAxios";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 
 const useBlogCall = () => {
   const navigate = useNavigate();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const axiosWithToken = useAxios();
   const dispatch = useDispatch();
 
   const getBlogData = async (
@@ -70,11 +69,7 @@ const useBlogCall = () => {
   const getSingleBlog = async (id: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}blogs/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const { data } = await axiosWithToken(`blogs/${id}`);
       dispatch(getSingleBlogSuccess(data));
     } catch (error) {
       dispatch(fetchFail());
@@ -85,11 +80,7 @@ const useBlogCall = () => {
   const getBlogByUserId = async (userId: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}blogs/?author=${userId}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const { data } = await axiosWithToken(`blogs/?author=${userId}`);
       dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
     } catch (error) {
       dispatch(fetchFail());
@@ -103,11 +94,7 @@ const useBlogCall = () => {
   ): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.post(`${BASE_URL}blogs`, blogInfo, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.post(`blogs`, blogInfo);
       toastSuccess("New blog has been successfully added");
     } catch (error) {
       dispatch(fetchFail());
@@ -123,11 +110,7 @@ const useBlogCall = () => {
   ): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.put(`${BASE_URL}blogs/${id}`, blogInfo, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.put(`${BASE_URL}blogs/${id}`, blogInfo);
       toastSuccess("Blog has successfully updated");
       navigate(-1);
     } catch (error) {
@@ -141,11 +124,7 @@ const useBlogCall = () => {
   const deleteBlog = async (id: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.delete(`${BASE_URL}blogs/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.delete(`blogs/${id}`);
       toastSuccess("Blog has successfully deleted");
       navigate(-1);
     } catch (error) {
@@ -159,11 +138,7 @@ const useBlogCall = () => {
   const getLikeInfo = async (id: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios(`${BASE_URL}blogs/${id}/getLike`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken(`${BASE_URL}blogs/${id}/getLike`);
     } catch (error) {
       dispatch(fetchFail());
       handleApiError(error, "Failed to fetch like info");
@@ -173,11 +148,7 @@ const useBlogCall = () => {
   const addRemoveLike = async (id: string): Promise<void> => {
     dispatch(fetchStart());
     try {
-      await axios.post(`${BASE_URL}blogs/${id}/postLike`, null, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.post(`${BASE_URL}blogs/${id}/postLike`, null);
     } catch (error) {
       dispatch(fetchFail());
       handleApiError(error, "Failed to like/unlike the blog");
@@ -189,11 +160,7 @@ const useBlogCall = () => {
   const createComment = async (commentInfo: NewCommentType) => {
     dispatch(fetchStart());
     try {
-      await axios.post(`${BASE_URL}comments`, commentInfo, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      await axiosWithToken.post(`${BASE_URL}comments`, commentInfo);
     } catch (error) {
       dispatch(fetchFail());
       handleApiError(error, "Failed to create comment");
@@ -205,11 +172,7 @@ const useBlogCall = () => {
   const getSingleCategory = async (id: string) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(`${BASE_URL}categories/${id}`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      const { data } = await axiosWithToken(`${BASE_URL}categories/${id}`);
       dispatch(getSingleCategorySuccess(data));
     } catch (error) {
       dispatch(fetchFail());
