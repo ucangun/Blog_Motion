@@ -13,6 +13,7 @@ import About from "../pages/About";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import VerifyEmail from "../pages/VerifyEmail";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const AppRouter = () => {
   return (
@@ -42,6 +43,8 @@ const AppRouter = () => {
             <Route path="/myblogs" element={<MyBlog />} />
             <Route path="/account" element={<Account />} />
           </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
