@@ -4,6 +4,7 @@ import { FaHeart, FaRegComments, FaRegHeart } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import useBlogCall from "../../hooks/useBlogCall";
+import BlogShare from "./BlogShare";
 
 const BlogInfo: React.FC = () => {
   const { singleBlog } = useSelector((state: RootState) => state.blog);
@@ -36,17 +37,21 @@ const BlogInfo: React.FC = () => {
     { icon: <CiRead style={iconStyle} />, value: singleBlog?.countOfVisitors },
   ];
 
+  const shareUrl = window.location.href;
+  const shareTitle = singleBlog?.title || "Check out this blog!";
+
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: "1.2rem",
-        paddingRight: "1rem",
+        gap: "1rem",
         cursor: "pointer",
+        mt: "1rem",
       }}
     >
+      {/* Metadata */}
       <Box
         sx={{
           display: "flex",
@@ -78,6 +83,9 @@ const BlogInfo: React.FC = () => {
           ))}
         </Box>
       </Box>
+
+      {/* BlogShare Component */}
+      <BlogShare url={shareUrl} title={shareTitle} />
     </Box>
   );
 };

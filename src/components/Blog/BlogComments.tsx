@@ -68,7 +68,7 @@ const BlogComments = () => {
             ))}
           </Box>
         ) : (
-          <Typography>No comments yet. Be the first to comment!</Typography>
+          <Typography>No comments yet...</Typography>
         )}
 
         <AddComment />

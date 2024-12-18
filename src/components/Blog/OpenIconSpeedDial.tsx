@@ -3,7 +3,7 @@ import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ShareIcon from "@mui/icons-material/Share";
+// import ShareIcon from "@mui/icons-material/Share";
 import EditIcon from "@mui/icons-material/Edit";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import useBlogCall from "../../hooks/useBlogCall";
@@ -28,7 +28,7 @@ export default function OpenIconSpeedDial({ blogId }: OpenIconSpeedDialProps) {
       name: "Edit",
       onClick: () => navigate(`/updateblog/${blogId}`),
     },
-    { icon: <ShareIcon />, name: "Share" },
+    // { icon: <ShareIcon />, name: "Share" },
   ];
 
   return (
