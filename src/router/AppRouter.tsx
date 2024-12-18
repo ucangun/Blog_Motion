@@ -15,6 +15,8 @@ import ResetPassword from "../pages/ResetPassword";
 import VerifyEmail from "../pages/VerifyEmail";
 import NotFoundPage from "../pages/NotFoundPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import SuccessPage from "../pages/Payment/SuccessPage";
+import CancelPage from "../pages/Payment/CancelPage";
 
 const AppRouter = () => {
   return (
@@ -34,6 +36,8 @@ const AppRouter = () => {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/payment-success" element={<SuccessPage />} />
+          <Route path="/payment-cancel" element={<CancelPage />} />
         </Route>
 
         {/* Private Area */}

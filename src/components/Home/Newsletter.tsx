@@ -1,6 +1,45 @@
+import axios from "axios";
 import { Box, Typography, TextField, Button } from "@mui/material";
+import { loadStripe } from "@stripe/stripe-js";
+import { useState } from "react";
 
 function Newsletter() {
+  const [email, setEmail] = useState("");
+
+  const makePayment = async () => {
+    if (!email) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY);
+
+      // API çağrısı
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}api/payment/create-checkout-session`,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Yanıtın işlenmesi
+      const { sessionId } = response.data;
+
+      if (sessionId) {
+        await stripe?.redirectToCheckout({ sessionId });
+      } else {
+        alert("Failed to initiate payment.");
+      }
+    } catch (error) {
+      console.error("Error in payment:", error);
+      alert("An error occurred while processing payment.");
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -36,6 +75,8 @@ function Newsletter() {
         <TextField
           placeholder="Email Address"
           variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           sx={{
             width: "22ch",
             backgroundColor: "#333",
@@ -58,6 +99,7 @@ function Newsletter() {
               backgroundColor: "#B296E0",
             },
           }}
+          onClick={makePayment}
         >
           SUBSCRIBE
         </Button>
