@@ -3,6 +3,7 @@ import { FormikProps, Form } from "formik";
 import { Box, Button, TextField } from "@mui/material";
 import googleLogo from "../../assets/images/Google.png";
 import signup from "../../assets/images/signup.png";
+import useAuthCall from "../../hooks/useAuthCall";
 
 export const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -37,6 +38,7 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
   handleBlur,
   isSubmitting,
 }) => {
+  const { signInWithGoogle } = useAuthCall();
   return (
     <Form>
       <Box
@@ -130,7 +132,12 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
             <Button type="submit" variant="contained" disabled={isSubmitting}>
               {isSubmitting ? "Loading..." : "Register"}
             </Button>
-            <Button type="submit" variant="contained" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={isSubmitting}
+              onClick={signInWithGoogle}
+            >
               {isSubmitting ? "Loading..." : "Sign up with"}
               <img src={googleLogo} alt="" />
             </Button>

@@ -56,6 +56,10 @@ const useAuthCall = () => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    window.open(`${BASE_URL}auth/google`, "_self");
+  };
+
   // logout
   const logout = async (): Promise<void> => {
     dispatch(fetchStart());
@@ -236,6 +240,7 @@ const useAuthCall = () => {
   return {
     register,
     login,
+    signInWithGoogle,
     logout,
     getSingleUser,
     updateUser,

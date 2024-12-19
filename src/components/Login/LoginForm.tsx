@@ -4,6 +4,7 @@ import { Box, Button, TextField } from "@mui/material";
 import MyButton from "../../components/Button";
 import googleLogo from "../../assets/images/Google.png";
 import login from "../../assets/images/login.png";
+import useAuthCall from "../../hooks/useAuthCall";
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -27,6 +28,8 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
   handleBlur,
   isSubmitting,
 }) => {
+  const { signInWithGoogle } = useAuthCall();
+
   return (
     <Form>
       <Box
@@ -107,6 +110,7 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
             <Button
               type="submit"
               variant="contained"
+              onClick={signInWithGoogle}
               disabled={isSubmitting}
               sx={{ width: "35ch" }}
             >
