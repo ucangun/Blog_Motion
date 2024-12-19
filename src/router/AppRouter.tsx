@@ -17,6 +17,8 @@ import NotFoundPage from "../pages/NotFoundPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import SuccessPage from "../pages/Payment/SuccessPage";
 import CancelPage from "../pages/Payment/CancelPage";
+import AuthFail from "../pages/Auth/AuthFail";
+import AuthSuccess from "../pages/Auth/AuthSuccess";
 
 const AppRouter = () => {
   return (
@@ -27,6 +29,8 @@ const AppRouter = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="auth/success" element={<AuthSuccess />} />
+          <Route path="auth/failure" element={<AuthFail />} />
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/auth/verify-email" element={<VerifyEmail />} />
           <Route

@@ -1,9 +1,18 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import paymentFail from "../../assets/images/fail.png";
+import authFail from "../../assets/images/fail.png";
+import { useEffect } from "react";
 
-function CancelPage() {
+function AuthFail() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <Box
@@ -16,7 +25,7 @@ function CancelPage() {
     >
       <Box
         sx={{
-          backgroundImage: `url(${paymentFail})`,
+          backgroundImage: `url(${authFail})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -25,19 +34,12 @@ function CancelPage() {
           borderRadius: "1rem 0 0 1rem",
         }}
       ></Box>
-      <Typography variant="h4">⚠️ Payment Cancelled</Typography>
+
       <Typography variant="body1">
-        It seems you cancelled the payment process.
+        Authentication Failed! Redirecting to Homepage...
       </Typography>
-      <Button
-        variant="contained"
-        onClick={() => navigate("/")}
-        sx={{ padding: ".3rem .6rem", fontSize: ".8rem" }}
-      >
-        Go to Home Page
-      </Button>
     </Box>
   );
 }
 
-export default CancelPage;
+export default AuthFail;
