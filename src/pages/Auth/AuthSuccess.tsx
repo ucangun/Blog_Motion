@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import authSuccess from "../../assets/images/authSuccess.png";
 import { useEffect } from "react";
-import { toastSuccess } from "../../helpers/ToastNotify";
+import { toastSuccess, toastError } from "../../helpers/ToastNotify";
 import { loginSuccess } from "../../features/authSlice";
 import { useDispatch } from "react-redux";
 
@@ -14,7 +14,21 @@ function AuthSuccess() {
     const getDataFromUrl = async () => {
       const queryParams = new URLSearchParams(location.search);
       const userParam = queryParams.get("user");
+
+      if (!userParam) {
+        toastError("Invalid data received.");
+        navigate("/auth/login");
+        return;
+      }
+
       const parsedData = JSON.parse(decodeURIComponent(userParam ?? ""));
+
+      if (!parsedData) {
+        toastError("Failed to parse user data.");
+        navigate("/auth/login");
+        return;
+      }
+
       dispatch(loginSuccess(parsedData));
 
       setTimeout(() => {
