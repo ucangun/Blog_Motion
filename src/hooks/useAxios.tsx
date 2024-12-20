@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
 export const axiosPublic = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL || import.meta.env.VITE_LOCAL_BASE_URL,
 });
 
 const useAxios = () => {
   const { token } = useSelector((state: RootState) => state.auth);
 
   const axiosWithToken = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
+    baseURL:
+      import.meta.env.VITE_BASE_URL || import.meta.env.VITE_LOCAL_BASE_URL,
     headers: { Authorization: `Token ${token}` },
   });
 
