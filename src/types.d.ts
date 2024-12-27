@@ -184,7 +184,8 @@ interface NewsArticle {
   title: string;
   description: string;
   url: string;
-  urlToImage: string;
+  image: string;
+  summary: string;
   publishedAt: string;
   content: string | null;
 }

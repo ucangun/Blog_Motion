@@ -23,7 +23,7 @@ const utilsSlice = createSlice({
     getNewsSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state.data = payload.articles;
+      state.data = payload;
     },
     fetchFail: (state) => {
       state.loading = false;

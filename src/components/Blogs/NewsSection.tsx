@@ -12,6 +12,8 @@ import { RootState } from "../../app/store";
 const NewsSection = () => {
   let { data } = useSelector((state: RootState) => state.utils);
 
+  console.log(data);
+
   data = data.slice(0, 3);
 
   return (
@@ -63,7 +65,7 @@ const NewsSection = () => {
                 },
               }}
               image={
-                item.urlToImage ||
+                item.image ||
                 "https://licindia.in/documents/d/guest/no_image_news"
               }
               alt={item.title}
@@ -86,7 +88,7 @@ const NewsSection = () => {
                   },
                 }}
               >
-                {item.title}
+                {item.summary}
               </Typography>
               <Button
                 variant="outlined"

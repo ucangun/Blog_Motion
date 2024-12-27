@@ -8,13 +8,19 @@ const useUtilsCall = () => {
   const getNewsData = async () => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios(
-        "https://newsapi.org/v2/top-headlines?country=us&apiKey=d31de719ac32404cbfe8f8c02becb38b"
+      const { data } = await axios.get(
+        "https://api.worldnewsapi.com/top-news?source-country=en&language=en",
+        {
+          headers: {
+            "x-api-key": "3e0163d8d34a4c48b373e3b54660fc21",
+          },
+        }
       );
-      dispatch(getNewsSuccess(data));
+      console.log(data.top_news[0].news);
+      dispatch(getNewsSuccess(data.top_news[0].news));
     } catch (error) {
       dispatch(fetchFail());
-      console.error(error);
+      console.log(error);
     }
   };
 
