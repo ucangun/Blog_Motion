@@ -12,10 +12,6 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
-interface NewBlogFormProps {
-  singleBlog: SinglePost | null;
-}
-
 const NewBlogForm: React.FC<
   NewBlogFormProps & FormikProps<NewBlogFormValues>
 > = ({
@@ -117,7 +113,7 @@ const NewBlogForm: React.FC<
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table paste code help wordcount",
-                "codesample", // Kod bloğu eklentisi
+                "codesample",
               ],
               toolbar:
                 "undo redo | formatselect | bold italic backcolor | \

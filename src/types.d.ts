@@ -115,6 +115,10 @@ interface NewBlogFormValues {
   isPublish: boolean;
 }
 
+interface NewBlogFormProps {
+  singleBlog: SinglePost | null;
+}
+
 /* ---------------------------------- */
 /*               Comment              */
 /* ---------------------------------- */
