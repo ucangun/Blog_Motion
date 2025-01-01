@@ -177,19 +177,11 @@ interface RegisterFormValues {
 /*                  News              */
 /* ---------------------------------- */
 
-interface NewsSource {
-  id: string | null;
-  name: string;
-}
-
 interface NewsArticle {
-  source: NewsSource;
   author: string;
   title: string;
-  description: string;
   url: string;
   image: string;
-  summary: string;
-  publishedAt: string;
+  publish_date: string;
   content: string | null;
 }

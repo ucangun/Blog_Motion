@@ -12,7 +12,7 @@ import { RootState } from "../../app/store";
 const NewsSection = () => {
   let { data } = useSelector((state: RootState) => state.utils);
 
-  console.log(data);
+  // console.log(data);
 
   data = data.slice(0, 3);
 
@@ -26,7 +26,7 @@ const NewsSection = () => {
         variant="body1"
         component="h2"
         sx={{
-          fontSize: "1.4rem",
+          fontSize: "1.2rem",
           textAlign: "center",
           mb: "1rem",
         }}
@@ -42,9 +42,9 @@ const NewsSection = () => {
           gap: 2,
         }}
       >
-        {data.map((item) => (
+        {data.map((item, index) => (
           <Card
-            key={item.title}
+            key={index}
             sx={{
               backgroundColor: "#f8f8f8",
               display: "flex",
@@ -59,10 +59,8 @@ const NewsSection = () => {
             <CardMedia
               component="img"
               sx={{
+                objectFit: "cover",
                 width: 130,
-                "@media (max-width: 600px)": {
-                  width: 100,
-                },
               }}
               image={
                 item.image ||
@@ -88,7 +86,7 @@ const NewsSection = () => {
                   },
                 }}
               >
-                {item.summary}
+                {item.title}
               </Typography>
               <Button
                 variant="outlined"

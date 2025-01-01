@@ -7,17 +7,20 @@ const useUtilsCall = () => {
 
   const getNewsData = async () => {
     dispatch(fetchStart());
+
+    // Current date in the format YYYY-MM-DD
+    const today = new Date().toISOString().split("T")[0];
+
     try {
       const { data } = await axios.get(
-        "https://api.worldnewsapi.com/top-news?source-country=en&language=en",
+        `https://api.worldnewsapi.com/search-news?earliest-publish-date=${today}&language=en`,
         {
           headers: {
             "x-api-key": "3e0163d8d34a4c48b373e3b54660fc21",
           },
         }
       );
-      console.log(data.top_news[0].news);
-      dispatch(getNewsSuccess(data.top_news[0].news));
+      dispatch(getNewsSuccess({ data: data?.news }));
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
