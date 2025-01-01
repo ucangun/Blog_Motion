@@ -116,7 +116,7 @@ interface NewBlogFormValues {
 }
 
 interface NewBlogFormProps {
-  singleBlog: SinglePost | null;
+  isEditMode: boolean;
 }
 
 /* ---------------------------------- */

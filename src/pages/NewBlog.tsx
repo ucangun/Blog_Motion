@@ -16,12 +16,12 @@ const NewBlog: React.FC = () => {
   const isEditMode = Boolean(id);
 
   const initialValues: NewBlogFormValues = {
-    userId: currentUser?._id as string,
-    categoryId: isEditMode ? (singleBlog?.categoryId?._id as string) : "",
-    title: isEditMode ? (singleBlog?.title as string) : "",
-    content: isEditMode ? (singleBlog?.content as string) : "",
-    image: isEditMode ? (singleBlog?.image as string) : "",
-    isPublish: isEditMode ? (singleBlog?.isPublish as boolean) : true,
+    userId: currentUser?._id || "",
+    categoryId: isEditMode ? singleBlog?.categoryId?._id || "" : "",
+    title: isEditMode ? singleBlog?.title || "" : "",
+    content: isEditMode ? singleBlog?.content || "" : "",
+    image: isEditMode ? singleBlog?.image || "" : "",
+    isPublish: isEditMode ? singleBlog?.isPublish ?? true : true,
   };
 
   useEffect(() => {
@@ -30,6 +30,10 @@ const NewBlog: React.FC = () => {
       getSingleBlog(id);
     }
   }, [id, isEditMode]);
+
+  if (isEditMode && !singleBlog) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <Container maxWidth="lg" sx={{ padding: "3rem 1rem" }}>
@@ -49,7 +53,7 @@ const NewBlog: React.FC = () => {
             actions.setSubmitting(false);
           }}
           component={(props) => (
-            <NewBlogForm {...props} singleBlog={singleBlog} />
+            <NewBlogForm {...props} isEditMode={isEditMode} />
           )}
         />
       )}

@@ -22,7 +22,7 @@ const NewBlogForm: React.FC<
   handleBlur,
   isSubmitting,
   setFieldValue,
-  singleBlog,
+  isEditMode,
 }) => {
   const { categories } = useSelector((state: RootState) => state.blog);
 
@@ -153,7 +153,7 @@ const NewBlogForm: React.FC<
           <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting
               ? "Loading..."
-              : singleBlog && values.title
+              : isEditMode
               ? "Update Blog"
               : "Create New Blog"}
           </Button>
