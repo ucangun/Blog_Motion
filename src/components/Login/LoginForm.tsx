@@ -1,10 +1,21 @@
 import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
-import { Box, Button, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  IconButton,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import MyButton from "../../components/Button";
 import googleLogo from "../../assets/images/Google.png";
 import login from "../../assets/images/login.png";
 import useAuthCall from "../../hooks/useAuthCall";
+import { useState } from "react";
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -29,6 +40,12 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
   isSubmitting,
 }) => {
   const { signInWithGoogle } = useAuthCall();
+
+  // State for controlling password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Toggle password visibility
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
     <Form>
@@ -71,19 +88,47 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
             sx={{ width: "27ch" }}
           />
 
-          <TextField
-            label="Password"
-            name="password"
-            id="password"
-            type="password"
-            variant="outlined"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.password && errors.password}
-            error={touched.password && Boolean(errors.password)}
-            sx={{ width: "27ch" }}
-          />
+          <FormControl sx={{ m: 1, width: "27ch" }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              name="password"
+              label="Password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.password && Boolean(errors.password)}
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label={
+                      showPassword
+                        ? "hide the password"
+                        : "display the password"
+                    }
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            {/* Conditionally show helperText if there's an error */}
+            {touched.password && errors.password && (
+              <Box
+                sx={{
+                  color: "error.main",
+                  fontSize: "0.75rem",
+                  marginTop: "0.25rem",
+                }}
+              >
+                {errors.password}
+              </Box>
+            )}
+          </FormControl>
 
           <Box
             sx={{
