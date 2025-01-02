@@ -4,6 +4,7 @@ import { Box, Button, TextField } from "@mui/material";
 import googleLogo from "../../assets/images/Google.png";
 import signup from "../../assets/images/signup.png";
 import useAuthCall from "../../hooks/useAuthCall";
+import PasswordField from "../PasswordField";
 
 export const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -115,19 +116,18 @@ const RegisterForm: React.FC<FormikProps<RegisterFormValues>> = ({
             error={touched.email && Boolean(errors.email)}
             sx={{ width: "28ch" }}
           />
-          <TextField
-            label="Password"
+
+          <PasswordField
             name="password"
-            id="password"
-            type="password"
-            variant="outlined"
+            label="Password"
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            helperText={touched.password && errors.password}
-            error={touched.password && Boolean(errors.password)}
-            sx={{ width: "28ch" }}
+            touched={touched.password}
+            errors={errors}
+            width="28ch"
           />
+
           <Box sx={{ display: "flex", gap: "1rem" }}>
             <Button type="submit" variant="contained" disabled={isSubmitting}>
               {isSubmitting ? "Loading..." : "Register"}

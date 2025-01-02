@@ -1,33 +1,23 @@
 import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
-import {
-  Box,
-  Button,
-  TextField,
-  IconButton,
-  InputAdornment,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Box, Button, TextField } from "@mui/material";
 import MyButton from "../../components/Button";
 import googleLogo from "../../assets/images/Google.png";
 import login from "../../assets/images/login.png";
 import useAuthCall from "../../hooks/useAuthCall";
-import { useState } from "react";
+import PasswordField from "../../components/PasswordField";
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
   password: Yup.string()
     .required()
     .min(8)
-    .matches(/\d+/, "password must contain at least one digit!")
-    .matches(/[a-z]/, "must contain lowercase letters!")
-    .matches(/[A-Z]/, "must contain uppercase letters!")
+    .matches(/\d+/, "Password must contain at least one digit!")
+    .matches(/[a-z]/, "Must contain lowercase letters!")
+    .matches(/[A-Z]/, "Must contain uppercase letters!")
     .matches(
       /[@$?!%&*]+/,
-      "must contain at least one special character(@$?!%&*)"
+      "Must contain at least one special character (@$?!%&*)"
     ),
 });
 
@@ -40,12 +30,6 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
   isSubmitting,
 }) => {
   const { signInWithGoogle } = useAuthCall();
-
-  // State for controlling password visibility
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Toggle password visibility
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
     <Form>
@@ -88,47 +72,16 @@ const LoginForm: React.FC<FormikProps<LoginFormValues>> = ({
             sx={{ width: "27ch" }}
           />
 
-          <FormControl sx={{ m: 1, width: "27ch" }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              name="password"
-              label="Password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.password && Boolean(errors.password)}
-              type={showPassword ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label={
-                      showPassword
-                        ? "hide the password"
-                        : "display the password"
-                    }
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-            {/* Conditionally show helperText if there's an error */}
-            {touched.password && errors.password && (
-              <Box
-                sx={{
-                  color: "error.main",
-                  fontSize: "0.75rem",
-                  marginTop: "0.25rem",
-                }}
-              >
-                {errors.password}
-              </Box>
-            )}
-          </FormControl>
+          <PasswordField
+            name="password"
+            label="Password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            touched={touched.password}
+            errors={errors}
+            width="27ch"
+          />
 
           <Box
             sx={{

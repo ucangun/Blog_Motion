@@ -2,6 +2,7 @@ import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
 import { Box, Button, TextField } from "@mui/material";
 import reset from "../../assets/images/reset.png";
+import PasswordField from "../PasswordField";
 
 export const ResetPasswordSchema = Yup.object().shape({
   password: Yup.string()
@@ -49,30 +50,27 @@ const ResetPasswordForm: React.FC<FormikProps<ResetPasswordValues>> = ({
             width: { lg: "50%" },
           }}
         >
-          <TextField
+          <PasswordField
             name="password"
             label="Password"
-            id="password"
-            type="password"
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            helperText={touched.password && errors.password}
-            error={touched.password && Boolean(errors.password)}
-            sx={{ width: "27ch" }}
+            touched={touched.password}
+            errors={errors}
+            width="27ch"
           />
-          <TextField
+          <PasswordField
             name="confirmPassword"
             label="Confirm Password"
-            id="confirmPassword"
-            type="password"
             value={values.confirmPassword}
             onChange={handleChange}
             onBlur={handleBlur}
-            helperText={touched.confirmPassword && errors.confirmPassword}
-            error={touched.confirmPassword && Boolean(errors.confirmPassword)}
-            sx={{ width: "27ch" }}
+            touched={touched.password}
+            errors={errors}
+            width="27ch"
           />
+
           <TextField
             name="verificationCode"
             label="Verification Code"
