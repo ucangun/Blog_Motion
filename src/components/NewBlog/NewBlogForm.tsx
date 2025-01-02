@@ -126,7 +126,7 @@ const NewBlogForm: React.FC<
                 }
               `,
             }}
-            onEditorChange={(content, editor) => {
+            onEditorChange={(_, editor) => {
               const plainText = editor.getContent({ format: "text" });
               setFieldValue("content", plainText);
             }}
