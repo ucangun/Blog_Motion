@@ -21,8 +21,14 @@ const BlogsSkeleton = () => {
           padding: "0.5rem 0",
         }}
       >
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Skeleton key={index} variant="circular" width={50} height={50} />
+        {Array.from({ length: 15 }).map((_, index) => (
+          <Skeleton
+            key={index}
+            variant="rectangular"
+            sx={{ borderRadius: ".8rem" }}
+            width={60}
+            height={20}
+          />
         ))}
       </Grid2>
 
