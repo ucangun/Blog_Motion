@@ -1,5 +1,6 @@
-import { Editor } from "@tinymce/tinymce-react";
 import { Form, FormikProps } from "formik";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import {
   Box,
   Button,
@@ -11,6 +12,18 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+
+// For React Quill Text Editor
+
+const modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["bold", "italic", "underline"],
+    ["link", "image"],
+    ["code-block"],
+  ],
+};
 
 const NewBlogForm: React.FC<
   NewBlogFormProps & FormikProps<NewBlogFormValues>
@@ -103,54 +116,19 @@ const NewBlogForm: React.FC<
             },
           }}
         >
-          <Editor
-            apiKey={import.meta.env.VITE_TINY_MCE_API_KEY}
+          <ReactQuill
+            id="content"
+            theme="snow"
+            modules={modules}
             value={values.content}
-            init={{
-              height: 500,
-              // menubar: false,
-              plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table paste code help wordcount",
-                "codesample",
-              ],
-              toolbar:
-                "undo redo | formatselect | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | codesample | help",
-              content_style: `
-                body {
-                  font-family: Helvetica, Arial, sans-serif;
-                  font-size: 1rem;
-                }
-              `,
-            }}
-            onEditorChange={(_, editor) => {
-              const plainText = editor.getContent({ format: "text" });
-              setFieldValue("content", plainText);
+            placeholder="Write your blog content here..."
+            onChange={(value) => setFieldValue("content", value)}
+            style={{
+              width: "100%",
+              height: "auto",
             }}
           />
         </Box>
-
-        {/* <TextField
-          label="Blog"
-          name="content"
-          multiline
-          rows={30}
-          variant="outlined"
-          value={values.content}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          placeholder="Write your blog content here..."
-          sx={{
-            width: {
-              xs: "100%",
-              sm: "60ch",
-              md: "90ch",
-            },
-          }}
-        /> */}
 
         <Box sx={{ display: "flex", gap: "2rem" }}>
           <Button type="submit" variant="contained" disabled={isSubmitting}>

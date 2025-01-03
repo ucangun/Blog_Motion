@@ -96,19 +96,15 @@ const Blog: React.FC = () => {
           <BlogUser />
         </Box>
 
-        {singleBlog?.content?.split("\n\n").map((paragraph, index) => (
-          <Typography
-            key={index}
-            variant="body1"
-            sx={{
-              fontSize: { xs: "1rem", sm: "1.1rem" },
-              padding: ".8rem 0",
-            }}
-            dangerouslySetInnerHTML={{ __html: paragraph }}
-          >
-            {/* {paragraph} */}
-          </Typography>
-        ))}
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: { xs: "1rem", sm: "1.1rem" },
+            padding: ".8rem 0",
+          }}
+          dangerouslySetInnerHTML={{ __html: singleBlog?.content || "" }}
+        />
+
         <BlogInfo />
         <BlogComments />
       </Box>
