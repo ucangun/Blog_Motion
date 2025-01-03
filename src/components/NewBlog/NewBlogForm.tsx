@@ -28,7 +28,7 @@ const modules = {
 
 export const NewBlogFormSchema = Yup.object().shape({
   title: Yup.string().required("Required"),
-  category: Yup.string().required("Required"),
+  categoryId: Yup.string().required("Required"),
   image: Yup.string().required("Required"),
   content: Yup.string().required("Required"),
 });
