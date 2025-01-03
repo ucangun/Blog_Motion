@@ -5,21 +5,24 @@ import {
   Link as MuiLink,
   Grid2,
 } from "@mui/material";
-import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
+import { FaMedium, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Logo from "./Logo";
 
 const footerLinks = [
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  // { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy Policy", href: "/privacy" },
 ];
 
 const socialMediaLinks = [
-  { icon: <Facebook />, href: "https://facebook.com" },
-  { icon: <Twitter />, href: "https://twitter.com" },
-  { icon: <Instagram />, href: "https://instagram.com" },
-  { icon: <LinkedIn />, href: "https://linkedin.com" },
+  { icon: <FaMedium />, href: "https://medium.com/@ucangun76" },
+  { icon: <FaGithub />, href: "https://github.com/ucangun" },
+  {
+    icon: <FaInstagram />,
+    href: "https://www.instagram.com/ucangun75/profilecard/?igsh=em9uMjE2MnN3bnVz",
+  },
+  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/ucangun/" },
 ];
 
 const Footer = () => {
