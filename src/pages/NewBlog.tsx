@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Formik } from "formik";
 import { Container } from "@mui/material";
-import NewBlogForm from "../components/NewBlog/NewBlogForm";
+import NewBlogForm, {
+  NewBlogFormSchema,
+} from "../components/NewBlog/NewBlogForm";
 import useBlogCall from "../hooks/useBlogCall";
 import { RootState } from "../app/store";
 
@@ -43,6 +45,7 @@ const NewBlog: React.FC = () => {
         <Formik
           enableReinitialize
           initialValues={initialValues}
+          validationSchema={NewBlogFormSchema}
           onSubmit={(values, actions) => {
             if (isEditMode && id) {
               updateBlog(id, values);

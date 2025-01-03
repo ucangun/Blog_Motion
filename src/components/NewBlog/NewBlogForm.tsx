@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import { Form, FormikProps } from "formik";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -24,6 +25,13 @@ const modules = {
     ["code-block"],
   ],
 };
+
+export const NewBlogFormSchema = Yup.object().shape({
+  title: Yup.string().required("Required"),
+  category: Yup.string().required("Required"),
+  image: Yup.string().required("Required"),
+  content: Yup.string().required("Required"),
+});
 
 const NewBlogForm: React.FC<
   NewBlogFormProps & FormikProps<NewBlogFormValues>
