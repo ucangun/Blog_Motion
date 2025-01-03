@@ -19,6 +19,7 @@ import SuccessPage from "../pages/Payment/SuccessPage";
 import CancelPage from "../pages/Payment/CancelPage";
 import AuthFail from "../pages/Auth/AuthFail";
 import AuthSuccess from "../pages/Auth/AuthSuccess";
+import Contact from "../pages/Contact";
 
 const AppRouter = () => {
   return (
@@ -40,6 +41,7 @@ const AppRouter = () => {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/payment-success" element={<SuccessPage />} />
           <Route path="/payment-cancel" element={<CancelPage />} />
         </Route>
@@ -53,9 +55,8 @@ const AppRouter = () => {
             <Route path="/myblogs" element={<MyBlog />} />
             <Route path="/account" element={<Account />} />
           </Route>
-
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
