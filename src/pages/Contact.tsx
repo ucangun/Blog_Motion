@@ -10,14 +10,14 @@ import {
   Paper,
   Container,
 } from "@mui/material";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
 
 const info = [
   {
-    icon: <FaPhoneAlt size={24} />,
-    title: "Phone",
-    description: "(+49) 176 63820656",
+    icon: <FaUser size={24} />,
+    title: "Contact Person",
+    description: "www.ucangun.com",
   },
   {
     icon: <FaEnvelope size={24} />,
@@ -48,6 +48,7 @@ const Contact = () => {
         .then(
           () => {
             toastSuccess("Message sent successfully!");
+            form.current?.reset();
           },
           (error) => {
             toastError("Failed to send message!");
@@ -60,7 +61,7 @@ const Contact = () => {
   return (
     <Container sx={{ py: 8 }}>
       {/* Header Section */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 4 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 8 }}>
         <Typography variant="h4" textAlign="center" color="text.primary">
           Get in Touch
         </Typography>
@@ -90,19 +91,9 @@ const Contact = () => {
       <Grid2 container spacing={1}>
         {/* Info Section */}
         <Grid2 size={{ xs: 12, md: 6 }}>
-          <Box
-            sx={{ display: "flex", flexDirection: "column", gap: 2, py: 8 }}
-            ref={form}
-            onSubmit={sendEmail}
-          >
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, py: 8 }}>
             {info.map((item, index) => (
-              <Box
-                key={index}
-                display="flex"
-                alignItems="center"
-                padding={2}
-                // bgcolor="red"
-              >
+              <Box key={index} display="flex" alignItems="center" padding={2}>
                 <Box
                   sx={{
                     display: "flex",
@@ -138,6 +129,8 @@ const Contact = () => {
             </Typography>
             <Box
               component="form"
+              ref={form}
+              onSubmit={sendEmail}
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             >
               <TextField
