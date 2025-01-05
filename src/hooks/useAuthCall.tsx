@@ -10,7 +10,6 @@ import {
   registerSuccess,
   updateSuccess,
 } from "../features/authSlice";
-import { logoutBlogSuccess } from "../features/blogSlice";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../app/store";
 import { toastError, toastSuccess } from "../helpers/ToastNotify";
@@ -66,7 +65,7 @@ const useAuthCall = () => {
     try {
       await axiosWithToken.get(`auth/logout`);
       dispatch(logoutSuccess());
-      dispatch(logoutBlogSuccess());
+      // dispatch(logoutBlogSuccess());
       toastSuccess("You have successfully logged out!");
       navigate("/");
     } catch (error) {
