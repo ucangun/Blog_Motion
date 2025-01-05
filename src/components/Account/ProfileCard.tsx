@@ -40,7 +40,9 @@ const style = {
 };
 
 const ProfileCard: React.FC = () => {
-  const { currentUser } = useSelector((state: RootState) => state.auth);
+  const { currentUser, singleUser } = useSelector(
+    (state: RootState) => state.auth
+  );
   const { userBlogs } = useSelector((state: RootState) => state.blog);
   const { getBlogByUserId } = useBlogCall();
 
@@ -77,7 +79,7 @@ const ProfileCard: React.FC = () => {
         }}
       >
         <Avatar
-          src={currentUser?.image}
+          src={singleUser?.image}
           alt="user image"
           sx={{
             width: 124,
@@ -88,10 +90,10 @@ const ProfileCard: React.FC = () => {
       </Box>
       <CardContent>
         <Typography variant="h6" component="div" gutterBottom>
-          {currentUser?.username}
+          {singleUser?.username}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          {currentUser?.bio}
+          {singleUser?.bio}
         </Typography>
 
         <Box
@@ -104,7 +106,7 @@ const ProfileCard: React.FC = () => {
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: ".2rem" }}>
             <PlaceIcon sx={{ color: "primary.main" }} />
-            <Typography variant="body2">{currentUser?.city}</Typography>
+            <Typography variant="body2">{singleUser?.city}</Typography>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: ".2rem" }}>
             <ArticleOutlinedIcon sx={{ color: "primary.main" }} />

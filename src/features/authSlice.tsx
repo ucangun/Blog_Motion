@@ -44,7 +44,7 @@ const authSlice = createSlice({
     },
     updateSuccess: (state, { payload }) => {
       state.loading = false;
-      state.currentUser = payload.new as CurrentUserType;
+      state.singleUser = payload.new as CurrentUserType;
     },
     deleteSuccess: (state) => {
       state.loading = false;

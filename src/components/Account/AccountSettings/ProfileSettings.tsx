@@ -8,24 +8,30 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuthCall from "../../../hooks/useAuthCall";
 
 const ProfileSettings = () => {
-  const { currentUser } = useSelector((state: RootState) => state.auth);
-  const { updateMe } = useAuthCall();
+  const { currentUser, singleUser } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const { updateMe, getSingleUser } = useAuthCall();
+
+  useEffect(() => {
+    getSingleUser(currentUser?._id || "");
+  }, [currentUser?._id]);
 
   const initialValues: CurrentUserType = {
-    _id: currentUser?._id || "",
+    _id: singleUser?._id || "",
     password: "",
-    username: currentUser?.username || "",
-    firstName: currentUser?.firstName || "",
-    lastName: currentUser?.lastName || "",
-    email: currentUser?.email || "",
-    image: currentUser?.image || "",
-    city: currentUser?.city || "",
-    bio: currentUser?.bio || "",
-    notes: currentUser?.notes || [],
+    username: singleUser?.username || "",
+    firstName: singleUser?.firstName || "",
+    lastName: singleUser?.lastName || "",
+    email: singleUser?.email || "",
+    image: singleUser?.image || "",
+    city: singleUser?.city || "",
+    bio: singleUser?.bio || "",
+    notes: singleUser?.notes || [],
   };
 
   const [userData, setUserData] = useState(initialValues);

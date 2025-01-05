@@ -157,6 +157,8 @@ const useAuthCall = () => {
     try {
       await axiosWithToken.patch(`users/updateMe`, userData);
       toastSuccess("Your account details have been updated successfully!");
+      dispatch(updateSuccess(userData));
+      getSingleUser(userData?._id || "");
     } catch (error) {
       dispatch(fetchFail());
       handleApiError(
