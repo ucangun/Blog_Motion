@@ -32,7 +32,7 @@ export default function OpenIconSpeedDial({ blogId }: OpenIconSpeedDialProps) {
   ];
 
   return (
-    <Box sx={{ height: 120, transform: "translateZ(0px)", flexGrow: 1 }}>
+    <Box sx={{ position: "fixed", bottom: 16, right: 16, zIndex: 100 }}>
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
         sx={{ position: "absolute", bottom: 16, right: 16 }}

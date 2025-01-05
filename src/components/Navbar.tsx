@@ -55,10 +55,10 @@ function Navbar() {
       title: "Account",
       onClick: () => navigate("/account"),
     },
-    {
-      title: "My Blogs",
-      onClick: () => navigate("/myblogs"),
-    },
+    // {
+    //   title: "My Blogs",
+    //   onClick: () => navigate("/myblogs"),
+    // },
     {
       title: "Logout",
       onClick: logout,
