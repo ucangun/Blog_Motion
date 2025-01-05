@@ -27,7 +27,7 @@ const RecomendedSection = () => {
           fontWeight: "bold",
         }}
       >
-        Recommended for You by Category
+        Explore What's Trending
       </Typography>
       <Typography
         variant="subtitle1"
@@ -37,8 +37,7 @@ const RecomendedSection = () => {
           color: "#444",
         }}
       >
-        The latest news, tips, and advice to help you run your business with
-        ease.
+        Discover top blogs to inspire, inform, and entertain.
       </Typography>
       <RecommendedCards />
       <Box textAlign="center" sx={{ marginTop: 4 }}>

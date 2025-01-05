@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import TopBlogWriterCard from "./TopBlogWriterCard";
 import { useNavigate } from "react-router-dom";
+import { calculateReadingTime } from "../../helpers/calculateReadingTime";
 
 const TopBlogWriter: React.FC = () => {
   const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
@@ -72,7 +73,7 @@ const TopBlogWriter: React.FC = () => {
                 <Typography
                   sx={{
                     background: "#f0f0f0",
-                    fontSize: ".8rem",
+                    fontSize: ".7rem",
                     padding: "0.2rem 0.6rem",
                     borderRadius: ".8rem",
                     textTransform: "uppercase",
@@ -81,12 +82,12 @@ const TopBlogWriter: React.FC = () => {
                   {bestBlog.categoryId?.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  10 min read
+                  {calculateReadingTime(bestBlog.content)}
                 </Typography>
               </Box>
 
               {/* Title */}
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom sx={{ fontSize: "1.2rem" }}>
                 {bestBlog?.title || "No Title"}
               </Typography>
 
@@ -96,7 +97,7 @@ const TopBlogWriter: React.FC = () => {
                 color="text.secondary"
                 dangerouslySetInnerHTML={{
                   __html: bestBlog?.content
-                    ? bestBlog?.content.split(" ").slice(0, 25).join(" ") +
+                    ? bestBlog?.content.split(" ").slice(0, 15).join(" ") +
                       "..."
                     : "No content available",
                 }}
