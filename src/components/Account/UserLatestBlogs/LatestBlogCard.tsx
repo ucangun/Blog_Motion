@@ -14,9 +14,11 @@ import { useSelector } from "react-redux";
 
 const LatestBlogCard: React.FC = () => {
   const { getBlogData } = useBlogCall();
-  const { userBlogs } = useSelector((state: RootState) => state.blog);
+  let { userBlogs } = useSelector((state: RootState) => state.blog);
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
+
+  userBlogs = userBlogs.slice(0, 5);
 
   useEffect(() => {
     if (currentUser && currentUser._id) {
