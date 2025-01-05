@@ -91,11 +91,16 @@ const TopBlogWriter: React.FC = () => {
               </Typography>
 
               {/* Description */}
-              <Typography variant="body2" color="text.secondary">
-                {bestBlog?.content
-                  ? bestBlog.content.split(" ").slice(0, 25).join(" ") + "..."
-                  : "No content available"}
-              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                dangerouslySetInnerHTML={{
+                  __html: bestBlog?.content
+                    ? bestBlog?.content.split(" ").slice(0, 25).join(" ") +
+                      "..."
+                    : "No content available",
+                }}
+              />
 
               {/* Author and Button */}
               <Box
