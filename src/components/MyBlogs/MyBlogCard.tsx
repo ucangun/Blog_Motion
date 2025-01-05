@@ -22,11 +22,16 @@ const MyBlogCard = ({ blog }: MyBlogCardProps) => {
         <Typography gutterBottom variant="h6" component="div">
           {blog.title}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {blog?.content
-            ? blog.content.split(" ").slice(0, 30).join(" ") + "..."
-            : "No content available"}
-        </Typography>
+
+        <Typography
+          variant="body2"
+          sx={{ color: "text.secondary" }}
+          dangerouslySetInnerHTML={{
+            __html: blog?.content
+              ? blog.content.split(" ").slice(0, 30).join(" ") + "..."
+              : "No content available",
+          }}
+        />
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>

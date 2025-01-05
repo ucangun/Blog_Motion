@@ -7,17 +7,16 @@ import MyBlogCard from "../components/MyBlogs/MyBlogCard";
 
 const MyBlog = () => {
   const { getBlogData } = useBlogCall();
-  const { currentUser } = useSelector((state: RootState) => state.auth);
   const { userBlogs } = useSelector((state: RootState) => state.blog);
+  const { currentUser } = useSelector((state: RootState) => state.auth);
 
-  // useEffect hook'unda currentUser değişkenini bağımlılıklar arasına ekledik
   useEffect(() => {
     if (currentUser && currentUser._id) {
       getBlogData("blogs", `author=${currentUser._id}`);
     }
   }, [currentUser]);
 
-  // console.log(userBlogs);
+  console.log(userBlogs);
 
   return (
     <Container
