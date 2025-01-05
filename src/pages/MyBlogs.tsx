@@ -16,7 +16,7 @@ const MyBlog = () => {
     }
   }, [currentUser]);
 
-  console.log(userBlogs);
+  // console.log(userBlogs);
 
   return (
     <Container

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import useBlogCall from "../../../hooks/useBlogCall";
 import { RootState } from "../../../app/store";
 import { useSelector } from "react-redux";
+import { calculateReadingTime } from "../../../helpers/calculateReadingTime";
 
 const LatestBlogCard: React.FC = () => {
   const { getBlogData } = useBlogCall();
@@ -78,7 +79,7 @@ const LatestBlogCard: React.FC = () => {
                 {blog.categoryId?.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                10 min read
+                {calculateReadingTime(blog.content)}
               </Typography>
             </Box>
             <Typography

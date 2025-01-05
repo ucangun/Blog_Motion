@@ -2,6 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import MyButton from "../Button";
 import { formatDateTime } from "../../helpers/format";
 import BlogIcons from "./BlogIcons";
+import { calculateReadingTime } from "../../helpers/calculateReadingTime";
 
 export interface BlogCardProps {
   item: BlogPost;
@@ -58,26 +59,41 @@ export default function BlogCard({ item }: BlogCardProps) {
           >
             {item.categoryId?.name}
           </Typography>
+
           <Typography
             component="div"
             variant="body1"
             sx={{
-              fontSize: { xs: "1rem", sm: "1.1rem" },
-              marginBottom: "0.5rem",
+              fontSize: { xs: ".9rem", sm: "1rem" },
             }}
           >
             {item.title}
           </Typography>
-          <Typography
-            component="div"
-            variant="body2"
+
+          <Box
             sx={{
-              fontSize: { xs: ".8rem", sm: "1rem" },
-              marginBottom: "0.5rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "0.5rem",
+              marginTop: { xs: "0.5rem", sm: ".6rem" },
             }}
           >
-            {formatDateTime(new Date(item.createdAt), "DD/MM/YYYY")}
-          </Typography>
+            <Typography
+              component="div"
+              variant="body2"
+              sx={{
+                fontSize: { xs: ".8rem", sm: "1rem" },
+                marginBottom: "0.5rem",
+              }}
+            >
+              {formatDateTime(new Date(item.createdAt), "DD/MM/YYYY")}
+            </Typography>
+
+            <Typography variant="body2" color="text.secondary">
+              {calculateReadingTime(item.content)}
+            </Typography>
+          </Box>
 
           <Typography
             variant="subtitle1"

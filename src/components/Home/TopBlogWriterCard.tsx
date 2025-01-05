@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import MyButton from "../Button";
+import { calculateReadingTime } from "../../helpers/calculateReadingTime";
 
 interface TopBlogCardType {
   blog: BlogPost;
@@ -44,7 +45,7 @@ const TopBlogWriterCard = ({ blog, category }: TopBlogCardType) => {
             {category}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            10 min read
+            {calculateReadingTime(blog.content)}
           </Typography>
         </Box>
         <Typography
