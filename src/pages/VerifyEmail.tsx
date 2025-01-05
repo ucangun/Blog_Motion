@@ -18,7 +18,7 @@ const VerifyEmail = () => {
       }
 
       const response = await axios.get(
-        `http://127.0.0.1:8000/auth/verify-email`,
+        `https://www.blogmotions.de/auth/verify-email`,
         {
           params: { token },
         }
