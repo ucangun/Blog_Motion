@@ -11,6 +11,7 @@ import {
   getSingleCategorySuccess,
   getNewBlogsSuccess,
   getPopularBlogsSuccess,
+  getBlogByAdminSuccess,
 } from "../features/blogSlice";
 import { toastSuccess } from "../helpers/ToastNotify";
 import { handleApiError } from "../helpers/handleApiError";
@@ -36,7 +37,9 @@ const useBlogCall = () => {
 
       const { data } = await axios(url);
 
-      if (query?.includes("author=")) {
+      if (query?.includes("author=6757ffcfe5ac66a45aadba94")) {
+        dispatch(getBlogByAdminSuccess({ endpoint: "adminBlogs", data }));
+      } else if (query?.includes("author=")) {
         dispatch(getBlogByUserIdSuccess({ endpoint: "userBlogs", data }));
       } else if (query?.includes("category=")) {
         dispatch(getFilteredBlogsSuccess({ endpoint: "filteredBlogs", data }));

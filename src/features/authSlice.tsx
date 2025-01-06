@@ -41,6 +41,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.token = "";
       state.currentUser = null;
+      state.singleUser = null;
     },
     updateSuccess: (state, { payload }) => {
       state.loading = false;

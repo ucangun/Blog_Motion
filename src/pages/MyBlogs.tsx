@@ -11,12 +11,14 @@ const MyBlog = () => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (currentUser && currentUser._id) {
-      getBlogData("blogs", `author=${currentUser._id}`);
+    if (currentUser) {
+      console.log("Hello");
+      console.log(currentUser._id);
+      getBlogData("blogs", `author=${currentUser?._id}`);
     }
   }, [currentUser]);
 
-  // console.log(userBlogs);
+  console.log(userBlogs);
 
   return (
     <Container

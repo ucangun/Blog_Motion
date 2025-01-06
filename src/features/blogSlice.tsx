@@ -8,6 +8,7 @@ interface BlogSliceInitial {
   categories: CategoryPost[];
   singleBlog: SinglePost | null;
   userBlogs: BlogPost[];
+  adminBlogs: BlogPost[];
   filteredBlogs: BlogPost[];
   newBlogs: BlogPost[];
   popularBlogs: BlogPost[];
@@ -26,6 +27,7 @@ const initialState: BlogSliceInitial = {
   singleBlog: null,
   singleCategory: null,
   userBlogs: [],
+  adminBlogs: [],
   filteredBlogs: [],
   newBlogs: [],
   popularBlogs: [],
@@ -56,6 +58,11 @@ const blogSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.singleBlog = payload.data;
+    },
+    getBlogByAdminSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.error = false;
+      state[payload.endpoint] = payload.data.data;
     },
 
     getBlogByUserIdSuccess: (state, { payload }) => {
@@ -98,6 +105,7 @@ export const {
   getPagBlogSuccess,
   getSingleBlogSuccess,
   getBlogByUserIdSuccess,
+  getBlogByAdminSuccess,
   getSingleCategorySuccess,
   getFilteredBlogsSuccess,
   getNewBlogsSuccess,

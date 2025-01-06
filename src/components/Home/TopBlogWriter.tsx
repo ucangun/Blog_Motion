@@ -18,14 +18,14 @@ import { useNavigate } from "react-router-dom";
 import { calculateReadingTime } from "../../helpers/calculateReadingTime";
 
 const TopBlogWriter: React.FC = () => {
-  const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
+  const { adminBlogs, loading } = useSelector((state: RootState) => state.blog);
   const { getBlogData } = useBlogCall();
   const navigate = useNavigate();
 
   // Get the best blog after loading
-  const bestBlog = userBlogs && userBlogs?.length > 0 ? userBlogs[0] : null;
+  const bestBlog = adminBlogs && adminBlogs?.length > 0 ? adminBlogs[0] : null;
   const topWriterBlogs =
-    userBlogs && userBlogs?.length > 1 ? userBlogs.slice(1, 4) : [];
+    adminBlogs && adminBlogs?.length > 1 ? adminBlogs.slice(1, 4) : [];
 
   useEffect(() => {
     // Fetch data
