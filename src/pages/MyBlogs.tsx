@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import useBlogCall from "../hooks/useBlogCall";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import { Container, Grid2 } from "@mui/material";
+import { Container, Grid2, CircularProgress } from "@mui/material";
 import MyBlogCard from "../components/MyBlogs/MyBlogCard";
 
 const MyBlog = () => {
   const { getBlogData } = useBlogCall();
-  const { userBlogs } = useSelector((state: RootState) => state.blog);
+  const { userBlogs, loading } = useSelector((state: RootState) => state.blog);
   const { currentUser } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
@@ -18,7 +18,14 @@ const MyBlog = () => {
     }
   }, [currentUser]);
 
-  console.log(userBlogs);
+  if (loading) {
+    return (
+      <div>
+        <CircularProgress />
+        <p>Loading blogs...</p>
+      </div>
+    );
+  }
 
   return (
     <Container
