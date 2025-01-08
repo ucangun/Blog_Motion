@@ -34,6 +34,7 @@ const AppRouter = () => {
           <Route path="auth/failure" element={<AuthFail />} />
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/auth/verify-email" element={<VerifyEmail />} />
+          <Route path="/auth/verify-email/success" element={<VerifyEmail />} />
           <Route
             path="/auth/reset-password/:token"
             element={<ResetPassword />}

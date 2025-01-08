@@ -34,8 +34,12 @@ const MyBlogCard = ({ blog }: MyBlogCardProps) => {
         />
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small" onClick={() => navigate(`/blog/${blog._id}`)}>
+        {/* <Button size="small">Share</Button> */}
+        <Button
+          size="small"
+          sx={{ ml: "auto" }}
+          onClick={() => navigate(`/blog/${blog._id}`)}
+        >
           Read More
         </Button>
       </CardActions>

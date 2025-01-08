@@ -1,38 +1,52 @@
-import { useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+
 import { useLocation, useNavigate } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, CircularProgress } from "@mui/material";
 import verifyEmail from "../assets/images/verifyEmail.png";
 
 const VerifyEmail = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // URL'den token'ı alıyoruz
-  const token = new URLSearchParams(location.search).get("token");
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const queryParams = new URLSearchParams(location.search);
+  const statusParam = queryParams.get("status");
 
   useEffect(() => {
-    const verifyEmailToken = async () => {
-      if (!token) {
-        return;
+    const handleStatus = () => {
+      setLoading(true);
+
+      switch (statusParam) {
+        case "missing-token":
+          setStatusMessage("Token is missing! Please check the link.");
+          break;
+        case "invalid-token":
+          setStatusMessage("Invalid token! Please check the link.");
+          break;
+        case "user-not-found":
+          setStatusMessage("User not found! Please check the link.");
+          break;
+        case "already-verified":
+          setStatusMessage("Your email is already verified.");
+          break;
+        case "success":
+          setStatusMessage("Email successfully verified! Redirecting...");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+          break;
+        default:
+          setStatusMessage("Verifying your email... Please wait.");
+          break;
       }
 
-      const response = await axios.get(
-        `https://www.blogmotions.de/auth/verify-email`,
-        {
-          params: { token },
-        }
-      );
-
-      if (response.status === 200) {
-        navigate("/login");
-      } else {
-        navigate("/error");
-      }
+      setLoading(false);
     };
 
-    verifyEmailToken();
-  }, [token, navigate]);
+    handleStatus();
+  }, [statusParam, navigate]);
 
   return (
     <Box
@@ -56,13 +70,12 @@ const VerifyEmail = () => {
       ></Box>
 
       <Typography variant="h4" sx={{ textAlign: "center" }}>
-        Email Verification 🧐
+        Email Verification
       </Typography>
 
+      {/* Durum mesajı */}
       <Typography variant="body1" sx={{ textAlign: "center" }}>
-        Thank you for signing up! To complete your registration, please verify
-        your email address by clicking the button below in the email we sent
-        you.
+        {statusMessage || "Verifying your email... Please wait."}
       </Typography>
 
       <Typography
@@ -71,13 +84,18 @@ const VerifyEmail = () => {
       >
         If you didn't sign up for this account, please ignore this email.
       </Typography>
-      <Button
-        variant="contained"
-        onClick={() => navigate("/login")}
-        sx={{ padding: ".3rem .6rem", fontSize: ".8rem" }}
-      >
-        Go to Login Page
-      </Button>
+
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Button
+          variant="contained"
+          onClick={() => navigate("/login")}
+          sx={{ padding: ".3rem .6rem", fontSize: ".8rem" }}
+        >
+          Go to Login Page
+        </Button>
+      )}
     </Box>
   );
 };

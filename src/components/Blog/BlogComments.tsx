@@ -3,10 +3,10 @@ import {
   Box,
   Typography,
   Avatar,
-  Button,
+  // Button,
   Paper,
 } from "@mui/material";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+// import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import AddComment from "./AddComment";
@@ -56,13 +56,13 @@ const BlogComments = () => {
                   {comment.comment}
                 </Typography>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                  <Button
+                  {/* <Button
                     startIcon={<ThumbUpAltIcon />}
                     sx={{ color: "primary.main", mr: 2 }}
                   >
                     Like
                   </Button>
-                  <Button sx={{ color: "grey.500" }}>Reply</Button>
+                  <Button sx={{ color: "grey.500" }}>Reply</Button> */}
                 </Box>
               </Paper>
             ))}
