@@ -15,6 +15,8 @@ BlogMotion is designed to provide users with a dynamic platform where they can:
 - Register or log in using Google OAuth for a hassle-free experience.
 - Subscribe to newsletters and make symbolic test payments using Stripe.
 
+## 🎬 Output
+
 ## 🛠️ Technologies Used
 
 ### **Frontend:**
