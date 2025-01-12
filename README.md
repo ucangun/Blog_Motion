@@ -17,6 +17,9 @@ BlogMotion is designed to provide users with a dynamic platform where they can:
 
 ## 🎬 Output
 
+![Blog Motion](https://github.com/user-attachments/assets/e9c636fe-d5bd-4fec-be0f-bca7c00c869f)
+
+
 ## 🛠️ Technologies Used
 
 ### **Frontend:**
