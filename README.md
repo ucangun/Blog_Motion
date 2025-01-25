@@ -29,7 +29,7 @@ BlogMotion is designed to provide users with a dynamic platform where they can:
 - **Tailwind CSS**: Used selectively for custom styling.
 - **Formik & Yup**: For managing and validating forms efficiently, especially for user registration and login.
 - **React Router**: Implements navigation through `AppRouter` and `PrivateRouter` for protected routes.
-- **@tinymce/tinymce-react**: Provides a rich text editor for blog creation.
+- **React-Quill**: Provides a rich text editor for blog creation.
 - **Redux Toolkit**: Manages global state efficiently, including user authentication and blog data.
 - **Redux Persist**: Ensures session persistence for user data across page refreshes.
 - **Toastify & SweetAlert**: For interactive user notifications and alerts.
